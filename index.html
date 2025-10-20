@@ -1,8 +1,74 @@
 <!DOCTYPE html>
-<html>
-  <head><meta charset="utf-8"><title>Poetry Cam</title></head>
-  <body>
-    <h1>Poetry Cam läuft!</h1>
-    <p>Testseite über GitHub Pages.</p>
-  </body>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Poetry Cam – KI trifft Sofortbild</title>
+  <meta name="description" content="Die Poetry Cam ist eine KI-basierte Kamera, die Bilder analysiert und poetisch beschreibt – direkt mit integriertem Drucker.">
+  <link rel="stylesheet" href="assets/css/pico.min.css">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+</head>
+
+<body>
+  <header class="container">
+    <nav>
+      <ul>
+        <li><strong>Poetry Cam</strong></li>
+      </ul>
+      <ul>
+        <li><a href="#about">Über</a></li>
+        <li><a href="#gallery">Galerie</a></li>
+        <li><a href="#contact">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section>
+      <h1>Poetry Cam</h1>
+      <p class="lead">
+        Eine Kamera, die mehr sieht als Bilder – sie schreibt Gedichte dazu.
+      </p>
+      <img src="assets/img/poetry-cam.jpg" alt="Poetry Cam Prototyp" style="border-radius:1rem;max-width:100%;">
+    </section>
+
+    <section id="about">
+      <h2>Über das Projekt</h2>
+      <p>
+        Die <strong>Poetry Cam</strong> kombiniert klassische Sofortbildtechnik mit Künstlicher Intelligenz.
+        Sie analysiert ein aufgenommenes Foto und verwandelt es in poetische Worte – gedruckt auf Thermopapier.
+      </p>
+      <p>
+        Entwickelt von <strong>Georg Klassen</strong> und der <strong>Digilyze GmbH</strong> in München.
+      </p>
+      <p>
+        <a href="https://github.com/hexacat42/poetry-cam" target="_blank">Projekt auf GitHub ansehen →</a>
+      </p>
+    </section>
+
+    <section id="gallery">
+      <h2>Bildergalerie</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;">
+        <img src="assets/img/example1.jpg" alt="Poetry Cam Beispiel 1">
+        <img src="assets/img/example2.jpg" alt="Poetry Cam Beispiel 2">
+        <img src="assets/img/example3.jpg" alt="Poetry Cam Beispiel 3">
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Kontakt</h2>
+      <p>
+        Interesse an einer Demo oder am Verleih?  
+        <a href="mailto:info@digilyze.com">Schreib uns eine E-Mail</a>.
+      </p>
+    </section>
+  </main>
+
+  <footer class="container">
+    <small>
+      © 2025 Digilyze GmbH · <a href="https://digilyze.com" target="_blank">digilyze.com</a> ·
+      <a href="#top">Nach oben ↑</a>
+    </small>
+  </footer>
+</body>
 </html>
