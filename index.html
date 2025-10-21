@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -45,10 +46,30 @@
     .muted { opacity: .8; }
     .cards { display:grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); }
     .card { border: 1px solid var(--muted-border-color); border-radius: 1rem; padding: 1rem; }
-    .badge { display:inline-block; padding:.15rem .5rem; border-radius:.5rem; background:var(--muted-border-color); font-size:.75rem; }
-    .timeline { border-left: 2px solid var(--muted-border-color); margin-left: .75rem; padding-left: 1rem; }
-    .timeline .item { margin: .75rem 0; }
-    .cta { display:flex; gap:.75rem; flex-wrap:wrap; }
+    .badge { display:inline-block; padding:.2rem .6rem; border-radius:999px; background:var(--muted-border-color); font-size:.75rem; }
+    .timeline { position: relative; margin: 1rem 0 2rem 0; }
+    .timeline:before { content:""; position:absolute; left:10px; top:0; bottom:0; width:2px; background:var(--muted-border-color); }
+    .timeline .item { position: relative; padding-left:2.25rem; margin:1rem 0; }
+    .timeline .item:before { content:""; position:absolute; left:4px; top:.35rem; width:12px; height:12px; border-radius:50%; background:var(--primary); box-shadow:0 0 0 4px color-mix(in srgb, var(--primary) 20%, transparent); }
+    .timeline .item h3 { margin:.2rem 0 .2rem 0; }
+    .timeline .meta { font-size:.9rem; opacity:.8; }
+    .timeline .highlights { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.25rem; }
+    .pill { border:1px solid var(--muted-border-color); border-radius:999px; padding:.1rem .5rem; font-size:.75rem; }
+
+    /* Galerie-Layouts */
+    .gallery-hero { max-width: 980px; margin: 0 auto 1.25rem auto; }
+    .gallery-hero img { width:100%; height:auto; border-radius:1rem; }
+    .gallery-row { display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem; }
+    .gallery-row.single { grid-template-columns: 1fr; }
+    .gallery-figure { text-align:center; }
+    @media (max-width: 760px) {
+      .gallery-row { grid-template-columns: 1fr 1fr; }
+      .gallery-row.single { grid-template-columns: 1fr; }
+    }
+      /* Abschnitts-Optik */
+    .section { padding: 2rem 1rem; margin: 2rem 0; border-radius: 1rem; }
+    .section-alt { background: color-mix(in srgb, var(--muted-border-color) 12%, transparent); }
+    .section h2 { margin-top: 0; }
   </style>
 </head>
 
@@ -72,90 +93,108 @@
 
   <main class="container">
     <!-- Storyline / Timeline -->
-    <section id="story">
+    <section id="story" class="section section-alt">
       <h2>Von der Idee zum Vorzeigeexemplar</h2>
       <p class="muted">Kurzreise von <strong>Mai 2024</strong> (Idee) über <strong>Februar 2025</strong> (erstes voll funktionsfähiges Exemplar) bis <strong>Juni 2025</strong> (Vorzeigeexemplar mit KI‑Stimme).</p>
       <div class="timeline">
         <div class="item">
           <span class="badge">Mai 2024</span>
-          <p>Die initiale Idee: Eine <strong>Raspberry‑Pi‑Kamera</strong>, die Fotos per KI beschreibt und den Text <strong>direkt druckt</strong> – die Geburtsstunde der Poetry Cam.</p>
+          <h3>Die zündende Idee</h3>
+          <p class="meta">Raspberry‑Pi‑Kamera + KI‑Beschreibung + Thermodrucker</p>
+          <div class="highlights">
+            <span class="pill">Prompt → Foto → Gedicht</span>
+            <span class="pill">Erstes Architektur‑Sketch</span>
+          </div>
         </div>
         <div class="item">
           <span class="badge">Sommer–Herbst 2024</span>
-          <p>Prototypen‑Phase: Pappe zur Formfindung, erster 3D‑Druck (eckig, klobig), dann deutlich verfeinert. Erste Funktionstests gelingen – Basis steht.</p>
+          <h3>Prototyping in Sprints</h3>
+          <p class="meta">Pappe → 3D‑Druck (eckig) → 3D‑Druck (fein)</p>
+          <div class="highlights">
+            <span class="pill">HW‑Bring‑up</span>
+            <span class="pill">Erste KI‑Pipelines</span>
+            <span class="pill">Thermodruck integriert</span>
+          </div>
         </div>
         <div class="item">
           <span class="badge">Februar 2025</span>
-          <p>Das <strong>erste voll funktionsfähige Exemplar</strong> besteht einen zweitägigen Messe‑Härtetest – <em>ohne Ausfälle</em>.</p>
+          <h3>Erstes voll funktionsfähiges Exemplar</h3>
+          <p class="meta">Zwei Tage Messe – <em>ohne Ausfälle</em></p>
+          <div class="highlights">
+            <span class="pill">Stabile Stromversorgung</span>
+            <span class="pill">Live‑Pipeline</span>
+            <span class="pill">User‑Flows getestet</span>
+          </div>
         </div>
         <div class="item">
           <span class="badge">Juni 2025</span>
-          <p>Aktuelles <strong>Vorzeigeexemplar</strong> mit integriertem Lautsprecher: Der KI‑Text wird nicht nur gedruckt, sondern auch <strong>in natürlicher Stimme vorgelesen</strong>. Externe Bluetooth‑Speaker sind ebenfalls möglich.</p>
+          <h3>Vorzeigeexemplar mit Stimme</h3>
+          <p class="meta">Integrierter Lautsprecher & Bluetooth‑Support</p>
+          <div class="highlights">
+            <span class="pill">KI‑Vorlesen</span>
+            <span class="pill">Feinschliff Gehäuse</span>
+            <span class="pill">Demo‑bereit</span>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Gallery -->
-    <section id="gallery">
+    <section id="gallery" class="section">
       <h2>Bildergalerie</h2>
-      <div class="grid grid-3">
-        <!-- 1) Vorzeigeexemplar -->
-        <figure>
+
+      <!-- Hero: Vorzeigeexemplar mittig, groß -->
+      <div class="gallery-hero">
+        <figure class="gallery-figure">
           <img src="assets/img/showcase-speaker.jpg" alt="Poetry Cam Vorzeigeexemplar mit integriertem Lautsprecher" loading="lazy" />
           <figcaption><strong>Vorzeigeexemplar (Juni 2025)</strong> · Integrierter Lautsprecher; KI‑Text wird gedruckt <em>und</em> vorgelesen.</figcaption>
         </figure>
+      </div>
 
-        <!-- 2) Drei vorherige Versionen -->
-        <figure>
+      <!-- Reihe 2: drei frühe Versionen nebeneinander -->
+      <div class="gallery-row">
+        <figure class="gallery-figure">
           <img src="assets/img/v1-cardboard.jpg" alt="Allererste Poetry Cam aus Pappe, nicht funktionsfähig" loading="lazy" />
           <figcaption><strong>V1 – Pappe (2024)</strong> · Formfaktor testen, noch nicht funktionsfähig.</figcaption>
         </figure>
-        <figure>
+        <figure class="gallery-figure">
           <img src="assets/img/v2-3dprint-rough.jpg" alt="Zweite Cam 3D-gedruckt, eckig, erste Funktionstests" loading="lazy" />
           <figcaption><strong>V2 – 3D‑Druck (früh)</strong> · Eckig, klobig; erste Funktionstests möglich.</figcaption>
         </figure>
-        <figure>
+        <figure class="gallery-figure">
           <img src="assets/img/v3-3dprint-fine.jpg" alt="Dritte Cam 3D-gedruckt, feiner, erste voll funktionsfähige Version" loading="lazy" />
           <figcaption><strong>V3 – 3D‑Druck (fein)</strong> · Erstes <em>voll funktionsfähiges</em> Exemplar, 2 Tage Messe ohne Ausfälle.</figcaption>
         </figure>
+      </div>
 
-        <!-- 3) Alle vier Exemplare links→rechts -->
-        <figure>
+      <!-- Reihe 3: alle vier Exemplare -->
+      <div class="gallery-row single">
+        <figure class="gallery-figure">
           <img src="assets/img/all-four-lineup.jpg" alt="Alle vier Poetry Cam Exemplare von links nach rechts: V1 bis Vorzeigeexemplar" loading="lazy" />
           <figcaption><strong>Evolution</strong> · Vier Stufen von links (V1) bis rechts (Vorzeigeexemplar).</figcaption>
         </figure>
+      </div>
 
-        <!-- 4) Erfinderfoto -->
-        <figure>
+      <!-- Reihe 4: Erfinderfoto -->
+      <div class="gallery-row single">
+        <figure class="gallery-figure">
           <img src="assets/img/founder-with-showcase.jpg" alt="Erfinder Georg Klassen mit dem Vorzeigeexemplar auf dem Tisch" loading="lazy" />
           <figcaption><strong>Erfinder</strong> · Georg Klassen mit Vorzeigeexemplar.</figcaption>
         </figure>
       </div>
     </section>
 
-    <!-- Use cases / Cards -->
-    <section id="use-cases">
-      <h2>Einsatzmöglichkeiten</h2>
-      <div class="cards">
-        <div class="card">
-          <h3>Workshops & Ausbildung</h3>
-          <p>LLM‑Einblicke, Embedded‑Entwicklung und 3D‑Druck am realen Objekt – „KI zum Anfassen“.</p>
-        </div>
-        <div class="card">
-          <h3>Events & Messen</h3>
-          <p>Gedichte als Give‑away mit Wow‑Effekt – Besucher nehmen ihr persönliches „Sofort‑Poem“ mit.</p>
-        </div>
-        <div class="card">
-          <h3>Hochzeiten & Feiern</h3>
-          <p>Charmante, poetische Erinnerungen – individuell, gedruckt und auf Wunsch vorgelesen.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- R&S Teisnach Apprentices (coming soon) -->
-    <section id="teisnach">
-      <h2>Azubi‑Projekt (Rohde &amp; Schwarz, Werk Teisnach)</h2>
-      <p>Geplant: Ein interdisziplinäres Azubi‑Team (SW/HW/LLM/3D‑Druck) arbeitet mit dem Vorzeigeexemplar. Der Fokus liegt auf <strong>Spaß</strong> und <strong>Lerneffekt</strong> – etwa mit spielerischen Prompts („Bewerte mein Outfit“ → gedruckter „Kassenzettel“).</p>
+    <!-- Education first (integrates Azubi project) -->
+    <section id="education" class="section section-alt">
+      <h2>Ausbildung, Schulen & Medienkompetenz</h2>
+      <p>Die Poetry Cam als <strong>„KI zum Anfassen“</strong> im Unterricht und in der Ausbildung: Bildverarbeitung, LLM‑Prompts, Embedded‑Entwicklung und 3D‑Druck an einem greifbaren Projekt.</p>
+      <ul>
+        <li>Module von 45–90 Minuten Demo bis hin zur Projektwoche</li>
+        <li>Didaktische Unterlagen (Einführung in LLM & Prompting, Hardware‑Überblick)</li>
+        <li>Option: Leihgabe für Projektarbeiten</li>
+      </ul>
+      <h3>Azubi‑Projekt (Rohde &amp; Schwarz, Werk Teisnach)</h3>
+      <p>Ein interdisziplinäres Azubi‑Team (SW/HW/LLM/3D‑Druck) arbeitet mit dem Vorzeigeexemplar. Fokus: <strong>Spaß</strong> und <strong>Lerneffekt</strong> – z. B. spielerische Prompts wie „Bewerte mein Outfit“ mit gedrucktem „Kassenzettel“.</p>
       <div class="grid grid-3">
         <figure>
           <img src="assets/img/teisnach-1.jpg" alt="Azubis testen die Poetry Cam – Bild folgt" loading="lazy" />
@@ -170,24 +209,28 @@
           <figcaption>„Outfit‑Bewertung“ Kassenzettel (Bild folgt).</figcaption>
         </figure>
       </div>
-    </section>
-
-    <!-- Education / Schools CTA -->
-    <section id="education">
-      <h2>Schulen & Medienkompetenz</h2>
-      <p>Die Poetry Cam als <strong>„KI zum Anfassen“</strong> im Informatik‑ oder Technik‑Unterricht: Bildverarbeitung, LLM‑Prompts, Embedded‑Entwicklung und 3D‑Druck an einem greifbaren Projekt.</p>
-      <ul>
-        <li>Flexible Module: 45–90 Minuten Demo bis Projektwoche</li>
-        <li>Didaktische Unterlagen (Einführung in LLM & Prompting, Hardware‑Überblick)</li>
-        <li>Option: Leihgabe für Projektarbeiten</li>
-      </ul>
-      <div class="cta">
+      <div class="cta" style="margin-top:1rem;">
         <a role="button" class="secondary" href="mailto:info@digilyze.com?subject=Poetry%20Cam%20an%20Ihrer%20Schule">Per E‑Mail anfragen</a>
       </div>
     </section>
 
+    <!-- Use cases: Events & Weddings afterwards -->
+    <section id="use-cases" class="section">
+      <h2>Einsätze: Events &amp; Feiern</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Events &amp; Messen</h3>
+          <p>Gedichte als Give‑away mit Wow‑Effekt – Besucher nehmen ihr persönliches „Sofort‑Poem“ mit.</p>
+        </div>
+        <div class="card">
+          <h3>Hochzeiten &amp; Feiern</h3>
+          <p>Charmante, poetische Erinnerungen – individuell, gedruckt und auf Wunsch vorgelesen.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- Contact -->
-    <section id="contact">
+    <section id="contact" class="section section-alt">
       <h2>Kontakt</h2>
       <p>Demo, Verleih oder Kooperation anfragen:</p>
       <ul>
