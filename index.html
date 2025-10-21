@@ -1,74 +1,211 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Poetry Cam – KI trifft Sofortbild</title>
-  <meta name="description" content="Die Poetry Cam ist eine KI-basierte Kamera, die Bilder analysiert und poetisch beschreibt – direkt mit integriertem Drucker.">
-  <link rel="stylesheet" href="assets/css/pico.min.css">
-  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <meta name="description" content="Die Poetry Cam beschreibt Fotos mit KI in Poesie – und druckt sie aus. Aktuelles Vorzeigeexemplar mit integriertem Lautsprecher für KI‑Sprachausgabe." />
+  <link rel="stylesheet" href="assets/css/pico.min.css" />
+  <link rel="icon" href="assets/img/favicon.png" />
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Poetry Cam – KI trifft Sofortbild" />
+  <meta property="og:description" content="Von der Idee (Mai 2024) zum voll funktionsfähigen Vorzeigeexemplar (Juni 2025). Demo & Verleih auf Anfrage." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cam.digilyze.com/" />
+  <meta property="og:image" content="https://cam.digilyze.com/assets/img/og-poetry-cam.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  
+  <!-- JSON-LD: Project + Person + Organization (minimal) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Poetry Cam",
+    "url": "https://cam.digilyze.com/",
+    "description": "Raspberry Pi Kamera mit KI-Beschreibung, Thermodrucker und Sprach-Ausgabe.",
+    "creator": {
+      "@type": "Person",
+      "name": "Georg Klassen"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Digilyze GmbH",
+      "url": "https://digilyze.com"
+    }
+  }
+  </script>
+  <style>
+    /* Kleine Design-Optimierungen auf Pico-Basis */
+    header.hero { padding: 3rem 0 2rem; }
+    .grid { display: grid; gap: 1rem; }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    figure { margin: 0; }
+    figure img { border-radius: 0.75rem; width: 100%; height: auto; }
+    figcaption { font-size: 0.9rem; opacity: 0.85; margin-top: .35rem; }
+    .muted { opacity: .8; }
+    .cards { display:grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); }
+    .card { border: 1px solid var(--muted-border-color); border-radius: 1rem; padding: 1rem; }
+    .badge { display:inline-block; padding:.15rem .5rem; border-radius:.5rem; background:var(--muted-border-color); font-size:.75rem; }
+    .timeline { border-left: 2px solid var(--muted-border-color); margin-left: .75rem; padding-left: 1rem; }
+    .timeline .item { margin: .75rem 0; }
+    .cta { display:flex; gap:.75rem; flex-wrap:wrap; }
+  </style>
 </head>
 
 <body>
-  <header class="container">
+  <header class="container hero">
     <nav>
       <ul>
         <li><strong>Poetry Cam</strong></li>
       </ul>
       <ul>
-        <li><a href="#about">Über</a></li>
+        <li><a href="#story">Story</a></li>
         <li><a href="#gallery">Galerie</a></li>
+        <li><a href="#use-cases">Einsätze</a></li>
+        <li><a href="#education">Schulen</a></li>
         <li><a href="#contact">Kontakt</a></li>
       </ul>
     </nav>
+    <h1>KI trifft Sofortbild</h1>
+    <p class="lead">Eine Kamera, die mehr sieht als Bilder: Sie schreibt Poesie – und liest sie vor.</p>
+    <div class="cta">
+      <a role="button" href="#gallery">Bilder ansehen</a>
+      <a role="button" class="secondary" href="https://github.com/hexacat42/poetry-cam" target="_blank" rel="noopener">Quellcode auf GitHub</a>
+    </div>
   </header>
 
   <main class="container">
-    <section>
-      <h1>Poetry Cam</h1>
-      <p class="lead">
-        Eine Kamera, die mehr sieht als Bilder – sie schreibt Gedichte dazu.
-      </p>
-      <img src="assets/img/Poetry_Cam_01_1.jpg" alt="Poetry Cam Prototyp" style="border-radius:1rem;max-width:100%;">
-    </section>
-
-    <section id="about">
-      <h2>Über das Projekt</h2>
-      <p>
-        Die <strong>Poetry Cam</strong> kombiniert klassische Sofortbildtechnik mit Künstlicher Intelligenz.
-        Sie analysiert ein aufgenommenes Foto und verwandelt es in poetische Worte – gedruckt auf Thermopapier.
-      </p>
-      <p>
-        Entwickelt von <strong>Georg Klassen</strong> und der <strong>Digilyze GmbH</strong> in München.
-      </p>
-      <p>
-        <a href="https://github.com/hexacat42/poetry-cam" target="_blank">Projekt auf GitHub ansehen →</a>
-      </p>
-    </section>
-
-    <section id="gallery">
-      <h2>Bildergalerie</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;">
-        <img src="assets/img/example1.jpg" alt="Poetry Cam Beispiel 1">
-        <img src="assets/img/example2.jpg" alt="Poetry Cam Beispiel 2">
-        <img src="assets/img/example3.jpg" alt="Poetry Cam Beispiel 3">
+    <!-- Storyline / Timeline -->
+    <section id="story">
+      <h2>Von der Idee zum Vorzeigeexemplar</h2>
+      <p class="muted">Kurzreise von <strong>Mai 2024</strong> (Idee) über <strong>Februar 2025</strong> (erstes voll funktionsfähiges Exemplar) bis <strong>Juni 2025</strong> (Vorzeigeexemplar mit KI‑Stimme).</p>
+      <div class="timeline">
+        <div class="item">
+          <span class="badge">Mai 2024</span>
+          <p>Die initiale Idee: Eine <strong>Raspberry‑Pi‑Kamera</strong>, die Fotos per KI beschreibt und den Text <strong>direkt druckt</strong> – die Geburtsstunde der Poetry Cam.</p>
+        </div>
+        <div class="item">
+          <span class="badge">Sommer–Herbst 2024</span>
+          <p>Prototypen‑Phase: Pappe zur Formfindung, erster 3D‑Druck (eckig, klobig), dann deutlich verfeinert. Erste Funktionstests gelingen – Basis steht.</p>
+        </div>
+        <div class="item">
+          <span class="badge">Februar 2025</span>
+          <p>Das <strong>erste voll funktionsfähige Exemplar</strong> besteht einen zweitägigen Messe‑Härtetest – <em>ohne Ausfälle</em>.</p>
+        </div>
+        <div class="item">
+          <span class="badge">Juni 2025</span>
+          <p>Aktuelles <strong>Vorzeigeexemplar</strong> mit integriertem Lautsprecher: Der KI‑Text wird nicht nur gedruckt, sondern auch <strong>in natürlicher Stimme vorgelesen</strong>. Externe Bluetooth‑Speaker sind ebenfalls möglich.</p>
+        </div>
       </div>
     </section>
 
+    <!-- Gallery: 6 Bilder -->
+    <section id="gallery">
+      <h2>Bildergalerie</h2>
+      <div class="grid grid-3">
+        <!-- 1) Vorzeigeexemplar -->
+        <figure>
+          <img src="assets/img/showcase-speaker.png" alt="Poetry Cam Vorzeigeexemplar mit integriertem Lautsprecher" loading="lazy" />
+          <figcaption><strong>Vorzeigeexemplar (Juni 2025)</strong> · Integrierter Lautsprecher; KI‑Text wird gedruckt <em>und</em> vorgelesen.</figcaption>
+        </figure>
+
+        <!-- 2) Drei vorherige Versionen -->
+        <figure>
+          <img src="assets/img/v1-cardboard.png" alt="Allererste Poetry Cam aus Pappe, nicht funktionsfähig" loading="lazy" />
+          <figcaption><strong>V1 – Pappe (2024)</strong> · Formfaktor testen, noch nicht funktionsfähig.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/v2-3dprint-rough.png" alt="Zweite Cam 3D-gedruckt, eckig, erste Funktionstests" loading="lazy" />
+          <figcaption><strong>V2 – 3D‑Druck (früh)</strong> · Eckig, klobig; erste Funktionstests möglich.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/v3-3dprint-fine.png" alt="Dritte Cam 3D-gedruckt, feiner, erste voll funktionsfähige Version" loading="lazy" />
+          <figcaption><strong>V3 – 3D‑Druck (fein)</strong> · Erstes <em>voll funktionsfähiges</em> Exemplar, 2 Tage Messe ohne Ausfälle.</figcaption>
+        </figure>
+
+        <!-- 3) Alle vier Exemplare links→rechts -->
+        <figure>
+          <img src="assets/img/all-four-lineup.png" alt="Alle vier Poetry Cam Exemplare von links nach rechts: V1 bis Vorzeigeexemplar" loading="lazy" />
+          <figcaption><strong>Evolution</strong> · Vier Stufen von links (V1) bis rechts (Vorzeigeexemplar).</figcaption>
+        </figure>
+
+        <!-- 4) Erfinderfoto -->
+        <figure>
+          <img src="assets/img/founder-with-showcase.png" alt="Erfinder Georg Klassen mit dem Vorzeigeexemplar auf dem Tisch" loading="lazy" />
+          <figcaption><strong>Erfinder</strong> · Georg Klassen mit Vorzeigeexemplar.</figcaption>
+        </figure>
+      </div>
+      <p class="muted">Hinweis: Bilder sind Platzhalter – benenne sie wie oben und lege sie unter <code>/assets/img/</code> ab.</p>
+    </section>
+
+    <!-- Use cases / Cards -->
+    <section id="use-cases">
+      <h2>Einsatzmöglichkeiten</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Events & Messen</h3>
+          <p>Gedichte als Give‑away mit Wow‑Effekt – Besucher nehmen ihr persönliches „Sofort‑Poem“ mit.</p>
+        </div>
+        <div class="card">
+          <h3>Workshops & Ausbildung</h3>
+          <p>LLM‑Einblicke, Embedded‑Entwicklung und 3D‑Druck am realen Objekt – „KI zum Anfassen“.</p>
+        </div>
+        <div class="card">
+          <h3>Hochzeiten & Feiern</h3>
+          <p>Charmante, poetische Erinnerungen – individuell, gedruckt und auf Wunsch vorgelesen.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- R&S Teisnach Apprentices (coming soon) -->
+    <section id="teisnach">
+      <h2>Azubi‑Projekt (Rohde &amp; Schwarz, Werk Teisnach)</h2>
+      <p>Geplant: Ein interdisziplinäres Azubi‑Team (SW/HW/LLM/3D‑Druck) arbeitet mit dem Vorzeigeexemplar. Der Fokus liegt auf <strong>Spaß</strong> und <strong>Lerneffekt</strong> – etwa mit spielerischen Prompts („Bewerte mein Outfit“ → gedruckter „Kassenzettel“).</p>
+      <div class="grid grid-3">
+        <figure>
+          <img src="assets/img/teisnach-1.png" alt="Azubis testen die Poetry Cam – Bild folgt" loading="lazy" />
+          <figcaption>Azubis mit Poetry Cam (Bild folgt).</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/teisnach-2.png" alt="Poetry Cam im Ausbildungsumfeld – Bild folgt" loading="lazy" />
+          <figcaption>Ausbildungs‑Use‑Case (Bild folgt).</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/teisnach-3.png" alt="Spaß‑Use‑Case Outfitbewertung – Bild folgt" loading="lazy" />
+          <figcaption>„Outfit‑Bewertung“ Kassenzettel (Bild folgt).</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Education / Schools CTA -->
+    <section id="education">
+      <h2>Schulen & Medienkompetenz</h2>
+      <p>Die Poetry Cam als <strong>„KI zum Anfassen“</strong> im Informatik‑ oder Technik‑Unterricht: Bildverarbeitung, LLM‑Prompts, Embedded‑Entwicklung und 3D‑Druck an einem greifbaren Projekt.</p>
+      <ul>
+        <li>Flexible Module: 45–90 Minuten Demo bis Projektwoche</li>
+        <li>Didaktische Unterlagen (Einführung in LLM & Prompting, Hardware‑Überblick)</li>
+        <li>Option: Leihgabe für Projektarbeiten</li>
+      </ul>
+      <div class="cta">
+        <a role="button" href="#contact">Jetzt anfragen</a>
+        <a role="button" class="secondary" href="mailto:info@digilyze.com?subject=Poetry%20Cam%20an%20Ihrer%20Schule">Per E‑Mail anfragen</a>
+      </div>
+      <p class="muted">Hinweis: Bilder für diesen Abschnitt folgen. Bis dahin genügt das Icon/Logo der Schule oder ein neutrales Piktogramm.</p>
+    </section>
+
+    <!-- Contact -->
     <section id="contact">
       <h2>Kontakt</h2>
-      <p>
-        Interesse an einer Demo oder am Verleih?  
-        <a href="mailto:info@digilyze.com">Schreib uns eine E-Mail</a>.
-      </p>
+      <p>Demo, Verleih oder Kooperation anfragen:</p>
+      <ul>
+        <li>E‑Mail: <a href="mailto:info@digilyze.com">info@digilyze.com</a></li>
+        <li>Unternehmen: <a href="https://digilyze.com" target="_blank" rel="noopener">Digilyze GmbH</a></li>
+      </ul>
     </section>
   </main>
 
   <footer class="container">
-    <small>
-      © 2025 Digilyze GmbH · <a href="https://digilyze.com" target="_blank">digilyze.com</a> ·
-      <a href="#top">Nach oben ↑</a>
-    </small>
+    <small>© 2025 Digilyze GmbH · Erfinder: Georg Klassen · <a href="#story">Zur Story</a></small>
   </footer>
 </body>
 </html>
