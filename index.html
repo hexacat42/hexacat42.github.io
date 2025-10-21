@@ -47,14 +47,17 @@
     .cards { display:grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); }
     .card { border: 1px solid var(--muted-border-color); border-radius: 1rem; padding: 1rem; }
     .badge { display:inline-block; padding:.2rem .6rem; border-radius:999px; background:var(--muted-border-color); font-size:.75rem; }
-    .timeline { position: relative; margin: 1rem 0 2rem 0; }
-    .timeline:before { content:""; position:absolute; left:10px; top:0; bottom:0; width:2px; background:var(--muted-border-color); }
-    .timeline .item { position: relative; padding-left:2.25rem; margin:1rem 0; }
-    .timeline .item:before { content:""; position:absolute; left:4px; top:.35rem; width:12px; height:12px; border-radius:50%; background:var(--primary); box-shadow:0 0 0 4px color-mix(in srgb, var(--primary) 20%, transparent); }
-    .timeline .item h3 { margin:.2rem 0 .2rem 0; }
-    .timeline .meta { font-size:.9rem; opacity:.8; }
-    .timeline .highlights { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.25rem; }
-    .pill { border:1px solid var(--muted-border-color); border-radius:999px; padding:.1rem .5rem; font-size:.75rem; }
+    .timeline { position: relative; margin: 1rem 0 1.5rem 0; padding-left: 0; }
+    .timeline:before { content:""; position:absolute; left:14px; top:0; bottom:0; width:2px; background:var(--muted-border-color); }
+    .timeline ul { list-style:none; margin:0; padding:0; }
+    .timeline li { position:relative; margin:.75rem 0; padding-left:2.25rem; display:grid; grid-template-columns: 120px 1fr; gap:1rem; align-items:start; }
+    .timeline li::before { content:""; position:absolute; left:8px; top:.45rem; width:12px; height:12px; border-radius:50%; background:var(--primary); box-shadow:0 0 0 3px color-mix(in srgb, var(--primary) 20%, transparent); }
+    .timeline .date { font-weight:600; white-space:nowrap; font-size:.95rem; }
+    .timeline .desc { font-size: .95rem; opacity:.95; }
+    @media (max-width:760px){
+      .timeline li{ grid-template-columns: 1fr; padding-left:2.25rem; }
+      .timeline .date{ margin-bottom:.15rem; }
+    }
 
     /* Galerie-Layouts */
     .gallery-hero { max-width: 980px; margin: 0 auto 1.25rem auto; }
@@ -66,10 +69,27 @@
       .gallery-row { grid-template-columns: 1fr 1fr; }
       .gallery-row.single { grid-template-columns: 1fr; }
     }
-      /* Abschnitts-Optik */
+      /* Abschnitts-Optik – deutlichere Trennung + mobile kompakter */
     .section { padding: 2rem 1rem; margin: 2rem 0; border-radius: 1rem; }
-    .section-alt { background: color-mix(in srgb, var(--muted-border-color) 12%, transparent); }
+    .section-alt { background: #f2f4f7; /* helles Grau, klar sichtbar */ border: 1px solid rgba(0,0,0,.06); }
+    .section:not(.section-alt) { background: #ffffff; }
     .section h2 { margin-top: 0; }
+    @media (prefers-color-scheme: dark) {
+      .section-alt { background: #14181f; border-color: rgba(255,255,255,.08); }
+      .section:not(.section-alt) { background: transparent; }
+    }
+
+    /* Kompaktere Typografie/Margins für mobile */
+    @media (max-width: 760px) {
+      header.hero { padding: 1.25rem 0 1rem; }
+      .section { padding: 1.25rem .75rem; margin: 1rem 0; }
+      .timeline .item { margin: .5rem 0; }
+      figcaption { font-size: .85rem; }
+    }
+
+    /* Grüßenbeschränkung bestimmter Bilder */
+    .founder img { max-width: 560px; max-height: 320px; object-fit: contain; margin: 0 auto; }
+    @media (max-width: 760px){ .founder img { max-height: 180px; } }
   </style>
 </head>
 
@@ -97,14 +117,25 @@
       <h2>Von der Idee zum Vorzeigeexemplar</h2>
       <p class="muted">Kurzreise von <strong>Mai 2024</strong> (Idee) über <strong>Februar 2025</strong> (erstes voll funktionsfähiges Exemplar) bis <strong>Juni 2025</strong> (Vorzeigeexemplar mit KI‑Stimme).</p>
       <div class="timeline">
-        <div class="item">
-          <span class="badge">Mai 2024</span>
-          <h3>Die zündende Idee</h3>
-          <p class="meta">Raspberry‑Pi‑Kamera + KI‑Beschreibung + Thermodrucker</p>
-          <div class="highlights">
-            <span class="pill">Prompt → Foto → Gedicht</span>
-            <span class="pill">Erstes Architektur‑Sketch</span>
-          </div>
+        <ul>
+          <li>
+            <span class="date">Mai 2024</span>
+            <div class="desc">Idee & Grundkonzept: <strong>Raspberry‑Pi‑Kamera</strong> + KI‑Bildbeschreibung + <strong>Thermodrucker</strong>. Der Auslöser: Fotos sollen mehr erzählen als Pixel – sie sollen <em>Poesie</em> drucken.</div>
+          </li>
+          <li>
+            <span class="date">Sommer–Herbst 2024</span>
+            <div class="desc">Prototyping in Stufen: <strong>Pappe</strong> zur Formfindung → erster <strong>3D‑Druck (eckig)</strong> → <strong>3D‑Druck (feiner)</strong>. HW‑Bring‑up, erste KI‑Pipeline, Thermodruck integriert.</div>
+          </li>
+          <li>
+            <span class="date">Februar 2025</span>
+            <div class="desc">Erstes <strong>voll funktionsfähiges Exemplar</strong>: zweitägiger Messe‑Härtetest – <em>ohne Ausfälle</em>.</div>
+          </li>
+          <li>
+            <span class="date">Juni 2025</span>
+            <div class="desc"><strong>Vorzeigeexemplar</strong> mit integriertem Lautsprecher: Der KI‑Text wird nicht nur gedruckt, sondern auch <strong>natürlich vorgelesen</strong>. Bluetooth‑Speaker optional.</div>
+          </li>
+        </ul>
+      </div>
         </div>
         <div class="item">
           <span class="badge">Sommer–Herbst 2024</span>
@@ -177,7 +208,7 @@
 
       <!-- Reihe 4: Erfinderfoto -->
       <div class="gallery-row single">
-        <figure class="gallery-figure">
+        <figure class="gallery-figure founder">
           <img src="assets/img/founder-with-showcase.jpg" alt="Erfinder Georg Klassen mit dem Vorzeigeexemplar auf dem Tisch" loading="lazy" />
           <figcaption><strong>Erfinder</strong> · Georg Klassen mit Vorzeigeexemplar.</figcaption>
         </figure>
@@ -216,7 +247,7 @@
 
     <!-- Use cases: Events & Weddings afterwards -->
     <section id="use-cases" class="section">
-      <h2>Einsätze: Events &amp; Feiern</h2>
+      <h2>Events &amp; Feiern</h2>
       <div class="cards">
         <div class="card">
           <h3>Events &amp; Messen</h3>
@@ -228,6 +259,7 @@
         </div>
       </div>
     </section>
+
 
     <!-- Contact -->
     <section id="contact" class="section section-alt">
