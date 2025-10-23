@@ -2,9 +2,9 @@
 
 /* Layout adjustments */
 #galerie .gallery-spotlight {
-	align-items: stretch;
-	gap: 3rem;
-	flex-wrap: wrap;
+        align-items: stretch;
+        gap: clamp(1.5rem, 4vw, 3rem);
+        flex-wrap: wrap;
 }
 
 #galerie .gallery-spotlight .media-gallery {
@@ -23,11 +23,12 @@
 }
 
 .gallery-hero-swiper {
-	border-radius: 0.75em;
-	overflow: hidden;
-	background: rgba(0, 0, 0, 0.25);
-	min-height: 220px;
-	width: 100%;
+        border-radius: 0.75em;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.25);
+        min-height: 220px;
+        aspect-ratio: 4 / 3;
+        width: 100%;
 }
 
 .gallery-hero-swiper .swiper-wrapper {
@@ -35,19 +36,20 @@
 }
 
 .gallery-hero-swiper .swiper-slide {
-	display: none;
-	aspect-ratio: 4 / 3;
+        display: none;
+        aspect-ratio: 4 / 3;
 }
 
 .gallery-hero-swiper .swiper-slide:first-child {
-	display: block;
+        display: block;
 }
 
 .gallery-hero-swiper .swiper-slide img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	object-position: center;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        object-position: center;
 }
 
 .gallery-hero-swiper.swiper-initialized .swiper-slide {
@@ -60,20 +62,26 @@
 }
 
 .gallery-thumbs-swiper .swiper-slide {
-	width: auto;
-	border-radius: 0.5em;
-	overflow: hidden;
-	border: 2px solid transparent;
-	transition: border-color 0.2s ease, opacity 0.2s ease;
-	opacity: 0.65;
-	cursor: pointer;
+        width: auto;
+        aspect-ratio: 4 / 3;
+        border-radius: 0.5em;
+        overflow: hidden;
+        border: 2px solid transparent;
+        transition: border-color 0.2s ease, opacity 0.2s ease;
+        opacity: 0.65;
+        cursor: pointer;
 }
 
 .gallery-thumbs-swiper .swiper-slide img {
-	display: block;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+}
+
+.gallery-thumbs-swiper .swiper-slide:focus-visible {
+        outline: 3px solid rgba(255, 255, 255, 0.85);
+        outline-offset: 2px;
 }
 
 .gallery-thumbs-swiper .swiper-slide-thumb-active {
@@ -88,22 +96,24 @@
 
 /* Responsive adjustments */
 @media screen and (max-width: 980px) {
-	#galerie .gallery-spotlight {
-		flex-direction: column;
-		gap: 2rem;
-	}
+        #galerie .gallery-spotlight {
+                flex-direction: column;
+                gap: clamp(1.5rem, 5vw, 2.5rem);
+        }
 
-	#galerie .gallery-spotlight .content {
-		order: 2;
-		flex: none;
-		width: 100%;
-	}
+        #galerie .gallery-spotlight .content,
+        #galerie .gallery-spotlight .media-gallery {
+                flex: none;
+                width: 100%;
+        }
 
-	#galerie .gallery-spotlight .media-gallery {
-		order: 1;
-		flex: none;
-		width: 100%;
-	}
+        #galerie .gallery-spotlight .content {
+                order: 2;
+        }
+
+        #galerie .gallery-spotlight .media-gallery {
+                order: 1;
+        }
 }
 
 @media screen and (max-width: 736px) {
@@ -111,20 +121,30 @@
 		display: none;
 	}
 
-	.gallery-hero-pagination {
-		display: block;
-		margin-top: 1rem;
-		text-align: center;
-	}
+        .gallery-hero-pagination {
+                display: block;
+                margin-top: 1rem;
+                text-align: center;
+        }
 
-	.gallery-hero-pagination .swiper-pagination-bullet {
-		background: rgba(255, 255, 255, 0.5);
-		opacity: 1;
-	}
+        .gallery-hero-pagination .swiper-pagination-bullet {
+                background: rgba(255, 255, 255, 0.5);
+                opacity: 1;
+                width: 0.8rem;
+                height: 0.8rem;
+                border: 2px solid rgba(0, 0, 0, 0.35);
+                margin: 0 0.35rem;
+        }
 
-	.gallery-hero-pagination .swiper-pagination-bullet-active {
-		background: #ffffff;
-	}
+        .gallery-hero-pagination .swiper-pagination-bullet-active {
+                background: #ffffff;
+                border-color: #ffffff;
+        }
+
+        .gallery-hero-pagination .swiper-pagination-bullet:focus-visible {
+                outline: 3px solid rgba(255, 255, 255, 0.85);
+                outline-offset: 2px;
+        }
 }
 
 /* Founder spotlight */
@@ -137,20 +157,21 @@
 }
 
 #erfinder .founder-image {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	border-radius: 1em;
-	overflow: hidden;
-	flex: 0 0 320px;
-	max-width: 420px;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 1em;
+        overflow: hidden;
+        flex: 0 0 320px;
+        max-width: 420px;
+        aspect-ratio: 4 / 5;
 }
 
 #erfinder .founder-image img {
-	display: block;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
 }
 
 #erfinder .founder-content {
@@ -164,23 +185,23 @@
 }
 
 @media screen and (max-width: 980px) {
-	#erfinder .founder-spotlight {
-		flex-direction: column;
-		align-items: center;
-		text-align: center;
-	}
+        #erfinder .founder-spotlight {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+        }
 
-	#erfinder .founder-image {
-		flex: none;
-		width: 80%;
-		max-width: 360px;
-	}
+        #erfinder .founder-image {
+                flex: none;
+                width: 80%;
+                max-width: 360px;
+        }
 
-	#erfinder .founder-content {
-		flex: none;
-		width: 100%;
-		text-align: center;
-	}
+        #erfinder .founder-content {
+                flex: none;
+                width: 100%;
+                text-align: center;
+        }
 
 	#erfinder .founder-content header {
 		text-align: center;
