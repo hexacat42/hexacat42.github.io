@@ -44,6 +44,7 @@
 			speed: 600,
 			spaceBetween: 0,
 			allowTouchMove: true,
+			autoHeight: true,
 			observer: true,
 			observeParents: true,
 			resizeObserver: true,
