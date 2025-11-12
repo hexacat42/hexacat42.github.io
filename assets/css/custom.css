@@ -186,4 +186,8 @@
 	.media-content header {
 		text-align: center;
 	}
+
+	.spotlight.media-spotlight .media-content ul {
+		text-align: left;
+	}
 }
