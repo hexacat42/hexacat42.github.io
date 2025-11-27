@@ -216,3 +216,18 @@
 			height: clamp(360px, 100vw, 560px);
 		}
 	}
+
+	/* Highlight link */
+	.highlight-link {
+		color: #e37682;
+		font-weight: 600;
+	}
+
+	#main .highlight-link {
+		color: #e37682;
+	}
+
+	.highlight-link:hover,
+	#main .highlight-link:hover {
+		color: #f5aeb4;
+	}
