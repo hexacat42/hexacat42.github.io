@@ -1,0 +1,42 @@
+* [33md12406e[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m Button Didaktisches Konzept with better highlighting
+* [33m0b51443[m[33m ([m[1;31morigin/main[m[33m)[m JPG converted to WEBP, added Didaktisches Konzept for download
+* [33m2a56b23[m Added acknowledgements to MakerSpace, highlight-link CSS.
+* [33mcde9594[m Added C2A - Email Anfrage - to every page.
+* [33m973e0fa[m New content: education, events, parties. Updates for index and story.
+* [33m2a36e35[m social embedding - LinkedIn
+* [33m09e5b6e[m typo in index.html, left-aligned lists on mobile
+* [33md0ae63e[m add favicon.ico reference
+* [33m18ab664[m add favicon.ico
+* [33mb36d486[m update content on index.html and story.html
+* [33ma4b9cbd[m update content on index.html and story.html
+* [33ma37687e[m add meta tags: Open Graph, Twitter
+* [33m04bf426[m page title
+* [33m5bbec8b[m deleted files: elements.html, generic.html
+* [33m6d8da27[m Anpassung Erfinder
+*   [33m9a86494[m Merge branch 'master' into main
+[32m|[m[33m\[m  
+[32m|[m * [33m1d23bc5[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m Initial site
+* [33m675148e[m Delete assets directory
+* [33mfc19303[m Delete index.html
+* [33m0f3eae6[m Remove link from footer copyright text
+* [33m602387c[m Fix navigation links and update gallery section
+* [33m1e7232c[m Update image dimensions and email subject links
+* [33m7231109[m Update image dimensions and adjust project timeline
+* [33m2441122[m Refactor timeline styles and section layouts
+* [33ma859b37[m Refactor timeline and gallery sections in index.html
+* [33m1ca11c0[m Update image file formats from PNG to JPG
+* [33m0e03d30[m Refactor index.html by removing unused elements
+* [33mf70b938[m Add files via upload
+* [33m625ce1f[m Enhance index.html with metadata and content updates
+* [33m8006436[m Update image source for Poetry Cam prototype
+* [33mdfcfd30[m Delete assets/img/test.txt
+* [33mc5e3760[m Add files via upload
+* [33m92383d7[m Add test.txt with initial content
+* [33mf296e3f[m Revise index.html for Poetry Cam project
+* [33mc81f62f[m Delete assets/css/test.txt
+* [33me6b155a[m Delete pico.min.css
+* [33m94bd476[m Add files via upload
+* [33m108a359[m Add test.txt with a test message
+* [33mf14ab6b[m Add pico.min.css
+* [33mac402c4[m Create CNAME
+* [33m7356a37[m Add initial index.html for Poetry Cam project
