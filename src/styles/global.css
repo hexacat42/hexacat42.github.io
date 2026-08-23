@@ -1,5 +1,5 @@
 /* Poetry Cam — global base. Consumes design tokens from tokens.css.
-   Style everything through var(--color-*/--font-*/--radius-*); never hardcode. */
+   Style everything through the --color-, --font- and --radius- vars; never hardcode. */
 
 *, *::before, *::after { box-sizing: border-box; }
 

@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../images/logo.png';
 import { getLocaleFromUrl, localizePath } from '../i18n/utils';
 import { getContent } from '../i18n/content';
 import LangSwitch from './LangSwitch.astro';
@@ -9,7 +11,7 @@ const c = getContent(locale);
 <header class="site-header">
   <div class="container site-header__inner">
     <a class="brandmark" href={localizePath('/', locale)}>
-      <img src="/images/icon.png" alt="" width="30" height="30" />
+      <Image src={logo} alt="" width={30} height={30} densities={[1, 2]} loading="eager" />
       <span>Poetry&nbsp;Cam</span>
     </a>
     <nav class="site-nav" aria-label={c.common.menu}>

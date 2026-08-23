@@ -14,7 +14,7 @@ const { date, title, image, alt = '', icon } = Astro.props;
   </div>
   <div class="tl-body">
     <p class="tl-date label-muted">{date}</p>
-    <h3>{title}</h3>
+    <h2>{title}</h2>
     <div class="tl-prose"><slot /></div>
   </div>
 </article>
@@ -27,7 +27,7 @@ const { date, title, image, alt = '', icon } = Astro.props;
     border: 1.5px dashed var(--color-rule); border-radius: var(--radius-media); color: var(--color-accent);
   }
   .tl-date { margin: 0 0 0.3rem; }
-  .tl-body h3 { margin: 0 0 0.6rem; }
+  .tl-body h2 { font-size: 1.35rem; margin: 0 0 0.6rem; }
   .tl-prose { color: var(--color-ink-soft); }
   .tl-prose :global(ul) { margin: 0; padding-left: 1.1rem; }
   .tl-prose :global(li) { margin: 0.25rem 0; }
