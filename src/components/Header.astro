@@ -1,0 +1,63 @@
+---
+import { getLocaleFromUrl, localizePath } from '../i18n/utils';
+import { getContent } from '../i18n/content';
+import LangSwitch from './LangSwitch.astro';
+import ThemeToggle from './ThemeToggle.astro';
+const locale = getLocaleFromUrl(Astro.url);
+const c = getContent(locale);
+---
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brandmark" href={localizePath('/', locale)}>
+      <img src="/images/icon.png" alt="" width="30" height="30" />
+      <span>Poetry&nbsp;Cam</span>
+    </a>
+    <nav class="site-nav" aria-label={c.common.menu}>
+      <ul>
+        {c.nav.map((item) => (
+          <li><a href={localizePath(item.href, locale)}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <div class="site-header__actions">
+      <LangSwitch />
+      <ThemeToggle />
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--color-page-bg) 88%, transparent);
+    backdrop-filter: saturate(1.1) blur(8px);
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .site-header__inner {
+    display: flex; align-items: center; gap: 1rem;
+    min-height: 3.75rem; flex-wrap: wrap;
+  }
+  .brandmark {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    font-family: var(--font-serif); font-size: 1.15rem; color: var(--color-ink);
+    text-decoration: none; margin-right: auto;
+  }
+  .brandmark img { border-radius: 6px; }
+  .site-nav ul {
+    display: flex; flex-wrap: wrap; gap: 0.25rem 1.1rem;
+    list-style: none; margin: 0; padding: 0;
+  }
+  .site-nav a {
+    font-family: var(--font-sans); font-size: 0.92rem; font-weight: 600;
+    color: var(--color-ink-soft); text-decoration: none; white-space: nowrap;
+  }
+  .site-nav a:hover { color: var(--color-accent-ink); }
+  :root[data-theme='dark'] .site-nav a:hover { color: var(--color-accent); }
+  .site-header__actions { display: inline-flex; align-items: center; gap: 0.5rem; }
+
+  @media (max-width: 860px) {
+    .site-header__inner { min-height: 3.25rem; }
+    .site-nav { order: 3; width: 100%; overflow-x: auto; padding-bottom: 0.4rem; }
+    .site-nav ul { flex-wrap: nowrap; }
+  }
+</style>

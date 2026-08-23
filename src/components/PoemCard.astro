@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+interface Props {
+  text: string;
+  style?: string;
+  form?: string;
+  date?: string;
+  image?: ImageMetadata;
+  alt?: string;
+  labels: { style: string; form: string; date: string };
+}
+const { text, style, form, date, image, alt = '', labels } = Astro.props;
+---
+<article class="poem-card card">
+  {image && (
+    <Image class="poem-card__img" src={image} alt={alt} widths={[320, 540, 720]}
+           sizes="(max-width: 640px) 92vw, 340px" />
+  )}
+  <div class="poem">{text}</div>
+  {(style || form || date) && (
+    <dl class="meta-strip">
+      {style && (<><dt class="k">{labels.style}</dt><dd>{style}</dd></>)}
+      {form && (<><dt class="k">{labels.form}</dt><dd>{form}</dd></>)}
+      {date && (<><dt class="k">{labels.date}</dt><dd>{date}</dd></>)}
+    </dl>
+  )}
+</article>
+
+<style>
+  .poem-card { display: flex; flex-direction: column; gap: 1rem; }
+  .poem-card__img { width: 100%; height: auto; border-radius: var(--radius-media); object-fit: cover; }
+  .poem-card .poem { flex: 1; }
+</style>

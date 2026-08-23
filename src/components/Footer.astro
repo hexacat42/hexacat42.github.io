@@ -1,0 +1,42 @@
+---
+import { getLocaleFromUrl, localizePath } from '../i18n/utils';
+import { getContent } from '../i18n/content';
+const locale = getLocaleFromUrl(Astro.url);
+const c = getContent(locale);
+const mailto = `mailto:${c.email}?subject=${encodeURIComponent('Poetry Cam – ' + (locale === 'de' ? 'Kontaktanfrage' : 'Contact'))}`;
+---
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div>
+      <p class="brandmark-sm">Poetry Cam</p>
+      <p class="muted">{c.footer.note}</p>
+    </div>
+    <dl class="footer-contact">
+      <dt class="label-muted">{c.footer.addressLabel}</dt>
+      <dd>{c.footer.address}</dd>
+      <dt class="label-muted">{c.footer.emailLabel}</dt>
+      <dd><a href={mailto}>{c.email}</a></dd>
+    </dl>
+    <nav class="footer-links" aria-label={c.footer.impressum}>
+      <a href={localizePath('/impressum', locale)}>{c.footer.impressum}</a>
+      <a href={localizePath('/datenschutz', locale)}>{c.footer.datenschutz}</a>
+    </nav>
+  </div>
+  <div class="container"><p class="copyright label-muted">{c.footer.rights}</p></div>
+</footer>
+
+<style>
+  .site-footer { border-top: 2px dotted var(--color-rule); margin-top: 3rem; padding-block: 2.5rem 1.5rem; }
+  .site-footer__inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem; }
+  .brandmark-sm { font-family: var(--font-serif); font-size: 1.15rem; margin: 0 0 0.4rem; }
+  .muted { color: var(--color-ink-soft); font-size: 0.92rem; max-width: 34ch; }
+  .footer-contact { display: grid; grid-template-columns: auto 1fr; gap: 0.15rem 0.8rem; margin: 0; font-size: 0.9rem; }
+  .footer-contact dt { align-self: center; }
+  .footer-contact dd { margin: 0; }
+  .footer-links { display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.92rem; }
+  .footer-links a { color: var(--color-ink-soft); text-decoration: none; }
+  .footer-links a:hover { color: var(--color-accent-ink); }
+  :root[data-theme='dark'] .footer-links a:hover { color: var(--color-accent); }
+  .copyright { margin-top: 1.5rem; }
+  @media (max-width: 700px) { .site-footer__inner { grid-template-columns: 1fr; gap: 1.4rem; } }
+</style>

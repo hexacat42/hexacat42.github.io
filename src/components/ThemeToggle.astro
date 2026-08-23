@@ -1,0 +1,50 @@
+---
+import { getLocaleFromUrl } from '../i18n/utils';
+import { getContent } from '../i18n/content';
+const c = getContent(getLocaleFromUrl(Astro.url));
+---
+<button id="theme-toggle" class="icon-btn" type="button" aria-label={c.common.toggleTheme} title={c.common.toggleTheme}>
+  <svg class="ico ico-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2" />
+    <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+  </svg>
+  <svg class="ico ico-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+  </svg>
+</button>
+
+<style>
+  .icon-btn {
+    display: inline-grid; place-items: center; width: 2.3rem; height: 2.3rem;
+    background: transparent; border: 1px solid var(--color-rule); border-radius: 999px;
+    color: var(--color-ink-soft); cursor: pointer;
+  }
+  .icon-btn:hover { color: var(--color-ink); border-color: var(--color-ink); }
+  .icon-btn .ico { width: 1.15rem; height: 1.15rem; }
+  /* show moon in light (offer dark), sun in dark (offer light) */
+  .ico-sun { display: none; } .ico-moon { display: block; }
+  @media (prefers-color-scheme: dark) { .ico-sun { display: block; } .ico-moon { display: none; } }
+  :root[data-theme='light'] .ico-sun { display: none; }
+  :root[data-theme='light'] .ico-moon { display: block; }
+  :root[data-theme='dark'] .ico-sun { display: block; }
+  :root[data-theme='dark'] .ico-moon { display: none; }
+</style>
+
+<script is:inline>
+  (function () {
+    var btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    function current() {
+      var set = document.documentElement.getAttribute('data-theme');
+      if (set) return set;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    btn.addEventListener('click', function () {
+      var next = current() === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  })();
+</script>

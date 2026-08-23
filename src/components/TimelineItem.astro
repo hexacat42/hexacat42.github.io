@@ -1,0 +1,36 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+interface Props { date: string; title: string; image?: ImageMetadata; alt?: string; icon?: string; }
+const { date, title, image, alt = '', icon } = Astro.props;
+---
+<article class="tl-item">
+  <div class="tl-media">
+    {image ? (
+      <Image src={image} alt={alt} widths={[320, 540]} sizes="(max-width: 760px) 92vw, 300px" />
+    ) : (
+      <span class="tl-icon"><Icon name={icon ?? 'sparkles'} size={30} /></span>
+    )}
+  </div>
+  <div class="tl-body">
+    <p class="tl-date label-muted">{date}</p>
+    <h3>{title}</h3>
+    <div class="tl-prose"><slot /></div>
+  </div>
+</article>
+
+<style>
+  .tl-item { display: grid; grid-template-columns: 300px 1fr; gap: 2rem; align-items: start; }
+  .tl-media img { width: 100%; height: auto; border-radius: var(--radius-media); }
+  .tl-icon {
+    display: grid; place-items: center; width: 100%; aspect-ratio: 4/3;
+    border: 1.5px dashed var(--color-rule); border-radius: var(--radius-media); color: var(--color-accent);
+  }
+  .tl-date { margin: 0 0 0.3rem; }
+  .tl-body h3 { margin: 0 0 0.6rem; }
+  .tl-prose { color: var(--color-ink-soft); }
+  .tl-prose :global(ul) { margin: 0; padding-left: 1.1rem; }
+  .tl-prose :global(li) { margin: 0.25rem 0; }
+  .tl-prose :global(strong) { color: var(--color-ink); }
+  @media (max-width: 760px) { .tl-item { grid-template-columns: 1fr; gap: 1rem; } .tl-media { max-width: 22rem; } }
+</style>

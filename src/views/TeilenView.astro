@@ -1,0 +1,99 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { getLocaleFromUrl, localizePath } from '../i18n/utils';
+import { getContent } from '../i18n/content';
+
+const locale = getLocaleFromUrl(Astro.url);
+const c = getContent(locale);
+const mailto = `mailto:${c.email}?subject=${encodeURIComponent('Poetry Cam – ' + (locale === 'de' ? 'Teilen & Datenschutz' : 'Sharing & privacy'))}`;
+
+const t = locale === 'de'
+  ? {
+      title: 'Teile deinen Moment – und dann ist er weg',
+      lead: 'Der QR-Code auf dem Ausdruck führt zu einer privaten Seite mit Foto, Gedicht und Audio. Sie ist bewusst vergänglich.',
+      howTitle: 'So funktioniert das Teilen',
+      how: [
+        { t: 'QR wird gedruckt', d: 'Der QR-Code steht direkt auf Ihrem Ausdruck – ganz ohne App.' },
+        { t: 'Seite öffnen', d: 'Ein Scan öffnet eine private Seite mit Foto, Gedicht und – falls vorhanden – der Sprachausgabe.' },
+        { t: 'Countdown läuft', d: 'Die Seite zeigt, wie lange sie noch verfügbar ist: 48 Stunden ab dem Moment.' },
+        { t: 'Automatisch gelöscht', d: 'Nach Ablauf werden Foto, Gedicht und Audio endgültig und unwiderruflich gelöscht.' },
+      ],
+      privacyTitle: 'Datenschutz von Anfang an',
+      privacy: [
+        'Ein Link, 48 Stunden gültig – danach unwiderruflich gelöscht',
+        'Keine Accounts, keine Anmeldung, keine persönlichen Daten',
+        'Nicht von Suchmaschinen auffindbar (noindex) und kein Tracking',
+        'Der Link ist zufällig und nicht erratbar',
+        'Teilen nur mit ausdrücklicher Zustimmung – jederzeit widerrufbar',
+      ],
+      note: 'Die geteilten Seiten werden unter cam-assets.digilyze.com bereitgestellt. Der Hinweis „48 Stunden“ beschreibt die maximale Verfügbarkeit; danach existieren die Inhalte nicht mehr.',
+    }
+  : {
+      title: 'Share your moment — then it’s gone',
+      lead: 'The QR code on the printout opens a private page with photo, poem and audio. It is deliberately fleeting.',
+      howTitle: 'How sharing works',
+      how: [
+        { t: 'QR is printed', d: 'The QR code is right there on your printout — no app required.' },
+        { t: 'Open the page', d: 'A scan opens a private page with the photo, poem and — if present — the spoken version.' },
+        { t: 'Countdown runs', d: 'The page shows how long it remains available: 48 hours from the moment.' },
+        { t: 'Deleted automatically', d: 'When time is up, the photo, poem and audio are permanently and irreversibly deleted.' },
+      ],
+      privacyTitle: 'Privacy by design',
+      privacy: [
+        'One link, valid for 48 hours — then irreversibly deleted',
+        'No accounts, no sign-in, no personal data',
+        'Not discoverable by search engines (noindex) and no tracking',
+        'The link is random and cannot be guessed',
+        'Shared only with explicit consent — revocable at any time',
+      ],
+      note: 'Shared pages are served at cam-assets.digilyze.com. The “48 hours” refers to the maximum availability; after that the content no longer exists.',
+    };
+---
+<Base title={locale === 'de' ? 'Teilen & Datenschutz' : 'Sharing & privacy'} description={t.lead}>
+  <section class="section">
+    <div class="container container--narrow">
+      <a class="btn btn-ghost backlink" href={localizePath('/', locale)}>{c.common.backHome}</a>
+      <header class="page-head">
+        <p class="eyebrow"><Icon name="qr" size={16} /> {c.sharing.eyebrow}</p>
+        <h1>{t.title}</h1>
+        <p class="page-lead">{t.lead}</p>
+      </header>
+
+      <section class="block">
+        <h2>{t.howTitle}</h2>
+        <ol class="how-list">
+          {t.how.map((h, i) => (
+            <li><span class="how-n label-muted">{String(i + 1).padStart(2, '0')}</span><div><strong>{h.t}</strong><p>{h.d}</p></div></li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="block">
+        <h2><Icon name="shield" size={22} /> {t.privacyTitle}</h2>
+        <ul class="ticks">
+          {t.privacy.map((p) => <li><Icon name="shield" size={16} />{p}</li>)}
+        </ul>
+        <p class="note label-muted">{t.note}</p>
+      </section>
+
+      <div class="page-contact"><a class="btn" href={mailto}>{c.contact.cta}</a></div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .backlink { margin-bottom: 1.5rem; }
+  .page-head { margin-bottom: 2.25rem; }
+  .page-lead { font-size: 1.15rem; color: var(--color-ink-soft); }
+  .block { margin-bottom: 2.5rem; }
+  .block h2 :global(svg) { vertical-align: -0.15em; color: var(--color-accent); }
+  .how-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+  .how-list li { display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: start; }
+  .how-list p { margin: 0.2rem 0 0; color: var(--color-ink-soft); }
+  .ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+  .ticks li { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem; align-items: start; color: var(--color-ink-soft); }
+  .ticks :global(svg) { color: var(--color-accent); margin-top: 0.15rem; }
+  .note { margin-top: 1.2rem; }
+  .page-contact { display: flex; justify-content: center; margin-top: 2rem; }
+</style>

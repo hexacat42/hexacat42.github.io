@@ -1,0 +1,189 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import Icon from '../components/Icon.astro';
+import PoemCard from '../components/PoemCard.astro';
+import UseCaseCard from '../components/UseCaseCard.astro';
+import { getLocaleFromUrl, localizePath } from '../i18n/utils';
+import { getContent } from '../i18n/content';
+import { images } from '../lib/images';
+import { poems, poemLabels } from '../data/poems';
+import { usecases } from '../data/usecases';
+
+const locale = getLocaleFromUrl(Astro.url);
+const c = getContent(locale);
+const labels = poemLabels[locale];
+const cases = usecases[locale];
+const mailto = `mailto:${c.email}?subject=${encodeURIComponent(c.contact.subject)}`;
+const poemAlt = locale === 'de' ? 'Poetry-Cam-Beispielbild' : 'Poetry Cam example image';
+---
+<Base title={`Poetry Cam — ${c.tagline}`} description={c.metaDescription}>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__text">
+        <p class="eyebrow">{c.hero.eyebrow}</p>
+        <h1>{c.hero.title}</h1>
+        <p class="hero__lead">{c.hero.lead}</p>
+        <div class="hero__cta">
+          <a class="btn" href={localizePath('/#so-funktionierts', locale)}>{c.hero.ctaPrimary}</a>
+          <a class="btn btn-ghost" href={localizePath('/story', locale)}>{c.hero.ctaSecondary}</a>
+        </div>
+      </div>
+      <figure class="hero__media">
+        <Image src={images.showcase} alt="Poetry Cam" widths={[420, 640, 900]}
+               sizes="(max-width: 880px) 92vw, 440px" loading="eager" fetchpriority="high" />
+      </figure>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <Section id="so-funktionierts" eyebrow={c.how.eyebrow} title={c.how.title} intro={c.how.intro} center alt>
+    <ol class="steps">
+      {c.how.steps.map((s) => (
+        <li class="step">
+          <span class="step__n label-muted">{s.n}</span>
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <!-- Examples -->
+  <Section id="beispiele" eyebrow={c.examples.eyebrow} title={c.examples.title} intro={c.examples.intro} center>
+    <div class="examples">
+      {poems.map((p) => (
+        <PoemCard
+          text={p.text}
+          style={p.style?.[locale]}
+          form={p.form?.[locale]}
+          date={p.date}
+          image={p.image ? images[p.image] : undefined}
+          alt={poemAlt}
+          labels={labels}
+        />
+      ))}
+    </div>
+  </Section>
+
+  <!-- Audio -->
+  <Section id="hoeren" alt>
+    <div class="split">
+      <div class="split__icon"><Icon name="sound" size={46} /></div>
+      <div>
+        <p class="eyebrow">{c.audio.eyebrow}</p>
+        <h2>{c.audio.title}</h2>
+        <p>{c.audio.body}</p>
+        <ul class="ticks">
+          {c.audio.points.map((pt) => <li><Icon name="arrow" size={16} />{pt}</li>)}
+        </ul>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Sharing -->
+  <Section id="teilen">
+    <div class="split split--reverse">
+      <div class="split__icon"><Icon name="qr" size={46} /></div>
+      <div>
+        <p class="eyebrow">{c.sharing.eyebrow}</p>
+        <h2>{c.sharing.title}</h2>
+        <p>{c.sharing.body}</p>
+        <ul class="ticks">
+          {c.sharing.points.map((pt) => <li><Icon name="shield" size={16} />{pt}</li>)}
+        </ul>
+        <p class="sharing__note label-muted">{c.sharing.note}</p>
+        <a class="btn btn-ghost" href={localizePath('/teilen', locale)}>{c.sharing.cta}<Icon name="arrow" size={16} /></a>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Use cases -->
+  <Section id="einsatz" eyebrow={c.useCasesIntro.eyebrow} title={c.useCasesIntro.title} intro={c.useCasesIntro.intro} center alt>
+    <div class="usecases">
+      {cases.map((u) => (
+        <UseCaseCard title={u.navLabel} tagline={u.tagline} icon={u.icon}
+                     href={localizePath(u.path, locale)} cta={c.common.readMore} />
+      ))}
+    </div>
+  </Section>
+
+  <!-- Story teaser -->
+  <Section id="story">
+    <div class="split">
+      <figure class="split__media">
+        <Image src={images['prototype-v1']} alt="" widths={[320, 480]} sizes="(max-width: 760px) 90vw, 320px" />
+      </figure>
+      <div>
+        <p class="eyebrow">{c.storyTeaser.eyebrow}</p>
+        <h2>{c.storyTeaser.title}</h2>
+        <p>{c.storyTeaser.body}</p>
+        <a class="btn btn-ghost" href={localizePath('/story', locale)}>{c.storyTeaser.cta}<Icon name="arrow" size={16} /></a>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Founder -->
+  <Section id="erfinder" alt>
+    <div class="split">
+      <figure class="split__media split__media--portrait">
+        <Image src={images.founder} alt={c.founder.title} widths={[300, 420]} sizes="(max-width: 760px) 70vw, 300px" />
+      </figure>
+      <div>
+        <p class="eyebrow">{c.founder.eyebrow}</p>
+        <h2>{c.founder.title}</h2>
+        <p>{c.founder.body}</p>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Contact -->
+  <Section id="kontakt" eyebrow={c.contact.eyebrow} title={c.contact.title} intro={c.contact.body} center narrow>
+    <div class="contact-cta">
+      <a class="btn" href={mailto}>{c.contact.cta}</a>
+    </div>
+  </Section>
+</Base>
+
+<style>
+  .hero { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
+  .hero__inner { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
+  .hero__lead { font-size: 1.15rem; color: var(--color-ink-soft); max-width: 40ch; }
+  .hero__cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
+  .hero__media img { width: 100%; height: auto; border-radius: var(--radius-card); box-shadow: 0 12px 34px rgba(28,26,21,.16); }
+  @media (max-width: 880px) { .hero__inner { grid-template-columns: 1fr; } .hero__media { order: -1; max-width: 30rem; } }
+
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; counter-reset: step; }
+  .step { background: var(--color-page-bg); border: 1px solid var(--color-rule); border-radius: var(--radius-card); padding: 1.2rem; }
+  .step__n { display: block; margin-bottom: 0.5rem; }
+  .step h3 { font-size: 1.05rem; margin: 0 0 0.4rem; }
+  .step p { color: var(--color-ink-soft); font-size: 0.92rem; margin: 0; }
+  @media (max-width: 1000px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
+
+  .examples { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: 46rem; margin-inline: auto; }
+
+  .split { display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center; }
+  .split--reverse { grid-template-columns: auto 1fr; }
+  .split__icon {
+    display: grid; place-items: center; width: 6rem; height: 6rem; flex: none;
+    border: 1.5px dashed var(--color-rule); border-radius: 50%; color: var(--color-accent);
+  }
+  .split__media { width: 320px; max-width: 100%; margin: 0; }
+  .split__media--portrait { width: 260px; }
+  .split__media img { width: 100%; height: auto; border-radius: var(--radius-media); }
+  .split h2 { margin-top: 0.3rem; }
+  @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: 1.25rem; } .split__media { width: 22rem; } }
+
+  .ticks { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: 0.5rem; }
+  .ticks li { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem; align-items: start; color: var(--color-ink-soft); }
+  .ticks :global(svg) { color: var(--color-accent); margin-top: 0.15rem; }
+  .sharing__note { margin-top: 1.1rem; }
+
+  .usecases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  @media (max-width: 820px) { .usecases { grid-template-columns: 1fr; } }
+
+  .contact-cta { display: flex; justify-content: center; }
+</style>

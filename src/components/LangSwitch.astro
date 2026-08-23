@@ -1,0 +1,21 @@
+---
+import { getLocaleFromUrl, otherLocale, unlocalizePath, localizePath } from '../i18n/utils';
+import { getContent } from '../i18n/content';
+const locale = getLocaleFromUrl(Astro.url);
+const other = otherLocale(locale);
+const href = localizePath(unlocalizePath(Astro.url.pathname), other);
+const c = getContent(locale);
+---
+<a class="lang-switch" href={href} hreflang={other} aria-label={`${c.common.langLabel}: ${other.toUpperCase()}`}>
+  {other.toUpperCase()}
+</a>
+
+<style>
+  .lang-switch {
+    display: inline-grid; place-items: center; min-width: 2.3rem; height: 2.3rem; padding: 0 0.6rem;
+    font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.05em; font-weight: 600;
+    color: var(--color-ink-soft); text-decoration: none;
+    border: 1px solid var(--color-rule); border-radius: 999px;
+  }
+  .lang-switch:hover { color: var(--color-ink); border-color: var(--color-ink); }
+</style>

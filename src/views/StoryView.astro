@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import TimelineItem from '../components/TimelineItem.astro';
+import { getLocaleFromUrl, localizePath } from '../i18n/utils';
+import { getContent } from '../i18n/content';
+import { timeline } from '../data/timeline';
+import { images } from '../lib/images';
+
+const locale = getLocaleFromUrl(Astro.url);
+const c = getContent(locale);
+const items = timeline[locale];
+const mailto = `mailto:${c.email}?subject=${encodeURIComponent('Poetry Cam – Story')}`;
+const t =
+  locale === 'de'
+    ? { title: 'Die Geschichte der Poetry Cam', lead: 'In gut einem Jahr von der Idee zum einsatzbereiten Gerät.' }
+    : { title: 'The Poetry Cam story', lead: 'From an idea to a ready-to-use device in just over a year.' };
+---
+<Base title={locale === 'de' ? 'Story' : 'Story'} description={t.lead}>
+  <section class="section">
+    <div class="container">
+      <a class="btn btn-ghost backlink" href={localizePath('/', locale)}>{c.common.backHome}</a>
+      <header class="page-head">
+        <p class="eyebrow">Story</p>
+        <h1>{t.title}</h1>
+        <p class="page-lead">{t.lead}</p>
+      </header>
+
+      <div class="timeline">
+        {items.map((m, i) => (
+          <>
+            {i > 0 && <hr class="perf" />}
+            <TimelineItem
+              date={m.date}
+              title={m.title}
+              image={m.image ? images[m.image] : undefined}
+              alt={m.imageAlt ?? ''}
+              icon={m.icon}
+            >
+              {m.body.map((p) => <p>{p}</p>)}
+              {m.bullets && (
+                <ul>{m.bullets.map((b) => <li>{b}</li>)}</ul>
+              )}
+            </TimelineItem>
+          </>
+        ))}
+      </div>
+
+      <div class="page-contact">
+        <a class="btn" href={mailto}>{c.contact.cta}</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .backlink { margin-bottom: 1.5rem; }
+  .page-head { margin-bottom: 2.5rem; max-width: 40rem; }
+  .page-lead { font-size: 1.15rem; color: var(--color-ink-soft); }
+  .timeline { display: grid; gap: 2.25rem; }
+  .timeline .perf { margin-block: 0.25rem; }
+  .page-contact { display: flex; justify-content: center; margin-top: 3rem; }
+</style>

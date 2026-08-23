@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+import { getLocaleFromUrl, localizePath } from '../i18n/utils';
+import { getContent } from '../i18n/content';
+
+const locale = getLocaleFromUrl(Astro.url);
+const c = getContent(locale);
+// NOTE: legally the German Impressum governs. [BRACKETED] fields must be
+// completed with real data before going live; have a lawyer review.
+---
+<Base title={c.footer.impressum} description="Impressum" noindex>
+  <section class="section">
+    <div class="container container--narrow legal">
+      <a class="btn btn-ghost backlink" href={localizePath('/', locale)}>{c.common.backHome}</a>
+      <h1>{c.footer.impressum}</h1>
+
+      {locale === 'de' ? (
+        <>
+          <h2>Angaben gemäß § 5 TMG</h2>
+          <p>
+            Georg Klassen<br />
+            [Straße und Hausnummer]<br />
+            [PLZ] München<br />
+            Deutschland
+          </p>
+          <h2>Kontakt</h2>
+          <p>E-Mail: <a href={`mailto:${c.email}`}>{c.email}</a></p>
+          <h2>Verantwortlich für den Inhalt (§ 18 Abs. 2 MStV)</h2>
+          <p>Georg Klassen (Anschrift wie oben)</p>
+          <h2>Haftung für Inhalte</h2>
+          <p>Diese Seite ist ein privates Projekt zur Präsentation der Erfindung Poetry Cam. Die Inhalte
+             wurden mit größtmöglicher Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und
+             Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden.</p>
+          <h2>Haftung für Links</h2>
+          <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss
+             haben. Für diese fremden Inhalte kann keine Gewähr übernommen werden. Verantwortlich ist stets
+             der jeweilige Anbieter der verlinkten Seiten.</p>
+        </>
+      ) : (
+        <>
+          <p class="note">This English text is a courtesy translation; the legally binding version is the
+             German <a href={localizePath('/impressum', 'de')}>Impressum</a>.</p>
+          <h2>Information pursuant to § 5 TMG</h2>
+          <p>
+            Georg Klassen<br />
+            [Street and number]<br />
+            [Postcode] Munich<br />
+            Germany
+          </p>
+          <h2>Contact</h2>
+          <p>Email: <a href={`mailto:${c.email}`}>{c.email}</a></p>
+          <h2>Responsible for content (§ 18(2) MStV)</h2>
+          <p>Georg Klassen (address as above)</p>
+          <h2>Liability for content &amp; links</h2>
+          <p>This site is a private project presenting the Poetry Cam invention. Content has been prepared
+             with the greatest possible care, but no guarantee is given for its accuracy, completeness or
+             timeliness. We have no influence over the content of external sites we link to; responsibility
+             lies with their respective providers.</p>
+        </>
+      )}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .backlink { margin-bottom: 1.5rem; }
+  .legal h2 { font-size: 1.25rem; margin-top: 2rem; }
+  .legal p { color: var(--color-ink-soft); }
+  .legal .note { font-size: 0.9rem; }
+</style>

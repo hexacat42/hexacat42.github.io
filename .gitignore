@@ -1,0 +1,13 @@
+# build output & deps
+dist/
+node_modules/
+.astro/
+
+# generated (regenerated at build)
+src/styles/tokens.css
+
+# env & logs
+.env
+.env.*
+npm-debug.log*
+.DS_Store

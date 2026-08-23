@@ -1,0 +1,36 @@
+---
+import {
+  getLocaleFromUrl, unlocalizePath, localizePath, ogLocale, htmlLang, locales,
+} from '../i18n/utils';
+
+interface Props { title: string; description: string; image?: string; noindex?: boolean; }
+const { title, description, image = '/images/og-poetry-cam.jpg', noindex = false } = Astro.props;
+
+const site = Astro.site!;
+const locale = getLocaleFromUrl(Astro.url);
+const logical = unlocalizePath(Astro.url.pathname);
+const canonical = new URL(localizePath(logical, locale), site).href;
+const ogImage = new URL(image, site).href;
+const fullTitle = title.includes('Poetry Cam') ? title : `${title} · Poetry Cam`;
+---
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+{locales.map((l) => (
+  <link rel="alternate" hreflang={htmlLang(l)} href={new URL(localizePath(logical, l), site).href} />
+))}
+<link rel="alternate" hreflang="x-default" href={new URL(localizePath(logical, 'de'), site).href} />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Poetry Cam" />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:locale" content={ogLocale(locale)} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />

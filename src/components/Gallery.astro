@@ -1,0 +1,32 @@
+---
+import { Image } from 'astro:assets';
+interface Item { src: ImageMetadata; alt: string; caption?: string; }
+interface Props { items: Item[]; }
+const { items } = Astro.props;
+---
+<ul class="gallery" role="list">
+  {items.map((it) => (
+    <li class="gallery__item">
+      <Image src={it.src} alt={it.alt} widths={[280, 480, 640]}
+             sizes="(max-width: 760px) 70vw, 260px" />
+      {it.caption && <span class="gallery__cap label-muted">{it.caption}</span>}
+    </li>
+  ))}
+</ul>
+
+<style>
+  .gallery {
+    display: grid; grid-auto-flow: column; grid-auto-columns: minmax(220px, 1fr);
+    gap: 1rem; list-style: none; margin: 0; padding: 0 0 0.5rem;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+  }
+  .gallery__item { scroll-snap-align: start; display: flex; flex-direction: column; gap: 0.5rem; }
+  .gallery__item img {
+    width: 100%; aspect-ratio: 4/3; object-fit: cover;
+    border-radius: var(--radius-media); background: var(--color-poem-bg);
+  }
+  .gallery__cap { text-align: center; }
+  @media (min-width: 761px) {
+    .gallery { grid-auto-flow: unset; grid-template-columns: repeat(4, 1fr); overflow: visible; }
+  }
+</style>

@@ -1,0 +1,29 @@
+---
+interface Props {
+  id?: string;
+  eyebrow?: string;
+  title?: string;
+  intro?: string;
+  center?: boolean;
+  narrow?: boolean;
+  alt?: boolean;
+}
+const { id, eyebrow, title, intro, center = false, narrow = false, alt = false } = Astro.props;
+const hasHead = eyebrow || title || intro;
+---
+<section id={id} class:list={['section', { 'section--alt': alt }]}>
+  <div class:list={['container', { 'container--narrow': narrow }]}>
+    {hasHead && (
+      <div class:list={['section-head', { center }]}>
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        {title && <h2>{title}</h2>}
+        {intro && <p>{intro}</p>}
+      </div>
+    )}
+    <slot />
+  </div>
+</section>
+
+<style>
+  .section--alt { background: var(--color-card-bg); border-block: 1px solid var(--color-rule); }
+</style>

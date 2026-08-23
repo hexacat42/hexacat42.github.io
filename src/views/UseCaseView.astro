@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { getLocaleFromUrl, localizePath } from '../i18n/utils';
+import { getContent } from '../i18n/content';
+import { getUseCase } from '../data/usecases';
+import { images } from '../lib/images';
+
+interface Props { slug: 'bildung' | 'events' | 'feiern'; }
+const { slug } = Astro.props;
+const locale = getLocaleFromUrl(Astro.url);
+const c = getContent(locale);
+const u = getUseCase(locale, slug)!;
+const mailto = `mailto:${c.email}?subject=${encodeURIComponent(u.ctaSubject)}`;
+---
+<Base title={u.title} description={u.tagline}>
+  <section class="section">
+    <div class="container container--narrow">
+      <a class="btn btn-ghost backlink" href={localizePath('/', locale)}>{c.common.backHome}</a>
+      <header class="page-head">
+        <p class="eyebrow"><Icon name={u.icon} size={16} /> {u.navLabel}</p>
+        <h1>{u.title}</h1>
+        <p class="page-lead">{u.intro}</p>
+        {u.pdf && (
+          <p class="pdf-row">
+            <a class="btn" href={u.pdf.href} download target="_blank" rel="noopener">
+              <Icon name="book" size={16} /> {u.pdf.label}
+            </a>
+          </p>
+        )}
+      </header>
+
+      {u.heroKey && (
+        <figure class="uc-hero">
+          <Image src={images[u.heroKey]} alt={u.heroAlt ?? ''} widths={[600, 900, 1200]}
+                 sizes="(max-width: 760px) 92vw, 720px" />
+        </figure>
+      )}
+
+      <div class="uc-sections">
+        {u.sections.map((s) => (
+          <section class="uc-block">
+            <h2>{s.heading}</h2>
+            {s.body && <p>{s.body}</p>}
+            {s.bullets && <ul>{s.bullets.map((b) => <li>{b}</li>)}</ul>}
+          </section>
+        ))}
+      </div>
+
+      <div class="page-contact">
+        <a class="btn" href={mailto}>{c.contact.cta}</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .backlink { margin-bottom: 1.5rem; }
+  .page-head { margin-bottom: 2rem; }
+  .page-lead { font-size: 1.15rem; color: var(--color-ink-soft); }
+  .pdf-row { margin-top: 1.4rem; }
+  .eyebrow :global(svg) { vertical-align: -0.2em; }
+  .uc-hero img { width: 100%; height: auto; border-radius: var(--radius-card); margin-bottom: 2.5rem; }
+  .uc-sections { display: grid; gap: 2rem; }
+  .uc-block h2 { font-size: 1.5rem; }
+  .uc-block ul { margin: 0.5rem 0 0; padding-left: 1.2rem; color: var(--color-ink-soft); }
+  .uc-block li { margin: 0.3rem 0; }
+  .page-contact { display: flex; justify-content: center; margin-top: 3rem; }
+</style>
