@@ -9,7 +9,7 @@ const { date, title, image, alt = '', icon } = Astro.props;
     {image ? (
       <Image src={image} alt={alt} widths={[320, 540]} sizes="(max-width: 760px) 92vw, 300px" />
     ) : (
-      <span class="tl-icon"><Icon name={icon ?? 'sparkles'} size={30} /></span>
+      <span class="tl-icon"><Icon name={icon ?? 'sparkles'} size={46} /></span>
     )}
   </div>
   <div class="tl-body">
@@ -23,8 +23,8 @@ const { date, title, image, alt = '', icon } = Astro.props;
   .tl-item { display: grid; grid-template-columns: 300px 1fr; gap: 2rem; align-items: start; }
   .tl-media img { width: 100%; height: auto; border-radius: var(--radius-media); }
   .tl-icon {
-    display: grid; place-items: center; width: 100%; aspect-ratio: 4/3;
-    border: 1.5px dashed var(--color-rule); border-radius: var(--radius-media); color: var(--color-accent);
+    display: grid; place-items: center; width: 7rem; height: 7rem; margin-inline: auto;
+    border: 1.5px dashed var(--color-rule); border-radius: 50%; color: var(--color-accent);
   }
   .tl-date { margin: 0 0 0.3rem; }
   .tl-body h2 { font-size: 1.35rem; margin: 0 0 0.6rem; }
