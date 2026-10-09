@@ -288,6 +288,7 @@ export const konzept = {
       { where: 'Netz', label: 'Zurück', detail: 'Gedicht kommt als Text zurück' },
       { where: 'Gerät', label: 'Ausgabe', detail: 'Bildschirm, Drucker, Vorlesen' },
     ],
+    legend: 'Gestrichelt: Hier verlässt das Foto die Schule und wird von einem externen KI-Dienst verarbeitet.',
     note: 'Im Schulmodus bleibt auf dem Gerät nichts gespeichert: Foto, Gedicht und Audio werden beim nächsten Foto oder beim Ausschalten verworfen.',
   },
 
