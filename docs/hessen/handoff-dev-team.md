@@ -177,6 +177,11 @@ Why Azure over "OpenAI EU":
 It does **not** remove the US-parent (CLOUD Act) question. Only an EU provider
 does that.
 
+**Public statement:** since 2026-10-09 the `/hessen` page says the current
+implementation uses OpenAI and ElevenLabs, and that a migration to Azure in a
+German data centre is being clarified. Keep the page in sync when this is
+decided.
+
 Still to check:
 - [ ] Is gpt-5-nano (or a comparable vision model) available in the EU Data
   Zone?

@@ -107,7 +107,7 @@ const de: HessenContent = {
       { title: 'Einstellungen nur für Lehrkräfte', text: 'Einstellungen und WLAN sind durch eine Lehrkräfte-PIN geschützt. Eigene Prompts der Klasse und geteilte Inhalte werden automatisch auf problematische Inhalte geprüft, bevor sie verwendet oder veröffentlicht werden.' },
     ],
     honest:
-      'Transparent gesagt: Um das Gedicht zu erzeugen, wird das Foto an einen externen KI-Dienst übermittelt (derzeit OpenAI). Für das Vorlesen wird nur der Gedichttext an einen Sprachdienst (derzeit ElevenLabs) gesendet. Unsere Empfehlung für den Unterricht: Motive ohne Gesichter wählen. Das schützt die Kinder und ist zugleich der beste Einstieg in das Thema Datenschutz. Sind andere Modelle mit Hosting in der EU oder in Deutschland erforderlich, etwa von Mistral oder von Microsoft mit festgelegtem Serverstandort, sprechen Sie uns gerne an.',
+      'Transparent gesagt: Die aktuelle Umsetzung nutzt noch OpenAI und ElevenLabs. Um das Gedicht zu erzeugen, wird das Foto an OpenAI übermittelt. Für das Vorlesen wird nur der Gedichttext an ElevenLabs gesendet. Eine Umstellung auf Microsoft Azure mit Rechenzentrum in Deutschland wird derzeit geklärt, damit die einschlägigen Gesetze und Vorschriften erfüllt werden. Unsere Empfehlung für den Unterricht: Motive ohne Gesichter wählen. Das schützt die Kinder und ist zugleich der beste Einstieg in das Thema Datenschutz. Werden andere Modelle mit europäischem Hosting benötigt, etwa von Mistral, sprechen Sie uns gerne an.',
     docsTitle: 'Unterlagen für Schulleitung, Schulträger und Datenschutz',
     docs: [
       'Beschreibung der Datenflüsse und der technischen und organisatorischen Maßnahmen (TOM), ausgerichtet am BSI IT-Grundschutz',
@@ -219,7 +219,7 @@ const en: HessenContent = {
       { title: 'Settings for teachers only', text: 'Settings and Wi-Fi are protected by a teacher PIN. Prompts written by the class and shared content are automatically screened for problematic content before they are used or published.' },
     ],
     honest:
-      'To be transparent: to write the poem, the photo is sent to an external AI service (currently OpenAI). For read-aloud, only the poem text is sent to a voice service (currently ElevenLabs). Our classroom recommendation: choose subjects without faces. It protects the children and is the best way into the topic of data protection. If you need other models hosted in the EU or in Germany, for example from Mistral or from Microsoft with a fixed server location, please get in touch.',
+      'To be transparent: the current implementation still uses OpenAI and ElevenLabs. To write the poem, the photo is sent to OpenAI. For read-aloud, only the poem text is sent to ElevenLabs. A migration to Microsoft Azure with a data centre in Germany is being clarified, to meet the relevant laws and regulations. Our classroom recommendation: choose subjects without faces. It protects the children and is the best way into the topic of data protection. If you need other models with European hosting, for example from Mistral, please get in touch.',
     docsTitle: 'Documents for school leaders, school authorities and data protection',
     docs: [
       'Description of data flows and technical and organisational measures (TOMs), aligned with BSI IT-Grundschutz',
