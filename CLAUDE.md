@@ -19,12 +19,13 @@ former HTML5 UP "Stellar" template.
 src/
   pages/            thin per-locale routes (DE at /, EN at /en) → render a view
   views/            page bodies: Landing, StoryView, UseCaseView, TeilenView,
-                    HessenView, ImpressumView, DatenschutzView
+                    HessenView, HessenKonzeptView, ImpressumView,
+                    DatenschutzView
   layouts/Base.astro  <head>/SEO/theme/header/footer shell
   components/       Header, Footer, Nav bits, Seo, Section, Icon, PoemCard,
                     TimelineItem, UseCaseCard, Gallery, ThemeToggle, LangSwitch
   i18n/             utils.ts (locale routing) + content.ts (landing + UI copy, de/en)
-  data/             timeline.ts, usecases.ts, poems.ts, hessen.ts (typed content, per locale)
+  data/             timeline.ts, usecases.ts, poems.ts, hessen.ts, hessenKonzept.ts (typed content, per locale)
   lib/images.ts     the ONLY place source images are imported (astro:assets)
   images/           source images (optimized at build)
   styles/           global.css + tokens.css (GENERATED, gitignored)
@@ -93,6 +94,9 @@ never by hand-editing another repo's compiled output. See
 - Only one real example poem is included; add more (with photos) to `src/data/poems.ts`.
 - **`/hessen`** is an outreach landing page for Hessen's ministry/schools (new subject
   "KI und Digitale Welt" from 2027/28). Not in the main nav; linked from `/bildung`.
+  `/hessen/konzept` is the Hessen teaching concept (DE only; `/en/hessen/konzept` is a
+  noindex notice linking to it). It replaces the old PDF for Hessen; "PDF" = browser print
+  (A4 print CSS in the view). Linked only from `/hessen`.
   Its privacy claims mirror the device **school profile** (`../poetry-cam/docs/DEVICE_PROFILES.md`)
   — re-check them when that changes.
 - **MILESTONE S1 (open, before the first pilot school):** `/hessen` announces a school

@@ -23,8 +23,8 @@ const mailto = `mailto:${c.email}?subject=${encodeURIComponent(h.pilot.subject)}
         <p class="hero__lead">{h.hero.lead}</p>
         <div class="hero__cta">
           <a class="btn" href={mailto}>{h.hero.cta}</a>
-          <a class="btn btn-ghost" href={h.pdfHref} download target="_blank" rel="noopener">
-            <Icon name="book" size={16} /> {h.hero.ctaPdf}
+          <a class="btn btn-ghost" href={h.conceptHref} hreflang="de">
+            <Icon name="book" size={16} /> {h.hero.ctaConcept}
           </a>
         </div>
       </div>
@@ -51,6 +51,7 @@ const mailto = `mailto:${c.email}?subject=${encodeURIComponent(h.pilot.subject)}
 
   <!-- Lesson -->
   <Section id="unterricht" eyebrow={h.lesson.eyebrow} title={h.lesson.title} intro={h.lesson.intro}>
+    <p class="concept-link"><a href={h.conceptHref} hreflang="de">{h.hero.ctaConcept}<Icon name="arrow" size={16} /></a></p>
     <ol class="phases">
       {h.lesson.phases.map((p) => (
         <li class="phase">
@@ -127,6 +128,8 @@ const mailto = `mailto:${c.email}?subject=${encodeURIComponent(h.pilot.subject)}
   @media (max-width: 860px) { .stages { grid-template-columns: 1fr; } }
   .source { margin: 1.25rem 0 0; font-size: 0.85rem; }
 
+  .concept-link { margin: -0.75rem 0 1.75rem; font-weight: 600; }
+  .concept-link a { display: inline-flex; align-items: center; gap: 0.4rem; }
   .phases { list-style: none; margin: 0 0 2.5rem; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
   .phase { border-top: 2px dotted var(--color-rule); padding-top: 1rem; }
   .phase__n { display: block; margin-bottom: 0.4rem; }

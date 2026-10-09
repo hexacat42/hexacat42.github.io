@@ -12,16 +12,16 @@ export interface Fact { title: string; text: string; }
 
 export interface HessenContent {
   meta: { title: string; description: string };
-  hero: { eyebrow: string; title: string; lead: string; cta: string; ctaPdf: string };
+  hero: { eyebrow: string; title: string; lead: string; cta: string; ctaConcept: string };
   fit: { eyebrow: string; title: string; intro: string; stages: Stage[]; source: string; sourceLabel: string };
   lesson: { eyebrow: string; title: string; intro: string; phases: Phase[]; questions: string[]; questionsTitle: string };
   competences: { title: string; items: string[] };
   privacy: { eyebrow: string; title: string; intro: string; facts: Fact[]; honest: string; docsTitle: string; docs: string[]; docsNote: string };
   pilot: { eyebrow: string; title: string; body: string; points: string[]; cta: string; subject: string };
-  pdfHref: string;
+  conceptHref: string;
 }
 
-const pdfHref = '/files/Didaktisches-Konzept_Poetry-Cam-im-Bildungsbereich.pdf';
+const conceptHref = '/hessen/konzept';
 const kultusUrl = 'https://kultus.hessen.de/digitale-zukunftskompetenzen';
 
 const de: HessenContent = {
@@ -36,7 +36,7 @@ const de: HessenContent = {
     lead:
       'Ab dem Schuljahr 2027/28 lernen Hessens Fünftklässlerinnen und Fünftklässler im neuen Fach „KI und Digitale Welt“. Die Poetry Cam macht dafür sichtbar, was eine KI tut: Sie sieht ein Bild, schreibt ein Gedicht und druckt es aus. Das ist anschaulich und regt zum Nachdenken an. Auf dem Gerät bleibt dabei nichts zurück.',
     cta: 'Pilotprojekt anfragen',
-    ctaPdf: 'Didaktisches Konzept (PDF)',
+    ctaConcept: 'Didaktisches Konzept für Hessen',
   },
   fit: {
     eyebrow: 'Digitale Zukunftskompetenzen',
@@ -70,7 +70,7 @@ const de: HessenContent = {
     eyebrow: 'Im Unterricht',
     title: 'Eine Doppelstunde, vier Phasen',
     intro:
-      'Ein Beispielablauf, der ohne Vorwissen funktioniert. Die Lehrkraft moderiert, die Klasse forscht. Das Didaktische Konzept beschreibt Varianten und Material.',
+      'Ein Beispielablauf, der ohne Vorwissen funktioniert. Die Lehrkraft moderiert, die Klasse forscht. Das didaktische Konzept für Hessen enthält ausgearbeitete 45-Minuten-Einheiten für Klasse 4 bis 6.',
     phases: [
       { n: '01', title: 'Erleben', text: 'Die Klasse fotografiert einen Gegenstand, eine Pflanze oder das Klassenzimmer. Nach wenigen Sekunden liegt ein gedrucktes Gedicht auf dem Tisch.' },
       { n: '02', title: 'Untersuchen', text: 'Dasselbe Motiv, aber eine andere Anweisung: Die Klasse formuliert selbst Prompts und vergleicht die Ergebnisse. Was bleibt gleich, was ändert sich?' },
@@ -133,7 +133,7 @@ const de: HessenContent = {
     cta: 'Gespräch vereinbaren',
     subject: 'Poetry Cam – KI und Digitale Welt (Hessen)',
   },
-  pdfHref,
+  conceptHref,
 };
 
 const en: HessenContent = {
@@ -148,7 +148,7 @@ const en: HessenContent = {
     lead:
       'From the 2027/28 school year, fifth-graders in Hessen will study the new subject “KI und Digitale Welt” (AI and the Digital World). Poetry Cam shows what an AI actually does: it looks at a picture, writes a poem and prints it. That makes AI concrete and gets pupils thinking. And nothing is left behind on the device.',
     cta: 'Request a pilot',
-    ctaPdf: 'Teaching concept (PDF, German)',
+    ctaConcept: 'Teaching concept for Hessen (German)',
   },
   fit: {
     eyebrow: 'Digital future skills',
@@ -182,7 +182,7 @@ const en: HessenContent = {
     eyebrow: 'In the classroom',
     title: 'One double lesson, four phases',
     intro:
-      'A sample flow that needs no prior knowledge. The teacher moderates, the class investigates. The teaching concept describes variants and materials.',
+      'A sample flow that needs no prior knowledge. The teacher moderates, the class investigates. The teaching concept for Hessen (German) contains worked-out 45-minute units for grades 4 to 6.',
     phases: [
       { n: '01', title: 'Experience', text: 'The class photographs an object, a plant or the classroom. A few seconds later a printed poem is on the table.' },
       { n: '02', title: 'Investigate', text: 'Same subject, different instruction: the class writes its own prompts and compares the results. What stays the same, what changes?' },
@@ -245,7 +245,7 @@ const en: HessenContent = {
     cta: 'Arrange a conversation',
     subject: 'Poetry Cam – AI and the Digital World (Hessen)',
   },
-  pdfHref,
+  conceptHref,
 };
 
 export const hessen: Record<Locale, HessenContent> = { de, en };

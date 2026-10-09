@@ -1,0 +1,323 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { getLocaleFromUrl, localizePath } from '../i18n/utils';
+import { getContent } from '../i18n/content';
+import { konzept as k, kmkAreas } from '../data/hessenKonzept';
+
+const locale = getLocaleFromUrl(Astro.url);
+const c = getContent(locale);
+const mailto = `mailto:${c.email}?subject=${encodeURIComponent(k.contact.subject)}`;
+const allUnits = k.stages.flatMap((s) => s.units);
+const areaIds = [1, 2, 3, 4, 5, 6];
+const duration = (m: number) => (m >= 90 ? `ca. ${m / 45} × 45 min` : `${m} min`);
+---
+{locale === 'en' ? (
+  <Base title={k.enNotice.title} description={k.enNotice.text} noindex>
+    <section class="section">
+      <div class="container container--narrow">
+        <p class="eyebrow">Poetry Cam · Hessen</p>
+        <h1>{k.enNotice.title}</h1>
+        <p class="lead">{k.enNotice.text}</p>
+        <a class="btn" href="/hessen/konzept" hreflang="de">{k.enNotice.cta}</a>
+      </div>
+    </section>
+  </Base>
+) : (
+<Base title={k.meta.title} description={k.meta.description}>
+  <article class="section konzept">
+    <div class="container container--narrow">
+      <div class="toolbar no-print">
+        <a class="btn btn-ghost" href="/hessen">{k.backLabel}</a>
+        <button class="btn" type="button" onclick="window.print()"><Icon name="printer" size={16} /> {k.printLabel}</button>
+      </div>
+
+      <header class="doc-head">
+        <p class="eyebrow">{k.version}</p>
+        <h1>{k.title}</h1>
+        <p class="lead">{k.lead}</p>
+      </header>
+
+      <nav class="toc no-print" aria-label="Inhalt">
+        <ol>
+          <li><a href="#einordnung">Einordnung</a></li>
+          <li><a href="#leitidee">Pädagogische Leitidee</a></li>
+          <li><a href="#bezugsrahmen">Bezugsrahmen</a></li>
+          <li><a href="#einheiten">Unterrichtseinheiten</a></li>
+          <li><a href="#tafelbild">Tafelbild</a></li>
+          <li><a href="#faecher">Fächerverbindungen</a></li>
+          <li><a href="#differenzierung">Differenzierung</a></li>
+          <li><a href="#leistung">Leistungsfeststellung</a></li>
+          <li><a href="#datenschutz">Datenschutz</a></li>
+          <li><a href="#lehrkraefte">Qualifizierung</a></li>
+          <li><a href="#materialien">Materialien</a></li>
+        </ol>
+      </nav>
+
+      <section id="einordnung" class="block">
+        <h2>{k.context.title}</h2>
+        {k.context.paragraphs.map((p) => <p>{p}</p>)}
+        <p class="src">Quelle: <a href={k.context.source.href}>{k.context.source.label}</a></p>
+      </section>
+
+      <section id="leitidee" class="block">
+        <h2>{k.idea.title}</h2>
+        <p>{k.idea.intro}</p>
+        <div class="idea-grid">
+          {k.idea.points.map((p) => (
+            <div class="idea">
+              <h3>{p.title}</h3>
+              <p>{p.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="bezugsrahmen" class="block">
+        <h2>{k.framework.title}</h2>
+        <p>{k.framework.intro}</p>
+        <ul class="refs">
+          {k.framework.refs.map((r) => <li><a href={r.href}>{r.label}</a></li>)}
+        </ul>
+        <h3>{k.framework.matrixTitle}</h3>
+        <div class="table-scroll">
+          <table class="matrix">
+            <thead>
+              <tr>
+                <th scope="col">Einheit</th>
+                {areaIds.map((a) => <th scope="col" title={kmkAreas[a]}><abbr title={kmkAreas[a]}>K{a}</abbr></th>)}
+              </tr>
+            </thead>
+            <tbody>
+              {allUnits.map((u) => (
+                <tr>
+                  <th scope="row"><span class="uid">{u.id}</span>{' '}{u.title}</th>
+                  {areaIds.map((a) => <td>{u.areas.includes(a) ? <span class="dot" aria-label="ja">●</span> : <span class="visually-hidden">nein</span>}</td>)}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <ol class="legend">
+          {areaIds.map((a) => <li><strong>K{a}</strong>{' '}{kmkAreas[a]}</li>)}
+        </ol>
+      </section>
+
+      <section id="einheiten" class="block">
+        <h2>4. Unterrichtseinheiten</h2>
+        {k.stages.map((s) => (
+          <section class="stage" id={s.id}>
+            <p class="label-muted">{s.grade} · {s.start}</p>
+            <h3 class="stage-title">{s.name}</h3>
+            <p>{s.intro}</p>
+            {s.units.map((u) => (
+              <div class="unit">
+                <div class="unit-head">
+                  <span class="uid">{u.id}</span>
+                  <div>
+                    <h4>{u.title}</h4>
+                    <p class="unit-q">{u.question}</p>
+                  </div>
+                  <span class="unit-min label-muted">{duration(u.minutes)}</span>
+                </div>
+                <dl class="unit-meta">
+                  <dt>Lernziele</dt>
+                  <dd><ul>{u.goals.map((g) => <li>Die Schülerinnen und Schüler können {g}.</li>)}</ul></dd>
+                  <dt>Ablauf</dt>
+                  <dd>
+                    <ol class="flow">
+                      {u.flow.map((f) => <li><strong>{f.phase}:</strong> {f.text}</li>)}
+                    </ol>
+                  </dd>
+                  <dt>Material</dt>
+                  <dd>{u.material.join(' · ')}</dd>
+                  <dt>Kompetenzen</dt>
+                  <dd>{u.areas.map((a) => `K${a} ${kmkAreas[a]}`).join(' · ')}</dd>
+                  <dt>Fächer</dt>
+                  <dd>{u.subjects.join(' · ')}</dd>
+                </dl>
+                {u.note && <p class="unit-note">{u.note}</p>}
+              </div>
+            ))}
+          </section>
+        ))}
+      </section>
+
+      <section id="tafelbild" class="block">
+        <h2>{k.flowDiagram.title}</h2>
+        <p>{k.flowDiagram.intro}</p>
+        <ol class="diagram">
+          {k.flowDiagram.steps.map((st) => (
+            <li class={`dstep dstep--${st.where.toLowerCase()}`}>
+              <span class="label-muted">{st.where}</span>
+              <strong>{st.label}</strong>
+              <span class="ddetail">{st.detail}</span>
+            </li>
+          ))}
+        </ol>
+        <p class="unit-note">{k.flowDiagram.note}</p>
+      </section>
+
+      <section id="faecher" class="block">
+        <h2>{k.subjects.title}</h2>
+        <table class="plain">
+          <thead><tr><th scope="col">Fach</th><th scope="col">Anknüpfung</th></tr></thead>
+          <tbody>{k.subjects.rows.map((r) => <tr><th scope="row">{r.subject}</th><td>{r.link}</td></tr>)}</tbody>
+        </table>
+      </section>
+
+      <section id="differenzierung" class="block">
+        <h2>{k.differentiation.title}</h2>
+        <ul>{k.differentiation.points.map((p) => <li>{p}</li>)}</ul>
+      </section>
+
+      <section id="leistung" class="block">
+        <h2>{k.assessment.title}</h2>
+        <p>{k.assessment.intro}</p>
+        <ul>{k.assessment.points.map((p) => <li>{p}</li>)}</ul>
+        <p class="unit-note">{k.assessment.note}</p>
+      </section>
+
+      <section id="datenschutz" class="block">
+        <h2>{k.privacy.title}</h2>
+        <p>{k.privacy.intro}</p>
+        <ul class="checks">{k.privacy.checks.map((p) => <li><span class="box" aria-hidden="true"></span>{p}</li>)}</ul>
+        <h3>So arbeitet die Kamera im Schulmodus</h3>
+        <ul>{k.privacy.facts.map((p) => <li>{p}</li>)}</ul>
+        <p class="unit-note">{k.privacy.planned}</p>
+      </section>
+
+      <section id="lehrkraefte" class="block">
+        <h2>{k.teachers.title}</h2>
+        <p>{k.teachers.intro}</p>
+        <ul>{k.teachers.points.map((p) => <li>{p}</li>)}</ul>
+        <p>{k.teachers.format}</p>
+      </section>
+
+      <section id="materialien" class="block">
+        <h2>{k.materials.title}</h2>
+        <div class="mat-grid">
+          <div>
+            <h3>{k.materials.availableLabel}</h3>
+            <ul>{k.materials.available.map((p) => <li>{p}</li>)}</ul>
+          </div>
+          <div>
+            <h3>{k.materials.plannedLabel}</h3>
+            <ul>{k.materials.planned.map((p) => <li>{p}</li>)}</ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="block contact">
+        <h2>{k.contact.title}</h2>
+        <p>{k.contact.text}</p>
+        <p class="no-print"><a class="btn" href={mailto}>{k.contact.cta}</a></p>
+        <p class="print-only">{c.email} · cam.digilyze.com/hessen/konzept</p>
+      </section>
+    </div>
+  </article>
+</Base>
+)}
+
+<style>
+  .toolbar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; margin-bottom: 2rem; }
+  .toolbar :global(svg) { flex: none; }
+  .doc-head { margin-bottom: 1.5rem; }
+  .lead { font-size: 1.15rem; color: var(--color-ink-soft); }
+
+  .toc { border: 1px solid var(--color-rule); border-radius: var(--radius-card); padding: 1rem 1.25rem; margin-bottom: 1rem; background: var(--color-card-bg); }
+  .toc ol { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+  .toc li { margin: 0.15rem 0; }
+  @media (max-width: 560px) { .toc ol { columns: 1; } }
+
+  .block { padding-top: 2.25rem; }
+  .block h2 { font-size: 1.6rem; border-bottom: 2px dotted var(--color-rule); padding-bottom: 0.4rem; }
+  .block ul, .block ol { padding-left: 1.2rem; }
+  .block li { margin: 0.3rem 0; }
+  .src { font-size: 0.88rem; color: var(--color-ink-soft); }
+
+  .idea-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.75rem; }
+  .idea h3 { font-size: 1.1rem; margin: 0 0 0.25rem; }
+  .idea p { color: var(--color-ink-soft); margin: 0; }
+  @media (max-width: 640px) { .idea-grid { grid-template-columns: 1fr; } }
+
+  table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+  th, td { border-bottom: 1px solid var(--color-rule); padding: 0.45rem 0.5rem; text-align: left; vertical-align: top; }
+  thead th { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; color: var(--color-brand); }
+  .matrix td, .matrix thead th:not(:first-child) { text-align: center; }
+  .matrix abbr { text-decoration: none; }
+  .matrix tbody th { font-weight: 400; }
+  .matrix tbody th .uid { margin-right: 0.4rem; }
+  .dot { color: var(--color-accent); }
+  .legend { list-style: none; padding: 0 !important; display: grid; grid-template-columns: 1fr 1fr; gap: 0 1.5rem; font-size: 0.85rem; color: var(--color-ink-soft); margin-top: 0.75rem; }
+  @media (max-width: 560px) { .legend { grid-template-columns: 1fr; } }
+  .plain tbody th { font-weight: 600; width: 40%; }
+
+  .uid {
+    display: inline-grid; place-items: center; min-width: 2.2rem; height: 1.6rem; padding: 0 0.35rem;
+    font-family: var(--font-mono); font-size: 0.78rem; font-weight: 600;
+    border: 1.5px solid var(--color-accent); border-radius: var(--radius-control); color: var(--color-accent-ink);
+  }
+  .stage { margin-top: 1.75rem; }
+  .stage-title { font-size: 1.35rem; margin: 0.2rem 0 0.5rem; }
+  .unit { border: 1px solid var(--color-rule); border-radius: var(--radius-card); background: var(--color-card-bg); padding: 1.1rem 1.2rem; margin-top: 1rem; }
+  .unit-head { display: grid; grid-template-columns: auto 1fr auto; gap: 0.8rem; align-items: start; }
+  .unit-head h4 { font-family: var(--font-serif); font-weight: 400; font-size: 1.2rem; margin: 0; }
+  .unit-q { margin: 0.15rem 0 0; color: var(--color-ink-soft); font-style: italic; }
+  .unit-min { white-space: nowrap; }
+  .unit-meta { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.35rem 1rem; margin: 1rem 0 0; font-size: 0.95rem; }
+  .unit-meta dt { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-brand); padding-top: 0.2rem; }
+  .unit-meta dd { margin: 0; }
+  .unit-meta ul, .unit-meta ol { margin: 0; }
+  .flow li { margin: 0.2rem 0; }
+  .unit-note { font-size: 0.9rem; border-left: 3px solid var(--color-accent); padding: 0.4rem 0.8rem; background: var(--color-poem-bg); border-radius: var(--radius-media); margin-top: 0.9rem; }
+  @media (max-width: 560px) { .unit-meta { grid-template-columns: 1fr; } .unit-meta dt { padding-top: 0.5rem; } }
+
+  .diagram { list-style: none; padding: 0 !important; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.6rem; counter-reset: d; }
+  .dstep { position: relative; display: flex; flex-direction: column; gap: 0.2rem; padding: 0.8rem; border: 1.5px solid var(--color-rule); border-radius: var(--radius-card); background: var(--color-card-bg); }
+  .dstep--cloud { border-style: dashed; border-color: var(--color-accent); }
+  .dstep--netz { background: transparent; }
+  .dstep strong { font-family: var(--font-serif); font-weight: 400; font-size: 1.05rem; }
+  .ddetail { font-size: 0.82rem; color: var(--color-ink-soft); }
+  .dstep:not(:last-child)::after { content: '→'; position: absolute; right: -0.55rem; top: 50%; transform: translate(50%, -50%); color: var(--color-accent); font-weight: 700; }
+  @media (max-width: 760px) {
+    .diagram { grid-template-columns: 1fr; }
+    .dstep:not(:last-child)::after { content: '↓'; right: 50%; top: auto; bottom: -0.55rem; transform: translate(50%, 50%); }
+  }
+
+  .checks { list-style: none; padding: 0 !important; }
+  .checks li { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem; align-items: start; }
+  .box { width: 1rem; height: 1rem; border: 1.5px solid var(--color-ink); border-radius: 3px; margin-top: 0.3rem; }
+
+  .mat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .mat-grid h3 { font-size: 1.1rem; }
+  @media (max-width: 560px) { .mat-grid { grid-template-columns: 1fr; } }
+
+  .print-only { display: none; }
+
+  /* ---------- Print / "Save as PDF" ---------- */
+  @media print {
+    @page { size: A4; margin: 16mm 15mm 18mm; }
+    :global(html) { font-size: 10.5pt; }
+    :global(:root), :global(:root[data-theme]) {
+      --color-page-bg: #fff; --color-card-bg: #fff; --color-poem-bg: #f4f1ea;
+      --color-ink: #111; --color-ink-soft: #333; --color-rule: #bbb;
+      --color-accent: #7a2e22; --color-accent-ink: #7a2e22; --color-brand: #555;
+    }
+    :global(body) { background: #fff; color: #111; }
+    :global(.site-header), :global(.site-footer), :global(.skip-link), .no-print { display: none !important; }
+    .print-only { display: block; }
+    .section { padding: 0; }
+    .container { max-width: none; padding: 0; }
+    .block { padding-top: 1.1rem; }
+    .block h2 { break-after: avoid; page-break-after: avoid; }
+    h3, h4 { break-after: avoid; }
+    .unit, .dstep, .idea, table, .unit-note, .legend { break-inside: avoid; page-break-inside: avoid; }
+    #einheiten, #datenschutz { break-before: page; }
+    .unit { padding: 0.7rem 0.9rem; }
+    .diagram { grid-template-columns: repeat(5, 1fr); }
+    .dstep:not(:last-child)::after { content: '→'; right: -0.55rem; top: 50%; bottom: auto; transform: translate(50%, -50%); }
+    a { color: inherit; text-decoration: none; }
+    .refs a::after, .src a::after { content: ' (' attr(href) ')'; font-size: 0.85em; color: #555; word-break: break-all; }
+  }
+</style>
