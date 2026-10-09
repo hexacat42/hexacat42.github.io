@@ -17,6 +17,12 @@ Design tokens come from `../poetry-cam-design/tokens.json` (web surface) and are
 generated into `src/styles/tokens.css` at build time. See `CLAUDE.md` for the
 full architecture (i18n, content model, tokens, deploy).
 
+## Hessen outreach
+
+`/hessen` (landing page) and `/hessen/konzept` (teaching concept, printable via the
+browser) target Hessen's new subject "KI und Digitale Welt". Compliance research and
+the open work for the device/server teams live in `docs/hessen/`.
+
 ## Deploy
 
 Pushing to `main` builds and deploys to GitHub Pages via

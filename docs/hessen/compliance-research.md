@@ -107,7 +107,7 @@ The school is the controller (§ 4 SchDSV). The Poetry Cam vendor is at most its
 | Pre-filled DSFA | Gap | Draft |
 | Parent information and consent form | Gap | Draft (§ 3, § 12(4) SchDSV, § 22 KUG) |
 | Outbound host list, update and patch policy | Gap | Document for the Schulträger |
-| Teacher material for Medienführerschein / KI und Digitale Welt | Partly (didactic PDF) | Extend |
+| Teacher material for Medienführerschein / KI und Digitale Welt | Partly: `/hessen/konzept` (units G1–G2, E1–E6, W1, incl. the AI-Act-safe emotion unit E5) | Worksheets, sample prompts and training material are still planned |
 
 ## Sharing consent: is the teacher PIN enough?
 

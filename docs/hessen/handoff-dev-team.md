@@ -189,9 +189,33 @@ Still to check:
 - [ ] Is the quality of Azure Speech's German neural voices comparable to
   ElevenLabs?
 
+## Claims in the teaching concept that depend on the device
+
+`/hessen/konzept` (live since 2026-10-09) relies on these behaviours. Tell the www
+side if any of them change:
+
+- **School mode stores nothing.** Photo, poem and audio are kept in RAM only.
+- **Class prompts via the camera's QR code work in the school profile.** They
+  are moderated by the server before use (unit E3).
+- **Read-aloud sends only the poem text to the voice service, never the
+  photo.** This is drawn in the Tafelbild (section 5) and used as a teaching
+  point in unit E2.
+- **Online sharing** is off at every start and can be switched on only with
+  the teacher PIN.
+- **Providers:** OpenAI and ElevenLabs today, with a migration to Azure
+  Germany being clarified. Both the concept and `/hessen` name them.
+
 ## Content and teaching (product owner)
 
-- Lesson material for the Medienführerschein (grade 4) and "KI und Digitale
-  Welt" (grades 5–6). It supports AI Act Art. 4 (AI literacy) and the pitch.
+- **Lesson units exist:** `/hessen/konzept` covers grade 4 (G1–G2), grades
+  5–6 (E1–E6) and the grade 7–10 elective (W1).
+- **Listed there as "in Vorbereitung":**
+  - [ ] worksheets and cards for all units
+  - [ ] sample prompts
+  - [ ] parent information
+  - [ ] training material
+  - [ ] an accreditation request to the Hessische Lehrkräfteakademie
+- **To confirm:** the length of the teacher training (the page says about 90
+  minutes).
 - Include the "How does the AI read feelings?" unit with non-pupil subjects
   (device item 5).

@@ -96,12 +96,18 @@ never by hand-editing another repo's compiled output. See
   "KI und Digitale Welt" from 2027/28). Not in the main nav; linked from `/bildung`.
   `/hessen/konzept` is the Hessen teaching concept (DE only; `/en/hessen/konzept` is a
   noindex notice linking to it). It replaces the old PDF for Hessen; "PDF" = browser print
-  (A4 print CSS in the view). Linked only from `/hessen`.
+  (A4 print CSS in the view). Linked only from `/hessen`. The generic
+  `public/files/Didaktisches-Konzept_…pdf` stays on `/bildung` only.
+  Its Tafelbild (section 5) shows the real data flow: photo → AI service, and poem text →
+  voice service for read-aloud. Update it (and both privacy sections) when the providers change
+  (Azure migration "in Klärung").
   Its privacy claims mirror the device **school profile** (`../poetry-cam/docs/DEVICE_PROFILES.md`)
   — re-check them when that changes.
 - **MILESTONE S1 (open, before the first pilot school):** `/hessen` announces a school
   document pack (AVV, TOM/BSI, Verzeichnis text, DSFA, parent info + consent form) as
-  "in Erarbeitung mit Pilotschulen". None exist yet. Tracked in
+  "in Erarbeitung mit Pilotschulen". None exist yet. `/hessen/konzept` §10–11 also lists
+  as planned: worksheets/cards, sample prompts, parent information, training material, and a
+  Lehrkräfteakademie accreditation ("angestrebt"). Training length (~90 min) is to be confirmed. Tracked in
   `docs/hessen/handoff-dev-team.md`; background in `docs/hessen/compliance-research.md`.
 - No LinkedIn/social embed (privacy). Re-add as click-to-load if wanted (and
   restore the corresponding Datenschutz clause).
