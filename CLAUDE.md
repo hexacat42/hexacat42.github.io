@@ -29,7 +29,7 @@ src/
   images/           source images (optimized at build)
   styles/           global.css + tokens.css (GENERATED, gitignored)
   scripts/          build-tokens.mjs, sync-tokens.mjs
-public/             CNAME, favicon, /images (og, logo), /files (PDF) — served as-is
+public/             CNAME, favicon, robots.txt, /images (og image), /files (PDF) — served as-is
 ```
 
 - **i18n:** `astro.config.mjs` sets `locales: ['de','en']`, default `de`,
@@ -37,7 +37,9 @@ public/             CNAME, favicon, /images (og, logo), /files (PDF) — served 
   `src/i18n/content.ts` (+ `src/data/*` for timeline/use-cases/poems), never in
   components. `Seo.astro` emits canonical + `hreflang` alternates.
 - **Adding an image:** drop it in `src/images/`, import it in `src/lib/images.ts`
-  under a key, reference that key from `src/data/*`.
+  under a key, reference that key from `src/data/*`. Never ship large images from
+  `public/` — they bypass optimization (the header logo is `src/images/logo.png`,
+  imported directly in `Header.astro`).
 
 ## Design tokens (IMPORTANT)
 
@@ -53,14 +55,32 @@ Style everything through `var(--color-*/--font-*/--radius-*)`. The look is
 "Poetic Print" (warm paper, ink, patent-stamp accent, serif headings/poems, sans
 UI, mono for data) with real light/dark theming.
 
+- **To change a color, change the canonical token** in `../poetry-cam-design`
+  (bump `meta.version` per its DESIGN.md), then `sync-tokens` here. Don't patch
+  only the vendored copy — that reintroduces drift.
+- **One local exception:** `--on-accent` in `global.css` (text on accent fills,
+  e.g. primary buttons). The accent is dark oxblood in light mode but light clay
+  in dark mode, so the text flips light→dark. Candidate to promote to a token.
+- **Theme overrides & specificity:** never add broad element rules like
+  `:root[data-theme='dark'] a {…}` — they outrank component classes (`.btn`) and
+  broke button text once. Prefer theme-aware tokens/vars over theme-scoped rules.
+
+## Accessibility & quality baseline
+
+Lighthouse (mobile) is **100/100/100/100** on `/` and `/story/` as of 2026-08-23.
+Keep it there: small text needs ≥4.5:1 (the web `brand` token was darkened to
+`#675f52` for this), no heading-level skips (timeline titles are `h2`), check both
+themes after any color change. Security-header audits (CSP/HSTS/COOP) can't be
+fixed on GitHub Pages — informative only.
+
 ## Sibling repos (separate git repos, one level up)
 
 `../poetry-cam` (device, PyQt5) · `../poetry-cam-server` (PHP 48h share pages) ·
-`../poetry-cam-design` (**canonical design tokens** — the source of truth). The
-three product surfaces intentionally diverge (device navy; web/share warm paper);
-route visual changes through each repo's own tokens, never by hand-editing
-another repo's compiled output. See `design-system/STYLEGUIDE.md` (historical
-proposal, superseded).
+`../poetry-cam-design` (**canonical design tokens** — the source of truth). Since
+2026-08-24 all three surfaces share the warm-paper family (web/share themed
+light/dark; device single-theme). Route visual changes through the shared tokens,
+never by hand-editing another repo's compiled output. See
+`design-system/STYLEGUIDE.md` (historical proposal, superseded).
 
 ## Content notes / to confirm before launch
 
