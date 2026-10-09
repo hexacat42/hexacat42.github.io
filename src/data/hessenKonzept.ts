@@ -166,7 +166,7 @@ export const konzept = {
           flow: [
             { phase: 'Einstieg (5 min)', text: 'Die Lehrkraft zeigt die Bausteine der Kamera: Kamera, Rechner (Raspberry Pi), WLAN, Bildschirm, Drucker, Lautsprecher.' },
             { phase: 'Erarbeitung (25 min)', text: 'Die Kinder ordnen Karten mit den Bausteinen den Stationen Eingabe, Verarbeitung und Ausgabe zu und ergänzen den Weg ins Internet.' },
-            { phase: 'Sicherung (15 min)', text: 'Gemeinsames Tafelbild „Gerät oder Cloud?“ (Abschnitt 5). Diskussion: Was funktioniert ohne Internet, was nicht?' },
+            { phase: 'Sicherung (15 min)', text: 'Gemeinsames Tafelbild „Gerät oder Cloud?“ (Abschnitt 5). Diskussion: Was funktioniert ohne Internet, was nicht? Zusatzfrage: Warum geht fürs Vorlesen nur der Text noch einmal ins Internet, nicht das Foto?' },
           ],
           material: ['Poetry Cam', 'Bausteinkarten', 'Tafelbild „Datenweg“'],
           areas: [5, 6],
@@ -286,9 +286,10 @@ export const konzept = {
       { where: 'Netz', label: 'Senden', detail: 'WLAN der Schule, Internet' },
       { where: 'Cloud', label: 'KI schreibt', detail: 'KI-Dienst erzeugt das Gedicht' },
       { where: 'Netz', label: 'Zurück', detail: 'Gedicht kommt als Text zurück' },
-      { where: 'Gerät', label: 'Ausgabe', detail: 'Bildschirm, Drucker, Vorlesen' },
+      { where: 'Gerät', label: 'Ausgabe', detail: 'Bildschirm, Drucker, Lautsprecher' },
     ],
-    legend: 'Gestrichelt: Hier verlässt das Foto die Schule und wird von einem externen KI-Dienst verarbeitet.',
+    branch: { where: 'Cloud', label: 'Vorlesen', detail: 'Nur der Gedichttext geht an einen Sprachdienst und kommt als Audio zurück. Das Foto nicht.' },
+    legend: 'Gestrichelt: Hier verlassen Daten die Schule und werden von einem externen Dienst verarbeitet.',
     note: 'Im Schulmodus bleibt auf dem Gerät nichts gespeichert: Foto, Gedicht und Audio werden beim nächsten Foto oder beim Ausschalten verworfen.',
   },
 

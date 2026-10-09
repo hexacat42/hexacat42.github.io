@@ -155,6 +155,13 @@ const duration = (m: number) => (m >= 90 ? `ca. ${m / 45} × 45 min` : `${m} min
             </li>
           ))}
         </ol>
+        <div class="dbranch-row">
+          <div class="dstep dstep--cloud dbranch">
+            <span class="label-muted">{k.flowDiagram.branch.where}</span>
+            <strong>{k.flowDiagram.branch.label}</strong>
+            <span class="ddetail">{k.flowDiagram.branch.detail}</span>
+          </div>
+        </div>
         <p class="dlegend"><span class="dlegend__swatch" aria-hidden="true"></span>{k.flowDiagram.legend}</p>
         <p class="unit-note">{k.flowDiagram.note}</p>
       </section>
@@ -281,11 +288,17 @@ const duration = (m: number) => (m >= 90 ? `ca. ${m / 45} × 45 min` : `${m} min
   .dstep strong { font-family: var(--font-serif); font-weight: 400; font-size: 1.05rem; }
   .ddetail { font-size: 0.82rem; color: var(--color-ink-soft); }
   .dstep:not(:last-child)::after { content: '→'; position: absolute; z-index: 2; left: calc(100% + 0.8rem); top: 50%; transform: translate(-50%, -50%); color: var(--color-accent); font-size: 1.3rem; font-weight: 700; line-height: 1; }
+  .dbranch-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.6rem; margin-top: 1.6rem; }
+  .dbranch { grid-column: 4 / span 2; }
+  .dbranch::before { content: '⇅'; position: absolute; left: 75%; top: -0.8rem; transform: translate(-50%, -50%); color: var(--color-accent); font-size: 1.3rem; font-weight: 700; line-height: 1; }
   .dlegend { display: flex; align-items: center; gap: 0.6rem; font-size: 0.88rem; color: var(--color-ink-soft); margin: 0.9rem 0 0; }
   .dlegend__swatch { flex: none; width: 2rem; height: 1rem; border: 1.5px dashed var(--color-accent); border-radius: 4px; }
   @media (max-width: 760px) {
     .diagram { grid-template-columns: 1fr; }
     .dstep:not(:last-child)::after { content: '↓'; left: 50%; top: calc(100% + 0.8rem); transform: translate(-50%, -50%); }
+    .dbranch-row { grid-template-columns: 1fr; margin-top: 1.6rem; }
+    .dbranch { grid-column: auto; margin-left: 1.5rem; }
+    .dbranch::before { left: 50%; }
   }
 
   .checks { list-style: none; padding: 0 !important; }
@@ -315,10 +328,12 @@ const duration = (m: number) => (m >= 90 ? `ca. ${m / 45} × 45 min` : `${m} min
     .block { padding-top: 1.1rem; }
     .block h2 { break-after: avoid; page-break-after: avoid; }
     h3, h4 { break-after: avoid; }
-    .unit, .dstep, .idea, table, .unit-note, .legend { break-inside: avoid; page-break-inside: avoid; }
+    .unit, .dstep, .idea, table, .diagram, .dbranch-row, .unit-note, .legend { break-inside: avoid; page-break-inside: avoid; }
     #einheiten, #datenschutz { break-before: page; }
     .unit { padding: 0.7rem 0.9rem; }
-    .diagram { grid-template-columns: repeat(5, 1fr); }
+    .diagram, .dbranch-row { grid-template-columns: repeat(5, 1fr); }
+    .dbranch { grid-column: 4 / span 2; margin-left: 0; }
+    .dbranch::before { left: 75%; }
     .dstep:not(:last-child)::after { content: '→'; left: calc(100% + 0.8rem); top: 50%; transform: translate(-50%, -50%); }
     a { color: inherit; text-decoration: none; }
     .refs a::after, .src a::after { content: ' (' attr(href) ')'; font-size: 0.85em; color: #555; word-break: break-all; }
