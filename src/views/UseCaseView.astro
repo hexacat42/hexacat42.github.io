@@ -29,6 +29,11 @@ const mailto = `mailto:${c.email}?subject=${encodeURIComponent(u.ctaSubject)}`;
             </a>
           </p>
         )}
+        {u.related && (
+          <p class="related">
+            <a href={localizePath(u.related.href, locale)}>{u.related.label}<Icon name="arrow" size={16} /></a>
+          </p>
+        )}
       </header>
 
       {u.heroKey && (
@@ -60,6 +65,8 @@ const mailto = `mailto:${c.email}?subject=${encodeURIComponent(u.ctaSubject)}`;
   .page-head { margin-bottom: 2rem; }
   .page-lead { font-size: 1.15rem; color: var(--color-ink-soft); }
   .pdf-row { margin-top: 1.4rem; }
+  .related { margin-top: 1rem; font-weight: 600; }
+  .related a { display: inline-flex; align-items: center; gap: 0.4rem; }
   .eyebrow :global(svg) { vertical-align: -0.2em; }
   .uc-hero img { width: 100%; height: auto; border-radius: var(--radius-card); margin-bottom: 2.5rem; }
   .uc-sections { display: grid; gap: 2rem; }

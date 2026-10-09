@@ -16,6 +16,7 @@ export interface UseCase {
   intro: string;
   sections: UseSection[];
   pdf?: { href: string; label: string };
+  related?: { href: string; label: string };
 }
 
 const de: UseCase[] = [
@@ -64,6 +65,7 @@ const de: UseCase[] = [
       },
     ],
     pdf: { href: '/files/Didaktisches-Konzept_Poetry-Cam-im-Bildungsbereich.pdf', label: 'Didaktisches Konzept (PDF)' },
+    related: { href: '/hessen', label: 'Für Hessens Schulen: KI und Digitale Welt' },
   },
   {
     slug: 'events', order: 2, path: '/events', title: 'Poetry Cam bei Events',
@@ -197,6 +199,7 @@ const en: UseCase[] = [
       },
     ],
     pdf: { href: '/files/Didaktisches-Konzept_Poetry-Cam-im-Bildungsbereich.pdf', label: 'Educational concept (PDF, German)' },
+    related: { href: '/hessen', label: 'For Hessen’s schools: AI and the Digital World' },
   },
   {
     slug: 'events', order: 2, path: '/events', title: 'Poetry Cam at events',

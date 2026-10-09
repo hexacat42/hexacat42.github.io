@@ -19,12 +19,12 @@ former HTML5 UP "Stellar" template.
 src/
   pages/            thin per-locale routes (DE at /, EN at /en) → render a view
   views/            page bodies: Landing, StoryView, UseCaseView, TeilenView,
-                    ImpressumView, DatenschutzView
+                    HessenView, ImpressumView, DatenschutzView
   layouts/Base.astro  <head>/SEO/theme/header/footer shell
   components/       Header, Footer, Nav bits, Seo, Section, Icon, PoemCard,
                     TimelineItem, UseCaseCard, Gallery, ThemeToggle, LangSwitch
   i18n/             utils.ts (locale routing) + content.ts (landing + UI copy, de/en)
-  data/             timeline.ts, usecases.ts, poems.ts (typed content, per locale)
+  data/             timeline.ts, usecases.ts, poems.ts, hessen.ts (typed content, per locale)
   lib/images.ts     the ONLY place source images are imported (astro:assets)
   images/           source images (optimized at build)
   styles/           global.css + tokens.css (GENERATED, gitignored)
@@ -91,5 +91,10 @@ never by hand-editing another repo's compiled output. See
 - Sharing/audio are featured as live capabilities; confirm the device auto-upload
   is wired end-to-end before implying a fully automatic flow.
 - Only one real example poem is included; add more (with photos) to `src/data/poems.ts`.
+- **`/hessen`** is an outreach landing page for Hessen's ministry/schools (new subject
+  "KI und Digitale Welt" from 2027/28). Not in the main nav; linked from `/bildung`.
+  Its privacy claims mirror the device **school profile** (`../poetry-cam/docs/DEVICE_PROFILES.md`)
+  — re-check them when that changes. The listed school documents (AVV, DSFA, TOM, consent
+  template) are announced as "in Erarbeitung mit Pilotschulen" and don't exist yet.
 - No LinkedIn/social embed (privacy). Re-add as click-to-load if wanted (and
   restore the corresponding Datenschutz clause).
