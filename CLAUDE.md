@@ -7,7 +7,8 @@ former HTML5 UP "Stellar" template.
 ## Stack & build
 
 - **Astro 5**, TypeScript, `output: 'static'`. No UI framework; near-zero client JS
-  (only the theme-toggle and lazy images).
+  (theme toggle, and a tiny Header script that exposes the sticky header's height as
+  `--header-h` for sticky table headers and `scroll-padding-top`).
 - Dev: `npm run dev` · Build: `npm run build` · Preview: `npm run preview`.
 - `predev`/`prebuild` run `build:tokens` (see Design tokens).
 - Deploy: GitHub Actions (`.github/workflows/deploy.yml`) → GitHub Pages. Pages

@@ -28,6 +28,17 @@ const c = getContent(locale);
   </div>
 </header>
 
+<script>
+  // Expose the sticky header's live height (it wraps on small screens) so
+  // sticky table headers and anchor jumps can sit just below it.
+  const header = document.querySelector<HTMLElement>('.site-header');
+  if (header) {
+    const set = () => document.documentElement.style.setProperty('--header-h', `${header.offsetHeight}px`);
+    set();
+    new ResizeObserver(set).observe(header);
+  }
+</script>
+
 <style>
   .site-header {
     position: sticky; top: 0; z-index: 50;
