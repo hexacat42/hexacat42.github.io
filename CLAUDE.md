@@ -94,7 +94,10 @@ never by hand-editing another repo's compiled output. See
 - **`/hessen`** is an outreach landing page for Hessen's ministry/schools (new subject
   "KI und Digitale Welt" from 2027/28). Not in the main nav; linked from `/bildung`.
   Its privacy claims mirror the device **school profile** (`../poetry-cam/docs/DEVICE_PROFILES.md`)
-  — re-check them when that changes. The listed school documents (AVV, DSFA, TOM, consent
-  template) are announced as "in Erarbeitung mit Pilotschulen" and don't exist yet.
+  — re-check them when that changes.
+- **MILESTONE S1 (open, before the first pilot school):** `/hessen` announces a school
+  document pack (AVV, TOM/BSI, Verzeichnis text, DSFA, parent info + consent form) as
+  "in Erarbeitung mit Pilotschulen". None exist yet. Tracked in
+  `docs/hessen/handoff-dev-team.md`; background in `docs/hessen/compliance-research.md`.
 - No LinkedIn/social embed (privacy). Re-add as click-to-load if wanted (and
   restore the corresponding Datenschutz clause).

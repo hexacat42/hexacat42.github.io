@@ -102,12 +102,12 @@ const de: HessenContent = {
       'Für den Einsatz mit Kindern hat die Poetry Cam ein eigenes Schulprofil. Es ist auf Datensparsamkeit ausgelegt und wird von uns fest eingerichtet, nicht per Schalter vor Ort.',
     facts: [
       { title: 'Nichts bleibt auf dem Gerät', text: 'Foto, Gedicht und Audio liegen nur im Arbeitsspeicher. Beim nächsten Foto oder beim Ausschalten werden sie verworfen. Auf der Speicherkarte landet nichts.' },
-      { title: 'Kein Teilen ins Web', text: 'Die Veröffentlichung per QR-Code ist im Schulmodus abgeschaltet. Das Ergebnis gibt es nur auf Papier.' },
+      { title: 'Teilen nur mit Freigabe', text: 'Das Online-Teilen per QR-Code ist ausgeschaltet und nach jedem Neustart wieder aus. Nur die Lehrkraft kann es per PIN einschalten, etwa für Kinder mit Einwilligung der Eltern. Sonst gibt es das Ergebnis nur auf Papier.' },
       { title: 'Keine Konten, keine Namen', text: 'Schülerinnen und Schüler melden sich nirgends an. Die Kamera kennt weder Namen noch Klassenlisten.' },
-      { title: 'Einstellungen nur für Lehrkräfte', text: 'Einstellungen und WLAN sind durch eine Lehrkräfte-PIN geschützt. Eigene Prompts der Klasse werden vor der Verwendung automatisch auf problematische Inhalte geprüft.' },
+      { title: 'Einstellungen nur für Lehrkräfte', text: 'Einstellungen und WLAN sind durch eine Lehrkräfte-PIN geschützt. Eigene Prompts der Klasse und geteilte Inhalte werden automatisch auf problematische Inhalte geprüft, bevor sie verwendet oder veröffentlicht werden.' },
     ],
     honest:
-      'Transparent gesagt: Um das Gedicht zu erzeugen, wird das Foto an einen externen KI-Dienst übermittelt (derzeit OpenAI). Für das Vorlesen wird nur der Gedichttext an einen Sprachdienst (derzeit ElevenLabs) gesendet. Unsere Empfehlung für den Unterricht: Motive ohne Gesichter wählen. Das schützt die Kinder und ist zugleich der beste Einstieg in das Thema Datenschutz.',
+      'Transparent gesagt: Um das Gedicht zu erzeugen, wird das Foto an einen externen KI-Dienst übermittelt (derzeit OpenAI). Für das Vorlesen wird nur der Gedichttext an einen Sprachdienst (derzeit ElevenLabs) gesendet. Unsere Empfehlung für den Unterricht: Motive ohne Gesichter wählen. Das schützt die Kinder und ist zugleich der beste Einstieg in das Thema Datenschutz. Sind andere Modelle mit Hosting in der EU oder in Deutschland erforderlich, etwa von Mistral oder von Microsoft mit festgelegtem Serverstandort, sprechen Sie uns gerne an.',
     docsTitle: 'Unterlagen für Schulleitung, Schulträger und Datenschutz',
     docs: [
       'Beschreibung der Datenflüsse und der technischen und organisatorischen Maßnahmen (TOM), ausgerichtet am BSI IT-Grundschutz',
@@ -214,12 +214,12 @@ const en: HessenContent = {
       'For use with children, Poetry Cam has a dedicated school profile. It is designed for data minimisation and set up by us, not with a switch on site.',
     facts: [
       { title: 'Nothing stays on the device', text: 'Photo, poem and audio live only in memory and are discarded at the next photo or at power-off. Nothing is written to the memory card.' },
-      { title: 'No web sharing', text: 'Publishing via QR code is switched off in school mode. The result exists only on paper.' },
+      { title: 'Sharing only when released', text: 'Online sharing via QR code is off, and switches off again at every restart. Only the teacher can turn it on with a PIN, for example for children whose parents have consented. Otherwise the result exists only on paper.' },
       { title: 'No accounts, no names', text: 'Pupils never sign in. The camera knows no names and no class lists.' },
-      { title: 'Settings for teachers only', text: 'Settings and Wi-Fi are protected by a teacher PIN. Prompts written by the class are automatically screened for problematic content before use.' },
+      { title: 'Settings for teachers only', text: 'Settings and Wi-Fi are protected by a teacher PIN. Prompts written by the class and shared content are automatically screened for problematic content before they are used or published.' },
     ],
     honest:
-      'To be transparent: to write the poem, the photo is sent to an external AI service (currently OpenAI). For read-aloud, only the poem text is sent to a voice service (currently ElevenLabs). Our classroom recommendation: choose subjects without faces. It protects the children and is the best way into the topic of data protection.',
+      'To be transparent: to write the poem, the photo is sent to an external AI service (currently OpenAI). For read-aloud, only the poem text is sent to a voice service (currently ElevenLabs). Our classroom recommendation: choose subjects without faces. It protects the children and is the best way into the topic of data protection. If you need other models hosted in the EU or in Germany, for example from Mistral or from Microsoft with a fixed server location, please get in touch.',
     docsTitle: 'Documents for school leaders, school authorities and data protection',
     docs: [
       'Description of data flows and technical and organisational measures (TOMs), aligned with BSI IT-Grundschutz',
