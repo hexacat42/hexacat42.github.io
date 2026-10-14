@@ -90,6 +90,22 @@ const mailto = `mailto:${c.email}?subject=${encodeURIComponent(h.pilot.subject)}
         </div>
       ))}
     </div>
+    <div class="safety">
+      <h3>{h.privacy.safety.title}</h3>
+      <p class="safety__intro">{h.privacy.safety.intro}</p>
+      <ol class="safety__steps">
+        {h.privacy.safety.steps.map((st, i) => (
+          <li>
+            <span class="safety__n">{i + 1}</span>
+            <div>
+              <h4>{st.label}</h4>
+              <p>{st.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <p class="safety__note">{h.privacy.safety.note}</p>
+    </div>
     <p class="honest">{h.privacy.honest}</p>
     <div class="docs card">
       <h3>{h.privacy.docsTitle}</h3>
@@ -155,6 +171,25 @@ const mailto = `mailto:${c.email}?subject=${encodeURIComponent(h.pilot.subject)}
   .fact h3 { font-size: 1.15rem; margin: 0.2rem 0 0.3rem; }
   .fact p { color: var(--color-ink-soft); margin: 0; }
   @media (max-width: 760px) { .facts { grid-template-columns: 1fr; } }
+
+  .safety { margin-top: 3rem; }
+  .safety h3 { margin: 0 0 0.4rem; }
+  .safety__intro { color: var(--color-ink-soft); margin: 0 0 1.5rem; }
+  .safety__steps {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+  }
+  .safety__steps li { display: grid; grid-template-rows: auto 1fr; gap: 0.6rem; }
+  .safety__n {
+    display: grid; place-items: center; width: 2.2rem; height: 2.2rem;
+    border: 1.5px solid var(--color-accent); border-radius: 50%;
+    color: var(--color-accent); font-family: var(--font-mono); font-size: 0.95rem;
+  }
+  .safety__steps h4 { font-size: 1.05rem; margin: 0 0 0.3rem; }
+  .safety__steps p { color: var(--color-ink-soft); margin: 0; font-size: 0.95rem; }
+  .safety__note { color: var(--color-ink-soft); margin: 1.5rem 0 0; font-size: 0.95rem; }
+  @media (max-width: 1000px) { .safety__steps { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .safety__steps { grid-template-columns: 1fr; } }
 
   .honest {
     margin: 2rem 0; padding: 1rem 1.2rem; border-left: 3px solid var(--color-accent);

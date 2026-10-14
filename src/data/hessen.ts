@@ -4,11 +4,14 @@ import type { Locale } from '../i18n/utils';
  *  "Digitale Zukunftskompetenzen" initiative (Medienführerschein from grade 4,
  *  new subject "KI und Digitale Welt" from grade 5, 2027/28). Keep claims in
  *  the privacy block in sync with the device's school profile
- *  (../poetry-cam/docs/DEVICE_PROFILES.md, SECURE_MODE.md). */
+ *  (../poetry-cam/docs/DEVICE_PROFILES.md, SECURE_MODE.md), and the safety
+ *  block with the content checks (../poetry-cam/docs/POEM_SAFETY.md,
+ *  ../poetry-cam-server/CONTRACT.md §6a). */
 
 export interface Stage { grade: string; name: string; start: string; text: string; }
 export interface Phase { n: string; title: string; text: string; }
 export interface Fact { title: string; text: string; }
+export interface SafetyStep { label: string; text: string; }
 
 export interface HessenContent {
   meta: { title: string; description: string };
@@ -16,7 +19,7 @@ export interface HessenContent {
   fit: { eyebrow: string; title: string; intro: string; stages: Stage[]; source: string; sourceLabel: string };
   lesson: { eyebrow: string; title: string; intro: string; phases: Phase[]; questions: string[]; questionsTitle: string };
   competences: { title: string; items: string[] };
-  privacy: { eyebrow: string; title: string; intro: string; facts: Fact[]; honest: string; docsTitle: string; docs: string[]; docsNote: string };
+  privacy: { eyebrow: string; title: string; intro: string; facts: Fact[]; safety: { title: string; intro: string; steps: SafetyStep[]; note: string }; honest: string; docsTitle: string; docs: string[]; docsNote: string };
   pilot: { eyebrow: string; title: string; body: string; points: string[]; cta: string; subject: string };
   conceptHref: string;
 }
@@ -102,12 +105,23 @@ const de: HessenContent = {
       'Für den Einsatz mit Kindern hat die Poetry Cam ein eigenes Schulprofil. Es ist auf Datensparsamkeit ausgelegt und wird von uns fest eingerichtet, nicht per Schalter vor Ort.',
     facts: [
       { title: 'Nichts bleibt auf dem Gerät', text: 'Foto, Gedicht und Audio liegen nur im Arbeitsspeicher. Beim nächsten Foto oder beim Ausschalten werden sie verworfen. Auf der Speicherkarte landet nichts.' },
-      { title: 'Teilen nur mit Freigabe', text: 'Das Online-Teilen per QR-Code ist ausgeschaltet und nach jedem Neustart wieder aus. Nur die Lehrkraft kann es per PIN einschalten, etwa für Kinder mit Einwilligung der Eltern. Sonst gibt es das Ergebnis nur auf Papier.' },
+      { title: 'Teilen nur mit Freigabe', text: 'Das Online-Teilen per QR-Code ist ausgeschaltet und nach jedem Neustart wieder aus. Nur die Lehrkraft kann es per PIN einschalten, etwa für Kinder mit Einwilligung der Eltern. Auch dann wird nur geteilt, was alle Prüfungen bestanden hat. Sonst gibt es das Ergebnis nur auf Papier.' },
       { title: 'Keine Konten, keine Namen', text: 'Schülerinnen und Schüler melden sich nirgends an. Die Kamera kennt weder Namen noch Klassenlisten.' },
-      { title: 'Einstellungen nur für Lehrkräfte', text: 'Einstellungen und WLAN sind durch eine Lehrkräfte-PIN geschützt. Eigene Prompts der Klasse und geteilte Inhalte werden automatisch auf problematische Inhalte geprüft, bevor sie verwendet oder veröffentlicht werden.' },
+      { title: 'Einstellungen nur für Lehrkräfte', text: 'Einstellungen und WLAN sind durch eine Lehrkräfte-PIN geschützt.' },
     ],
+    safety: {
+      title: 'Jugendschutz: geprüft, bevor etwas gedruckt oder geteilt wird',
+      intro: 'Jeder Schritt hat eine eigene automatische Prüfung. Was sie nicht besteht, kommt weder aufs Papier noch in den Lautsprecher noch ins Internet.',
+      steps: [
+        { label: 'Prompt', text: 'Bevor ein Prompt der Klasse die Kamera erreicht, prüft ihn der Server: auf verletzende, sexuelle oder gefährliche Inhalte, auf Versuche, der Kamera Befehle zu geben, auf persönliche Daten wie Telefonnummern oder Adressen und auf zu lange Wünsche (höchstens 200 Zeichen). Abgelehnte Prompts erreichen die Kamera nie, das Kind sieht einen freundlichen Hinweis, warum. Ist die Prüfung nicht erreichbar, wird nichts übernommen.' },
+        { label: 'Foto', text: 'Die Kamera prüft jedes Foto, bevor das Gedicht erscheint. Ein unpassendes Foto bekommt kein Gedicht: Es wird verworfen, nichts wird gedruckt oder vorgelesen.' },
+        { label: 'Gedicht', text: 'Die KI hat feste Vorgaben: freundlich und kindgerecht, kurz, der Prompt steuert nur Stimmung, Thema, Stil und Form. Jedes Gedicht wird geprüft, bevor es erscheint. Im Schulmodus zeigt der Bildschirm es erst danach. Fällt es durch, druckt die Kamera eines ihrer eigenen, festen Gedichte und sagt das offen.' },
+        { label: 'Teilen', text: 'Online geteilt wird nur, was Foto- und Gedichtprüfung bestanden hat. Der Server prüft beim Hochladen noch einmal. Was dort auffällt, wird nicht gespeichert und nie veröffentlicht.' },
+      ],
+      note: 'Automatische Prüfungen können sich irren, in beide Richtungen. Sie ersetzen nicht die Aufsicht der Lehrkraft. Die Hinweise auf dem Bildschirm sagen das auch den Kindern: KI kann Fehler machen, deshalb wird sie geprüft. Konnte eine Prüfung einmal nicht laufen, wird das Gedicht gedruckt, aber nicht geteilt. Lehrkräfte können Prompts vorab auf einer Testseite ausprobieren, ohne Kamera und ohne dass etwas gespeichert wird.',
+    },
     honest:
-      'Transparent gesagt: Die aktuelle Umsetzung nutzt noch OpenAI und ElevenLabs. Um das Gedicht zu erzeugen, wird das Foto an OpenAI übermittelt. Für das Vorlesen wird nur der Gedichttext an ElevenLabs gesendet. Eine Umstellung auf Microsoft Azure mit Rechenzentrum in Deutschland wird derzeit geklärt, damit die einschlägigen Gesetze und Vorschriften erfüllt werden. Unsere Empfehlung für den Unterricht: Motive ohne Gesichter wählen. Das schützt die Kinder und ist zugleich der beste Einstieg in das Thema Datenschutz. Werden andere Modelle mit europäischem Hosting benötigt, etwa von Mistral, sprechen Sie uns gerne an.',
+      'Transparent gesagt: Die aktuelle Umsetzung nutzt noch OpenAI und ElevenLabs. Um das Gedicht zu erzeugen, wird das Foto an OpenAI übermittelt. Für das Vorlesen wird nur der Gedichttext an ElevenLabs gesendet. Auch die automatischen Prüfungen von Prompt, Foto und Gedicht laufen über OpenAI. Eine Umstellung auf Microsoft Azure mit Rechenzentrum in Deutschland wird derzeit geklärt, damit die einschlägigen Gesetze und Vorschriften erfüllt werden. Unsere Empfehlung für den Unterricht: Motive ohne Gesichter wählen. Das schützt die Kinder und ist zugleich der beste Einstieg in das Thema Datenschutz. Werden andere Modelle mit europäischem Hosting benötigt, etwa von Mistral, sprechen Sie uns gerne an.',
     docsTitle: 'Unterlagen für Schulleitung, Schulträger und Datenschutz',
     docs: [
       'Beschreibung der Datenflüsse und der technischen und organisatorischen Maßnahmen (TOM), ausgerichtet am BSI IT-Grundschutz',
@@ -214,12 +228,23 @@ const en: HessenContent = {
       'For use with children, Poetry Cam has a dedicated school profile. It is designed for data minimisation and set up by us, not with a switch on site.',
     facts: [
       { title: 'Nothing stays on the device', text: 'Photo, poem and audio live only in memory and are discarded at the next photo or at power-off. Nothing is written to the memory card.' },
-      { title: 'Sharing only when released', text: 'Online sharing via QR code is off, and switches off again at every restart. Only the teacher can turn it on with a PIN, for example for children whose parents have consented. Otherwise the result exists only on paper.' },
+      { title: 'Sharing only when released', text: 'Online sharing via QR code is off, and switches off again at every restart. Only the teacher can turn it on with a PIN, for example for children whose parents have consented. Even then, only what passed every check is shared. Otherwise the result exists only on paper.' },
       { title: 'No accounts, no names', text: 'Pupils never sign in. The camera knows no names and no class lists.' },
-      { title: 'Settings for teachers only', text: 'Settings and Wi-Fi are protected by a teacher PIN. Prompts written by the class and shared content are automatically screened for problematic content before they are used or published.' },
+      { title: 'Settings for teachers only', text: 'Settings and Wi-Fi are protected by a teacher PIN.' },
     ],
+    safety: {
+      title: 'Youth protection: checked before anything is printed or shared',
+      intro: 'Every step has its own automatic check. Whatever fails it never reaches the paper, the speaker or the internet.',
+      steps: [
+        { label: 'Prompt', text: 'Before a prompt from the class reaches the camera, the server checks it: for hurtful, sexual or dangerous content, for attempts to give the camera commands, for personal data such as phone numbers or addresses, and for overly long requests (200 characters at most). Rejected prompts never reach the camera; the child sees a friendly note explaining why. If the check can’t be reached, nothing is accepted.' },
+        { label: 'Photo', text: 'The camera checks every photo before the poem appears. An unsuitable photo gets no poem: it is discarded, and nothing is printed or read aloud.' },
+        { label: 'Poem', text: 'The AI has fixed rules: kind and child-friendly, short, and the prompt only steers mood, theme, style and form. Every poem is checked before it appears; in school mode the screen shows it only afterwards. If it fails, the camera prints one of its own fixed poems and says so openly.' },
+        { label: 'Sharing', text: 'Only moments that passed the photo and poem checks are shared online. The server checks once more during the upload; anything flagged there is never stored or published.' },
+      ],
+      note: 'Automatic checks can be wrong, in both directions. They do not replace the teacher’s supervision. The on-screen notes tell the children this too: AI makes mistakes, which is why it gets checked. If a check couldn’t run, the poem is printed but not shared. Teachers can try prompts in advance on a test page, without a camera and without anything being stored.',
+    },
     honest:
-      'To be transparent: the current implementation still uses OpenAI and ElevenLabs. To write the poem, the photo is sent to OpenAI. For read-aloud, only the poem text is sent to ElevenLabs. A migration to Microsoft Azure with a data centre in Germany is being clarified, to meet the relevant laws and regulations. Our classroom recommendation: choose subjects without faces. It protects the children and is the best way into the topic of data protection. If you need other models with European hosting, for example from Mistral, please get in touch.',
+      'To be transparent: the current implementation still uses OpenAI and ElevenLabs. To write the poem, the photo is sent to OpenAI. For read-aloud, only the poem text is sent to ElevenLabs. The automatic checks of prompt, photo and poem also run on OpenAI. A migration to Microsoft Azure with a data centre in Germany is being clarified, to meet the relevant laws and regulations. Our classroom recommendation: choose subjects without faces. It protects the children and is the best way into the topic of data protection. If you need other models with European hosting, for example from Mistral, please get in touch.',
     docsTitle: 'Documents for school leaders, school authorities and data protection',
     docs: [
       'Description of data flows and technical and organisational measures (TOMs), aligned with BSI IT-Grundschutz',

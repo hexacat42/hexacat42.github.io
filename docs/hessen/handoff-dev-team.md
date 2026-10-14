@@ -123,6 +123,8 @@ legal by pointing it at things that are not pupils:
   mood.
 - [ ] Server prompt moderation: reject visitor prompts that ask how the person
   in the photo feels or what mood they are in (CONTRACT §27.5).
+  *Status 2026-10-14:* prompt moderation is live (`PromptClassifier.php`),
+  but its rules don't cover emotion questions yet.
 - [ ] Teacher material (see "Content and teaching"): the emotion lesson with
   non-pupil subjects.
 

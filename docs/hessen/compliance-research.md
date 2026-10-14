@@ -95,7 +95,7 @@ The school is the controller (§ 4 SchDSV). The Poetry Cam vendor is at most its
 | School profile: RAM-only, no web sharing, PIN | Have | Document it in the DSFA |
 | Consent-gated upload, 48 h deletion | Have | Document deletion incl. backups and logs |
 | Text-only to the voice service | Have | EU endpoint and Zero Retention Mode |
-| Moderation of class prompts and shared moments | Have (server, M7) | Poem moderation on the device is pending (server handoff `device-moderation.md`) |
+| Moderation of prompts, photos, poems and shared moments | Have (server + device, 2026-10-12) | Prompt check on the server (moderation + classifier, fail closed); photo and poem checks on the device, stored poem on a flag; upload only after both passed, hidden server re-check (`../poetry-cam/docs/POEM_SAFETY.md`, server `CONTRACT.md §6a`). The checks also run on OpenAI: list them in the AVV |
 | Sharing switch: off at every start, teacher PIN to enable | Have | Not consent by itself: add per-moment confirmation and a clearer German label |
 | `store: false` / zero retention on OpenAI calls | Gap | Set `store: false`, apply for ZDR, consider EU residency |
 | Object-only / no-person mode | Gap | Lets pupils without consent take part and lowers DSFA risk |
