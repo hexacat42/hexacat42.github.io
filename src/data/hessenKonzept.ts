@@ -268,7 +268,7 @@ export const konzept = {
           ],
           flow: [
             { phase: 'Phase 1', text: 'Aufbau untersuchen: Bausteine, Datenfluss, Zusammenspiel von Gerät und KI-Dienst.' },
-            { phase: 'Phase 2', text: 'Gestaltung prüfen: Was speichert das Gerät, was nicht? Warum gibt es einen Schulmodus? Welche Alternativen gibt es zu einem KI-Dienst in den USA?' },
+            { phase: 'Phase 2', text: 'Gestaltung prüfen: Was speichert das Gerät, was der KI-Dienst, was nicht? Warum gibt es einen Schulmodus? Welche Alternativen gibt es zu einem KI-Dienst in den USA?' },
             { phase: 'Phase 3', text: 'Eigenes Projekt: neuer Prompt-Stil, Ablaufdiagramm, Konzept für eine Verbesserung. Präsentation vor der Klasse.' },
           ],
           material: ['Poetry Cam', 'Projektmappe'],
@@ -300,6 +300,7 @@ export const konzept = {
       { subject: 'Sachunterricht (Kl. 4)', link: 'Medien und Daten im Alltag, Recht am eigenen Bild' },
       { subject: 'KI und Digitale Welt (Kl. 5–6)', link: 'Leitfach für die Einheiten E1–E6' },
       { subject: 'Deutsch', link: 'Lyrik, Sprachwirkung, eigene Texte, Prompts formulieren' },
+      { subject: 'Englisch', link: 'Gedichte und Prompts auf Englisch, Sprachvergleich: Was ändert sich, wenn die Kamera auf Englisch schreibt?' },
       { subject: 'Kunst', link: 'Bildgestaltung, Bildwirkung, Ausstellung der Ergebnisse' },
       { subject: 'Ethik / Religion', link: 'Verantwortung, Wahrheit, Kreativität und Urheberschaft' },
       { subject: 'Informatik (Wahlpflicht)', link: 'Aufbau, Datenfluss, Schnittstellen, Programmierung' },
@@ -310,6 +311,7 @@ export const konzept = {
     title: '7. Differenzierung und Inklusion',
     points: [
       'Vorlesefunktion: Die Kamera liest jedes Gedicht vor. Das unterstützt Kinder mit Leseschwierigkeiten oder mit Deutsch als Zweitsprache.',
+      'Zwei Sprachen: Bildschirm, Ausdruck, Vorlesen und die Seiten für Prompts und geteilte Momente gibt es auf Deutsch und Englisch. Die Lehrkraft stellt die Sprache per PIN um, die Gedichte folgen ihr.',
       'Bild vor Text: Jede Einheit beginnt mit einem Foto und einem greifbaren Ausdruck statt mit einem Arbeitsblatt.',
       'Gestufte Aufgaben: Markieren und Sortieren als Basis; eigene Prompts, Faktenchecks und Umschreiben als Erweiterung.',
       'Kooperative Formen: Partner- und Gruppenarbeit an einem gemeinsamen Gerät statt Einzelarbeit am eigenen Bildschirm.',
@@ -343,7 +345,7 @@ export const konzept = {
       'Schülerinnen und Schüler brauchen kein Konto. Die Kamera kennt keine Namen.',
       'Einstellungen und WLAN sind durch eine Lehrkräfte-PIN geschützt.',
       'Jugendschutz in jedem Schritt: Prompts werden geprüft, bevor sie die Kamera erreichen, Fotos bevor ein Gedicht entsteht, Gedichte bevor sie erscheinen. Ein unpassendes Foto bekommt kein Gedicht, ein auffälliges Gedicht wird durch ein festes ersetzt. Geteilt wird nur, was alle Prüfungen bestanden hat.',
-      'Die aktuelle Umsetzung nutzt OpenAI (Gedicht aus dem Foto) und ElevenLabs (Vorlesen, nur Text). Auch die automatischen Prüfungen laufen über OpenAI. Eine Umstellung auf Microsoft Azure mit Rechenzentrum in Deutschland wird derzeit geklärt.',
+      'Die aktuelle Umsetzung nutzt OpenAI (Gedicht aus dem Foto) und ElevenLabs (Vorlesen, nur Text). Auch die automatischen Prüfungen laufen über OpenAI. Die Kamera sendet jede Anfrage mit der Vorgabe, sie nicht zu speichern (store: false). Zur Missbrauchserkennung kann OpenAI Anfragen bis zu 30 Tage aufbewahren. Eine Umstellung auf Microsoft Azure mit Rechenzentrum in Deutschland wird derzeit geklärt.',
     ],
     planned: 'Unterlagen für Schulen (Auftragsverarbeitung, technische und organisatorische Maßnahmen, Datenschutz-Folgenabschätzung, Elterninformation mit Einwilligung) werden gemeinsam mit den ersten Pilotschulen erarbeitet.',
   },

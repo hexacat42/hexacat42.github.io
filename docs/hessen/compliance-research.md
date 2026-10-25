@@ -30,7 +30,7 @@ The school is the controller (§ 4 SchDSV). The Poetry Cam vendor is at most its
 
 **Transfers to the US**
 - The EU-US Data Privacy Framework (DPF) stands: the General Court upheld it on 3 Sep 2025 (T-553/23). An appeal is pending at the CJEU (C-703/25 P). Whether OpenAI and ElevenLabs are DPF-certified is **[verify]**.
-- **The OpenAI API keeps inputs for 30 days by default, and the device code does not set `store: false` today** (checked in `llm_openai.py`).
+- **The device sets `store: false` on the poem request** (`llm_openai.py`, since device 0.1.12, 2026-10-25), so OpenAI keeps no retrievable response. OpenAI's abuse-monitoring logs (up to 30 days) still apply until zero data retention is approved or the provider changes.
 - Both providers have EU options:
   - OpenAI: EU data residency, and zero data retention after approval. Whether gpt-5-nano is available with EU residency is **[verify]**.
   - ElevenLabs: an EU endpoint (Enterprise) and Zero Retention Mode.
@@ -97,7 +97,7 @@ The school is the controller (§ 4 SchDSV). The Poetry Cam vendor is at most its
 | Text-only to the voice service | Have | EU endpoint and Zero Retention Mode |
 | Moderation of prompts, photos, poems and shared moments | Have (server + device, 2026-10-12) | Prompt check on the server (moderation + classifier, fail closed); photo and poem checks on the device, stored poem on a flag; upload only after both passed, hidden server re-check (`../poetry-cam/docs/POEM_SAFETY.md`, server `CONTRACT.md §6a`). The checks also run on OpenAI: list them in the AVV |
 | Sharing switch: off at every start, teacher PIN to enable | Have | Not consent by itself: add per-moment confirmation and a clearer German label |
-| `store: false` / zero retention on OpenAI calls | Gap | Set `store: false`, apply for ZDR, consider EU residency |
+| `store: false` / zero retention on OpenAI calls | Partly (2026-10-25) | `store: false` is set on the poem request. Still open: zero data retention (abuse logs up to 30 days), EU residency or the Azure migration |
 | Object-only / no-person mode | Gap | Lets pupils without consent take part and lowers DSFA risk |
 | No emotion inference from faces | Verify | Constrain custom prompts |
 | AI labels (printout, device, metadata) | Gap | Art. 50 |

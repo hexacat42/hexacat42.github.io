@@ -73,7 +73,7 @@ const de: HessenContent = {
     eyebrow: 'Im Unterricht',
     title: 'Eine Doppelstunde, vier Phasen',
     intro:
-      'Ein Beispielablauf, der ohne Vorwissen funktioniert. Die Lehrkraft moderiert, die Klasse forscht. Das didaktische Konzept für Hessen enthält ausgearbeitete 45-Minuten-Einheiten für Klasse 4 bis 6.',
+      'Ein Beispielablauf, der ohne Vorwissen funktioniert. Die Lehrkraft moderiert, die Klasse forscht. Das didaktische Konzept für Hessen enthält ausgearbeitete 45-Minuten-Einheiten für Klasse 4 bis 6. Bildschirm, Ausdruck, Vorlesen und die Seiten für Prompts und geteilte Momente gibt es auf Deutsch und Englisch. Die Lehrkraft stellt die Sprache per PIN um, die Gedichte folgen ihr. So passt die Kamera auch in den Englischunterricht.',
     phases: [
       { n: '01', title: 'Erleben', text: 'Die Klasse fotografiert einen Gegenstand, eine Pflanze oder das Klassenzimmer. Nach wenigen Sekunden liegt ein gedrucktes Gedicht auf dem Tisch.' },
       { n: '02', title: 'Untersuchen', text: 'Dasselbe Motiv, aber eine andere Anweisung: Die Klasse formuliert selbst Prompts und vergleicht die Ergebnisse. Was bleibt gleich, was ändert sich?' },
@@ -121,7 +121,7 @@ const de: HessenContent = {
       note: 'Automatische Prüfungen können sich irren, in beide Richtungen. Sie ersetzen nicht die Aufsicht der Lehrkraft. Die Hinweise auf dem Bildschirm sagen das auch den Kindern: KI kann Fehler machen, deshalb wird sie geprüft. Konnte eine Prüfung einmal nicht laufen, wird das Gedicht gedruckt, aber nicht geteilt. Lehrkräfte können Prompts vorab auf einer Testseite ausprobieren, ohne Kamera und ohne dass etwas gespeichert wird.',
     },
     honest:
-      'Transparent gesagt: Die aktuelle Umsetzung nutzt noch OpenAI und ElevenLabs. Um das Gedicht zu erzeugen, wird das Foto an OpenAI übermittelt. Für das Vorlesen wird nur der Gedichttext an ElevenLabs gesendet. Auch die automatischen Prüfungen von Prompt, Foto und Gedicht laufen über OpenAI. Eine Umstellung auf Microsoft Azure mit Rechenzentrum in Deutschland wird derzeit geklärt, damit die einschlägigen Gesetze und Vorschriften erfüllt werden. Unsere Empfehlung für den Unterricht: Motive ohne Gesichter wählen. Das schützt die Kinder und ist zugleich der beste Einstieg in das Thema Datenschutz. Werden andere Modelle mit europäischem Hosting benötigt, etwa von Mistral, sprechen Sie uns gerne an.',
+      'Transparent gesagt: Die aktuelle Umsetzung nutzt noch OpenAI und ElevenLabs. Um das Gedicht zu erzeugen, wird das Foto an OpenAI übermittelt. Die Kamera sendet jede Anfrage mit der Vorgabe, sie nicht zu speichern (store: false). Zur Missbrauchserkennung kann OpenAI Anfragen nach eigenen Regeln bis zu 30 Tage aufbewahren. Für das Vorlesen wird nur der Gedichttext an ElevenLabs gesendet. Auch die automatischen Prüfungen von Prompt, Foto und Gedicht laufen über OpenAI. Eine Umstellung auf Microsoft Azure mit Rechenzentrum in Deutschland wird derzeit geklärt, damit die einschlägigen Gesetze und Vorschriften erfüllt werden. Unsere Empfehlung für den Unterricht: Motive ohne Gesichter wählen. Das schützt die Kinder und ist zugleich der beste Einstieg in das Thema Datenschutz. Werden andere Modelle mit europäischem Hosting benötigt, etwa von Mistral, sprechen Sie uns gerne an.',
     docsTitle: 'Unterlagen für Schulleitung, Schulträger und Datenschutz',
     docs: [
       'Beschreibung der Datenflüsse und der technischen und organisatorischen Maßnahmen (TOM), ausgerichtet am BSI IT-Grundschutz',
@@ -196,7 +196,7 @@ const en: HessenContent = {
     eyebrow: 'In the classroom',
     title: 'One double lesson, four phases',
     intro:
-      'A sample flow that needs no prior knowledge. The teacher moderates, the class investigates. The teaching concept for Hessen (German) contains worked-out 45-minute units for grades 4 to 6.',
+      'A sample flow that needs no prior knowledge. The teacher moderates, the class investigates. The teaching concept for Hessen (German) contains worked-out 45-minute units for grades 4 to 6. Screen, printout, read-aloud and the pages for prompts and shared moments come in German and English. The teacher switches the language with the PIN, and the poems follow it. That makes the camera a fit for English lessons too.',
     phases: [
       { n: '01', title: 'Experience', text: 'The class photographs an object, a plant or the classroom. A few seconds later a printed poem is on the table.' },
       { n: '02', title: 'Investigate', text: 'Same subject, different instruction: the class writes its own prompts and compares the results. What stays the same, what changes?' },
@@ -244,7 +244,7 @@ const en: HessenContent = {
       note: 'Automatic checks can be wrong, in both directions. They do not replace the teacher’s supervision. The on-screen notes tell the children this too: AI makes mistakes, which is why it gets checked. If a check couldn’t run, the poem is printed but not shared. Teachers can try prompts in advance on a test page, without a camera and without anything being stored.',
     },
     honest:
-      'To be transparent: the current implementation still uses OpenAI and ElevenLabs. To write the poem, the photo is sent to OpenAI. For read-aloud, only the poem text is sent to ElevenLabs. The automatic checks of prompt, photo and poem also run on OpenAI. A migration to Microsoft Azure with a data centre in Germany is being clarified, to meet the relevant laws and regulations. Our classroom recommendation: choose subjects without faces. It protects the children and is the best way into the topic of data protection. If you need other models with European hosting, for example from Mistral, please get in touch.',
+      'To be transparent: the current implementation still uses OpenAI and ElevenLabs. To write the poem, the photo is sent to OpenAI. The camera sends every request with the instruction not to store it (store: false). For abuse monitoring, OpenAI may keep requests for up to 30 days under its own rules. For read-aloud, only the poem text is sent to ElevenLabs. The automatic checks of prompt, photo and poem also run on OpenAI. A migration to Microsoft Azure with a data centre in Germany is being clarified, to meet the relevant laws and regulations. Our classroom recommendation: choose subjects without faces. It protects the children and is the best way into the topic of data protection. If you need other models with European hosting, for example from Mistral, please get in touch.',
     docsTitle: 'Documents for school leaders, school authorities and data protection',
     docs: [
       'Description of data flows and technical and organisational measures (TOMs), aligned with BSI IT-Grundschutz',

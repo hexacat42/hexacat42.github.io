@@ -41,17 +41,12 @@ pilot schools". **None of them exist yet.** The school is the controller
 
 ## Device team (`../poetry-cam`)
 
-### 1. Moderate the generated poem on the device (high)
+### 1. Moderate the generated poem on the device (done)
 
-The server handoff `../poetry-cam-server/docs/handoffs/device-moderation.md`
-§§ 1–3 still applies. I found no moderation call in `src/` as of today.
-
-- Check the poem with `omni-moderation-latest` before printing.
-- Map refusals and `response.incomplete` to a fallback poem.
-- Cap the output length.
-
-The `/hessen` page only claims moderation for class prompts and shared
-content, which the server already does.
+*Status 2026-10-25:* done. Photo and poem checks, stored fallback poems,
+refusal handling and length caps are in `../poetry-cam/docs/POEM_SAFETY.md`.
+`/hessen` and `/hessen/konzept` describe the four-step check (prompt, photo,
+poem, sharing).
 
 ### 2. Make the sharing switch a real consent gate (high) [legal]
 
@@ -79,13 +74,19 @@ Today, school profile (`profile.py`: `sharing_allowed=True`,
   - **Same wording in the one-time consent dialog** (`consent_dialog.py`,
     currently "I allow sharing captured moments online"). It should name what
     is shared, for how long, and that anyone with the link can see it.
-- The kiosk texts on school devices are English
-  (`SHARING_HINT`, consent dialog). Hessian classes need German.
+- ~~The kiosk texts on school devices are English.~~ *Done 2026-10-25:*
+  camera and server pages are in German and English (`../poetry-cam/docs/LANGUAGES.md`).
+  The German consent dialog now names photo, poem, audio, the public page and
+  the 48 hours. Still open: the parental-consent reference and the per-moment
+  confirmation above. Note: a camera starts in English until German is picked,
+  so set German before delivery to a Hessian school.
 
 ### 3. Data minimisation on AI calls (high)
 
-- Set **`store: false`** on the Responses call (`llm_openai.py`). The default
-  keeps responses for 30 days.
+- ~~Set **`store: false`** on the Responses call.~~ *Done 2026-10-25* (device
+  0.1.12, `llm_openai.py`). Abuse-monitoring logs at OpenAI (up to 30 days)
+  remain until zero data retention is approved or the provider changes. The
+  pages say this openly.
 - Make the LLM and TTS providers **configurable per device or profile**, so a
   school device can use an EU/German-hosted backend (see "Provider decision"
   below). `llm_factory.py` already selects providers.
@@ -204,6 +205,11 @@ side if any of them change:
   point in unit E2.
 - **Online sharing** is off at every start and can be switched on only with
   the teacher PIN.
+- **Languages:** screen, printout, read-aloud and the prompt and share pages
+  in German and English, switched by the teacher with the PIN; poems follow the
+  language (`/hessen` lesson intro, concept §6 Englisch and §7).
+- **`store: false`** on the OpenAI poem request, with the 30-day abuse-log
+  caveat (`/hessen` privacy paragraph, concept §9).
 - **Providers:** OpenAI and ElevenLabs today, with a migration to Azure
   Germany being clarified. Both the concept and `/hessen` name them.
 

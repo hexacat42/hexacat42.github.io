@@ -72,7 +72,7 @@ const de: SiteContent = {
       'Ein Knopfdruck genügt. Die Poetry Cam nimmt den Moment auf und macht daraus ein greifbares, erzählendes Andenken.',
     steps: [
       { n: '01', title: 'Foto aufnehmen', text: 'Ein Druck auf den Auslöser hält den Moment fest – genau das Bild, das Sie auf der Live-Vorschau gesehen haben.' },
-      { n: '02', title: 'KI dichtet', text: 'Eine Bild-KI interpretiert die Szene und schreibt daraus ein Gedicht – im gewählten Stil und in der gewünschten Form.' },
+      { n: '02', title: 'KI dichtet', text: 'Eine Bild-KI interpretiert die Szene und schreibt daraus ein Gedicht – im gewählten Stil und in der gewünschten Form, auf Deutsch oder Englisch.' },
       { n: '03', title: 'Sofort-Druck', text: 'Das Gedicht wird umgehend auf einem Thermodrucker ausgegeben – ein Andenken zum Mitnehmen.' },
       { n: '04', title: 'Per QR teilen', text: 'Auf dem Ausdruck steht ein QR-Code. Er führt zu einer privaten Seite mit Foto, Gedicht und Audio – 48 Stunden lang.' },
       { n: '05', title: 'Anhören', text: 'Die Poetry Cam vertont das Gedicht mit einer von mehreren Stimmen und liest es vor – auf dem Gerät und auf der geteilten Seite.' },
@@ -182,7 +182,7 @@ const en: SiteContent = {
       'One press of a button. Poetry Cam captures the moment and turns it into a tangible, story-telling keepsake.',
     steps: [
       { n: '01', title: 'Take the photo', text: 'A press of the shutter captures the moment — exactly the frame you saw on the live preview.' },
-      { n: '02', title: 'AI writes a poem', text: 'A vision AI interprets the scene and writes a poem from it — in your chosen style and form.' },
+      { n: '02', title: 'AI writes a poem', text: 'A vision AI interprets the scene and writes a poem from it — in your chosen style and form, in German or English.' },
       { n: '03', title: 'Instant print', text: 'The poem prints immediately on a thermal printer — a keepsake to take with you.' },
       { n: '04', title: 'Share via QR', text: 'The printout carries a QR code. It opens a private page with photo, poem and audio — for 48 hours.' },
       { n: '05', title: 'Listen', text: 'Poetry Cam narrates the poem in one of several voices and reads it aloud — on the device and on the shared page.' },
