@@ -110,5 +110,7 @@ never by hand-editing another repo's compiled output. See
   as planned: worksheets/cards, sample prompts, parent information, training material, and a
   Lehrkräfteakademie accreditation ("angestrebt"). Training length (~90 min) is to be confirmed. Tracked in
   `docs/hessen/handoff-dev-team.md`; background in `docs/hessen/compliance-research.md`.
+  `/hessen` also has a "Leihpaket" section (`kit` in `hessen.ts`) that lists a quick-start
+  guide and a handover record in the case; neither exists yet (see the handoff's "Loan kit").
 - No LinkedIn/social embed (privacy). Re-add as click-to-load if wanted (and
   restore the corresponding Datenschutz clause).
