@@ -116,8 +116,32 @@ const mailto = `mailto:${c.email}?subject=${encodeURIComponent(h.pilot.subject)}
     </div>
   </Section>
 
+  <!-- Loan kit -->
+  <Section id="leihpaket" eyebrow={h.kit.eyebrow} title={h.kit.title} intro={h.kit.intro}>
+    <div class="two-col">
+      <div>
+        <h3>{h.kit.contentsTitle}</h3>
+        <ul class="kit">
+          {h.kit.items.map((it) => (
+            <li>
+              <span class="kit__qty">{it.qty}</span>
+              <span><strong>{it.name}</strong>{it.detail && <span class="kit__detail">{' '}· {it.detail}</span>}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h3>{h.kit.setupTitle}</h3>
+        <ul class="ticks">
+          {h.kit.setup.map((st) => <li><Icon name="shield" size={16} />{st}</li>)}
+        </ul>
+      </div>
+    </div>
+    <p class="kit__note">{h.kit.note}</p>
+  </Section>
+
   <!-- Pilot -->
-  <Section id="pilot" eyebrow={h.pilot.eyebrow} title={h.pilot.title} center narrow>
+  <Section id="pilot" eyebrow={h.pilot.eyebrow} title={h.pilot.title} center narrow alt>
     <p class="pilot__body">{h.pilot.body}</p>
     <ul class="ticks pilot__points">
       {h.pilot.points.map((pt) => <li><Icon name="arrow" size={16} />{pt}</li>)}
@@ -197,6 +221,12 @@ const mailto = `mailto:${c.email}?subject=${encodeURIComponent(h.pilot.subject)}
   }
   .docs h3 { margin-bottom: 0; }
   .docs__note { margin: 1rem 0 0; font-size: 0.92rem; color: var(--color-ink-soft); }
+
+  .kit { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: 0.6rem; }
+  .kit li { display: grid; grid-template-columns: 2.5rem 1fr; gap: 0.6rem; align-items: baseline; padding-bottom: 0.6rem; border-bottom: 1px dotted var(--color-rule); }
+  .kit__qty { font-family: var(--font-mono); color: var(--color-accent); }
+  .kit__detail { color: var(--color-ink-soft); }
+  .kit__note { margin: 2rem 0 0; color: var(--color-ink-soft); font-size: 0.95rem; }
 
   .pilot__body { color: var(--color-ink-soft); text-align: center; }
   .pilot__points { max-width: 34rem; margin-inline: auto; }

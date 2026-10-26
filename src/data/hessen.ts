@@ -12,6 +12,7 @@ export interface Stage { grade: string; name: string; start: string; text: strin
 export interface Phase { n: string; title: string; text: string; }
 export interface Fact { title: string; text: string; }
 export interface SafetyStep { label: string; text: string; }
+export interface KitItem { qty: string; name: string; detail?: string; }
 
 export interface HessenContent {
   meta: { title: string; description: string };
@@ -20,6 +21,7 @@ export interface HessenContent {
   lesson: { eyebrow: string; title: string; intro: string; phases: Phase[]; questions: string[]; questionsTitle: string };
   competences: { title: string; items: string[] };
   privacy: { eyebrow: string; title: string; intro: string; facts: Fact[]; safety: { title: string; intro: string; steps: SafetyStep[]; note: string }; honest: string; docsTitle: string; docs: string[]; docsNote: string };
+  kit: { eyebrow: string; title: string; intro: string; contentsTitle: string; items: KitItem[]; setupTitle: string; setup: string[]; note: string };
   pilot: { eyebrow: string; title: string; body: string; points: string[]; cta: string; subject: string };
   conceptHref: string;
 }
@@ -132,6 +134,28 @@ const de: HessenContent = {
     ],
     docsNote:
       'Wir erarbeiten diese Unterlagen gemeinsam mit den ersten Pilotschulen und stimmen sie mit den behördlichen Datenschutzbeauftragten ab.',
+  },
+  kit: {
+    eyebrow: 'Das Leihpaket',
+    title: 'Alles in einem Koffer, startklar für den Unterricht',
+    intro: 'Für die Erprobung leihen wir der Schule ein vollständiges Paket aus. Die Kamera ist eingerichtet, wenn sie ankommt.',
+    contentsTitle: 'Im Koffer',
+    items: [
+      { qty: '1×', name: 'Poetry Cam', detail: 'mit eingebautem Akku, Drucker und Lautsprecher' },
+      { qty: '1×', name: 'Ladegerät' },
+      { qty: '2×', name: 'Papierrollen', detail: 'Thermopapier, 58 mm' },
+      { qty: '1×', name: 'Transportkoffer' },
+      { qty: '1×', name: 'Kurzanleitung', detail: 'mit QR-Code zur ausführlichen Anleitung' },
+      { qty: '1×', name: 'Übergabe- und Rückgabeprotokoll' },
+    ],
+    setupTitle: 'Vorbereitet geliefert',
+    setup: [
+      'Schulprofil aktiv: Auf dem Gerät bleibt nichts gespeichert, Online-Teilen ist nach jedem Start aus.',
+      'Sprache auf Deutsch eingestellt, auf Englisch umschaltbar.',
+      'Eigene PIN für die Lehrkraft, getrennt vom Paket übergeben.',
+      'Netzanbindung vorab mit der IT der Schule geklärt.',
+    ],
+    note: 'Die Kamera braucht für jedes Gedicht WLAN mit Internetzugang. Gastnetze mit Anmeldeseite oder strenge Firewalls können das verhindern. Deshalb stimmen wir die Anbindung vor der Lieferung mit der Schule ab.',
   },
   pilot: {
     eyebrow: 'Pilotpartner gesucht',
@@ -255,6 +279,28 @@ const en: HessenContent = {
     ],
     docsNote:
       'We are developing these documents together with the first pilot schools and aligning them with the official data protection officers.',
+  },
+  kit: {
+    eyebrow: 'The loan kit',
+    title: 'Everything in one case, ready for class',
+    intro: 'For the trial, we lend the school a complete kit. The camera is set up when it arrives.',
+    contentsTitle: 'In the case',
+    items: [
+      { qty: '1×', name: 'Poetry Cam', detail: 'with built-in battery, printer and speaker' },
+      { qty: '1×', name: 'Charger' },
+      { qty: '2×', name: 'Paper rolls', detail: 'thermal paper, 58 mm' },
+      { qty: '1×', name: 'Carrying case' },
+      { qty: '1×', name: 'Quick-start guide', detail: 'with a QR code to the full guide' },
+      { qty: '1×', name: 'Handover and return record' },
+    ],
+    setupTitle: 'Delivered ready to use',
+    setup: [
+      'School profile active: nothing stays on the device, and online sharing is off at every start.',
+      'Language set to German, switchable to English.',
+      'A PIN for the teacher, handed over separately from the kit.',
+      'Network access agreed with the school’s IT in advance.',
+    ],
+    note: 'The camera needs Wi-Fi with internet access for every poem. Guest networks with a login page or strict firewalls can block it, so we agree the connection with the school before delivery.',
   },
   pilot: {
     eyebrow: 'Looking for pilot partners',

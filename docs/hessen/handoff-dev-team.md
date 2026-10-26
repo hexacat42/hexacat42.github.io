@@ -39,6 +39,32 @@ pilot schools". **None of them exist yet.** The school is the controller
 - [ ] **Outbound host list and update/patch policy**, for the Schulträger
   firewall and its IT service.
 
+## Loan kit (before the first rental)
+
+Since 2026-10-26 `/hessen` has a "Leihpaket" section listing the kit: camera
+(built-in battery), charger, 2 thermal paper rolls (58 mm), carrying case,
+quick-start guide with a QR code to a full guide, and a handover/return
+record. It also promises the camera arrives with the school profile, German
+language, its own teacher PIN (handed over separately) and the network agreed
+with the school's IT. **The printed items don't exist yet.**
+
+- [ ] **Quick-start guide** (1 page, laminated) and an **online full guide**
+  for its QR code (candidate sub-page `/hessen/anleitung`).
+- [ ] **Handover and return record:** contents, condition, date, signatures.
+- [ ] **PIN handover** separate from the case (sealed envelope or by mail).
+- [ ] **Outbound host list** for the school's IT (also in S1). Decide whether
+  a **mobile hotspot** (LTE router with data SIM) joins the kit for schools
+  whose Wi-Fi blocks the camera; then add it to the page.
+- [ ] **Set language to German** before delivery (a camera starts in English).
+- [ ] **Paper:** use phenol-free (BPA/BPS-free) thermal paper and say so in
+  the parent information. Check how many poems fit on a roll; 2 rolls may be
+  too few for a long workshop.
+- [ ] **Electrical safety:** ask the first pilot Schulträger whether a DGUV V3
+  test sticker is required for loan devices and the charger.
+- [ ] **Safety notes** for battery, heat and thermal paper; label on camera
+  and case with owner and contact; "KI-generiert" labels for displayed poems.
+- [ ] **Loan agreement** (damage, insurance, return). **[legal]**
+
 ## Device team (`../poetry-cam`)
 
 ### 1. Moderate the generated poem on the device (done)
