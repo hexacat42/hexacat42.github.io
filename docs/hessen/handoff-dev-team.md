@@ -48,12 +48,12 @@ record. It also promises the camera arrives with the school profile, German
 language, its own teacher PIN (handed over separately) and the network agreed
 with the school's IT. **The printed items don't exist yet.**
 
-- [ ] **Quick-start guide** (1 page, laminated) and an **online full guide**
-  for its QR code (candidate sub-page `/hessen/anleitung`).
-  *Draft 2026-10-30:* `docs/hessen/kurzanleitung/` (A4 folded to A5). Open:
-  **charge time and runtime** of the built-in battery (11.1 V, 1300 mAh; device
-  team to state, or measure). The QR code points to `/hessen` until the online
-  guide exists. Support contact is the general address only (info@digilyze.de).
+- [ ] **Quick-start guide and online full guide.** *Done 2026-10-30 except one
+  gap:* the printed guide is `docs/hessen/kurzanleitung/` (A4 folded to A5); its
+  QR code points to the full guide at `/hessen/anleitung`. Open: **charge time
+  and runtime** of the built-in battery (11.1 V, 1300 mAh; device team to state,
+  or measure), then add them to both. Support contact is the general address
+  only (info@digilyze.de). Tell the www side when screen texts or controls change.
 - [ ] **Handover and return record:** contents, condition, date, signatures.
 - [ ] **PIN handover** separate from the case (sealed envelope or by mail).
 - [ ] **Outbound host list** for the school's IT (also in S1). Decide whether

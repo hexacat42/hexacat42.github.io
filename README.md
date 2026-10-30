@@ -19,8 +19,8 @@ full architecture (i18n, content model, tokens, deploy).
 
 ## Hessen outreach
 
-`/hessen` (landing page) and `/hessen/konzept` (teaching concept, printable via the
-browser) target Hessen's new subject "KI und Digitale Welt". Compliance research and
+`/hessen` (landing page), `/hessen/konzept` (teaching concept) and `/hessen/anleitung`
+(teacher guide for the loan kit), all printable via the browser, target Hessen's new subject "KI und Digitale Welt". Compliance research and
 the open work for the device/server teams live in `docs/hessen/`.
 
 ## Deploy

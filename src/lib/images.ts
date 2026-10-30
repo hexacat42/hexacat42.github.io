@@ -7,6 +7,8 @@ import showcase from '../images/showcase.jpg';
 import founder from '../images/founder.jpg';
 import example1 from '../images/example-1.jpg';
 import example2 from '../images/example-2.jpg';
+import cameraBack from '../images/camera-back.jpg';
+import cameraSide from '../images/camera-side.jpg';
 
 export const images = {
   'prototype-v1': prototypeV1,
@@ -16,6 +18,8 @@ export const images = {
   founder,
   'example-1': example1,
   'example-2': example2,
+  'camera-back': cameraBack,
+  'camera-side': cameraSide,
 } as const;
 
 export type ImageKey = keyof typeof images;

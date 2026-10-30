@@ -138,6 +138,7 @@ const mailto = `mailto:${c.email}?subject=${encodeURIComponent(h.pilot.subject)}
       </div>
     </div>
     <p class="kit__note">{h.kit.note}</p>
+    <p class="kit__guide"><a href={h.guideHref} hreflang="de">{h.kit.guide}<Icon name="arrow" size={16} /></a></p>
   </Section>
 
   <!-- Pilot -->
@@ -227,6 +228,8 @@ const mailto = `mailto:${c.email}?subject=${encodeURIComponent(h.pilot.subject)}
   .kit__qty { font-family: var(--font-mono); color: var(--color-accent); }
   .kit__detail { color: var(--color-ink-soft); }
   .kit__note { margin: 2rem 0 0; color: var(--color-ink-soft); font-size: 0.95rem; }
+  .kit__guide { margin: 1rem 0 0; font-weight: 600; }
+  .kit__guide a { display: inline-flex; align-items: center; gap: 0.4rem; }
 
   .pilot__body { color: var(--color-ink-soft); text-align: center; }
   .pilot__points { max-width: 34rem; margin-inline: auto; }

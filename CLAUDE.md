@@ -20,13 +20,15 @@ former HTML5 UP "Stellar" template.
 src/
   pages/            thin per-locale routes (DE at /, EN at /en) → render a view
   views/            page bodies: Landing, StoryView, UseCaseView, TeilenView,
-                    HessenView, HessenKonzeptView, ImpressumView,
+                    HessenView, HessenKonzeptView, HessenAnleitungView,
+                    ImpressumView,
                     DatenschutzView
   layouts/Base.astro  <head>/SEO/theme/header/footer shell
   components/       Header, Footer, Nav bits, Seo, Section, Icon, PoemCard,
                     TimelineItem, UseCaseCard, Gallery, ThemeToggle, LangSwitch
   i18n/             utils.ts (locale routing) + content.ts (landing + UI copy, de/en)
-  data/             timeline.ts, usecases.ts, poems.ts, hessen.ts, hessenKonzept.ts (typed content, per locale)
+  data/             timeline.ts, usecases.ts, poems.ts, hessen.ts, hessenKonzept.ts,
+                    hessenAnleitung.ts (typed content, per locale)
   lib/images.ts     the ONLY place source images are imported (astro:assets)
   images/           source images (optimized at build)
   styles/           global.css + tokens.css (GENERATED, gitignored)
@@ -110,7 +112,11 @@ never by hand-editing another repo's compiled output. See
   as planned: worksheets/cards, sample prompts, parent information, training material, and a
   Lehrkräfteakademie accreditation ("angestrebt"). Training length (~90 min) is to be confirmed. Tracked in
   `docs/hessen/handoff-dev-team.md`; background in `docs/hessen/compliance-research.md`.
-  `/hessen` also has a "Leihpaket" section (`kit` in `hessen.ts`) that lists a quick-start
-  guide and a handover record in the case; neither exists yet (see the handoff's "Loan kit").
+  `/hessen` also has a "Leihpaket" section (`kit` in `hessen.ts`) listing the loan kit.
+  Its printed quick-start guide is `docs/hessen/kurzanleitung/` (A4 folded to A5); its QR
+  code points to **`/hessen/anleitung`**, the full teacher guide (DE only, EN = noindex
+  notice, linked from the kit section). Both quote the device's German screen texts and
+  use labelled photos (`camera-back`, `camera-side`; marker coordinates in the photos'
+  pixels): re-check them when the device UI changes. The handover record doesn't exist yet.
 - No LinkedIn/social embed (privacy). Re-add as click-to-load if wanted (and
   restore the corresponding Datenschutz clause).

@@ -1,0 +1,217 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { getLocaleFromUrl } from '../i18n/utils';
+import { getContent } from '../i18n/content';
+import { anleitung as a } from '../data/hessenAnleitung';
+import { images } from '../lib/images';
+
+const locale = getLocaleFromUrl(Astro.url);
+const c = getContent(locale);
+const mailto = `mailto:${c.email}?subject=${encodeURIComponent(a.contact.subject)}`;
+const toc = [
+  ['geraet', 'Das Gerät'], ['vorbereitung', 'Vor der Stunde'], ['unterricht', 'Im Unterricht'],
+  ['prompts', 'Eigene Prompts'], ['einstellungen', 'Einstellungen'], ['teilen', 'Online teilen'],
+  ['pruefungen', 'Prüfungen'], ['hinweise', 'Hinweise der Kamera'], ['papier', 'Papier wechseln'],
+  ['pflege', 'Pflege und Sicherheit'], ['datenschutz', 'Datenschutz'], ['rueckgabe', 'Rückgabe'],
+];
+---
+{locale === 'en' ? (
+  <Base title={a.enNotice.title} description={a.enNotice.text} noindex>
+    <section class="section">
+      <div class="container container--narrow">
+        <p class="eyebrow">Poetry Cam · Hessen</p>
+        <h1>{a.enNotice.title}</h1>
+        <p class="lead">{a.enNotice.text}</p>
+        <a class="btn" href="/hessen/anleitung" hreflang="de">{a.enNotice.cta}</a>
+      </div>
+    </section>
+  </Base>
+) : (
+<Base title={a.meta.title} description={a.meta.description}>
+  <article class="section guide">
+    <div class="container container--narrow">
+      <div class="toolbar no-print">
+        <a class="btn btn-ghost" href="/hessen">{a.backLabel}</a>
+        <button class="btn" type="button" onclick="window.print()"><Icon name="printer" size={16} /> {a.printLabel}</button>
+      </div>
+
+      <header class="doc-head">
+        <p class="eyebrow">{a.version}</p>
+        <h1>{a.title}</h1>
+        <p class="lead">{a.lead}</p>
+      </header>
+
+      <nav class="toc no-print" aria-label="Inhalt">
+        <ol>{toc.map(([id, label]) => <li><a href={`#${id}`}>{label}</a></li>)}</ol>
+      </nav>
+
+      <section id="geraet" class="block">
+        <h2>{a.device.title}</h2>
+        <div class="photos">
+          {a.device.photos.map((ph) => (
+            <figure class="photo">
+              <Image src={images[ph.key]} alt={ph.alt} widths={[480, 760, 976]} sizes="(max-width: 760px) 92vw, 360px" />
+              <svg class="marks" viewBox={`0 0 ${ph.w} ${ph.h}`} aria-hidden="true">
+                {ph.marks.map((m) => (
+                  <g>
+                    <line x1={m.x} y1={m.y} x2={m.bx} y2={m.by} />
+                    <circle class="pt" cx={m.x} cy={m.y} r="9" />
+                    <circle class="badge" cx={m.bx} cy={m.by} r="34" />
+                    <text x={m.bx} y={m.by + 13}>{m.n}</text>
+                  </g>
+                ))}
+              </svg>
+            </figure>
+          ))}
+        </div>
+        <ol class="legend">
+          {a.device.legend.map((l, i) => <li><span class="num">{i + 1}</span><span>{l}</span></li>)}
+        </ol>
+        <p>{a.device.screen}</p>
+      </section>
+
+      <section id="vorbereitung" class="block">
+        <h2>{a.before.title}</h2>
+        <ol class="steps">{a.before.steps.map((s) => <li><strong>{s.title}.</strong>{' '}{s.text}</li>)}</ol>
+        <p class="note">{a.before.wifiNote}</p>
+      </section>
+
+      <section id="unterricht" class="block">
+        <h2>{a.lesson.title}</h2>
+        <ol class="steps">{a.lesson.steps.map((s) => <li><strong>{s.title}.</strong>{' '}{s.text}</li>)}</ol>
+        <ul>{a.lesson.notes.map((n) => <li>{n}</li>)}</ul>
+      </section>
+
+      <section id="prompts" class="block">
+        <h2>{a.prompts.title}</h2>
+        <p>{a.prompts.intro}</p>
+        <ol class="steps">{a.prompts.steps.map((s) => <li><strong>{s.title}.</strong>{' '}{s.text}</li>)}</ol>
+        <ul>{a.prompts.notes.map((n) => <li>{n}</li>)}</ul>
+        <p class="note">{a.prompts.test.text}{' '}<a href={a.prompts.test.href}>{a.prompts.test.label}</a></p>
+      </section>
+
+      <section id="einstellungen" class="block">
+        <h2>{a.settings.title}</h2>
+        <p>{a.settings.intro}</p>
+        <table class="plain">
+          <tbody>{a.settings.rows.map((r) => <tr><th scope="row">{r.name}</th><td>{r.text}</td></tr>)}</tbody>
+        </table>
+        <ul>{a.settings.notes.map((n) => <li>{n}</li>)}</ul>
+      </section>
+
+      <section id="teilen" class="block">
+        <h2>{a.sharing.title}</h2>
+        {a.sharing.paragraphs.map((p) => <p>{p}</p>)}
+        <p class="note note--strong">{a.sharing.warning}</p>
+      </section>
+
+      <section id="pruefungen" class="block">
+        <h2>{a.safety.title}</h2>
+        <p>{a.safety.intro}</p>
+        <ul>{a.safety.points.map((p) => <li>{p}</li>)}</ul>
+        <p class="note">{a.safety.note}</p>
+      </section>
+
+      <section id="hinweise" class="block">
+        <h2>{a.problems.title}</h2>
+        <p>{a.problems.intro}</p>
+        <table class="problems">
+          <thead><tr><th scope="col">Die Kamera zeigt</th><th scope="col">Das hilft</th></tr></thead>
+          <tbody>{a.problems.rows.map((r) => <tr><td class="shows">{r.shows}</td><td>{r.help}</td></tr>)}</tbody>
+        </table>
+        <p class="note">{a.problems.restart}</p>
+      </section>
+
+      <section id="papier" class="block">
+        <h2>{a.paper.title}</h2>
+        <p>{a.paper.intro}</p>
+        <ol class="steps">{a.paper.steps.map((s) => <li><strong>{s.title}.</strong>{' '}{s.text}</li>)}</ol>
+      </section>
+
+      <section id="pflege" class="block">
+        <h2>{a.care.title}</h2>
+        <ul>{a.care.points.map((p) => <li>{p}</li>)}</ul>
+      </section>
+
+      <section id="datenschutz" class="block">
+        <h2>{a.privacy.title}</h2>
+        <ul>{a.privacy.points.map((p) => <li>{p}</li>)}</ul>
+        <p>{a.privacy.more.text}{' '}<a href={a.privacy.more.href}>{a.privacy.more.label}</a></p>
+      </section>
+
+      <section id="rueckgabe" class="block">
+        <h2>{a.returnKit.title}</h2>
+        <ul>{a.returnKit.points.map((p) => <li>{p}</li>)}</ul>
+      </section>
+
+      <section class="block contact">
+        <h2>{a.contact.title}</h2>
+        <p>{a.contact.text}{' '}<a href={mailto}>{c.email}</a></p>
+      </section>
+    </div>
+  </article>
+</Base>
+)}
+
+<style>
+  .toolbar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; margin-bottom: 2rem; }
+  .toolbar :global(svg) { flex: none; }
+  .doc-head { margin-bottom: 1.5rem; }
+  .lead { font-size: 1.15rem; color: var(--color-ink-soft); }
+
+  .toc { border: 1px solid var(--color-rule); border-radius: var(--radius-card); padding: 1rem 1.25rem; margin-bottom: 1rem; background: var(--color-card-bg); }
+  .toc ol { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+  .toc li { margin: 0.15rem 0; }
+  @media (max-width: 560px) { .toc ol { columns: 1; } }
+
+  .block { padding-top: 2.25rem; }
+  .block h2 { font-size: 1.6rem; border-bottom: 2px dotted var(--color-rule); padding-bottom: 0.4rem; }
+  .block ul, .block ol { padding-left: 1.2rem; }
+  .block li { margin: 0.35rem 0; }
+  .steps li::marker { color: var(--color-accent); font-family: var(--font-mono); }
+
+  .photos { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .photo { position: relative; margin: 0; }
+  .photo img { width: 100%; height: auto; display: block; border-radius: var(--radius-media); }
+  .marks { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .marks line { stroke: #fff; stroke-width: 5; }
+  .marks .pt { fill: #fff; stroke: var(--color-accent); stroke-width: 4; }
+  .marks .badge { fill: var(--color-accent); stroke: #fff; stroke-width: 5; }
+  .marks text { fill: var(--on-accent); font: 700 38px var(--font-sans); text-anchor: middle; }
+  @media (max-width: 640px) { .photos { grid-template-columns: 1fr; } }
+
+  .legend { list-style: none; padding: 0 !important; margin: 1rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem 1.5rem; }
+  .legend li { display: grid; grid-template-columns: 1.7rem 1fr; gap: 0.5rem; align-items: start; margin: 0; }
+  .num { display: grid; place-items: center; width: 1.45rem; height: 1.45rem; border-radius: 50%; background: var(--color-accent); color: var(--on-accent); font-size: 0.78rem; font-weight: 700; }
+  @media (max-width: 640px) { .legend { grid-template-columns: 1fr; } }
+
+  .note { border-left: 3px solid var(--color-accent); padding: 0.6rem 0.9rem; background: var(--color-poem-bg); border-radius: var(--radius-media); }
+  .note--strong { font-weight: 600; }
+
+  table { border-collapse: collapse; width: 100%; font-size: 0.95rem; margin: 0.5rem 0 1rem; }
+  th, td { border-bottom: 1px solid var(--color-rule); padding: 0.5rem 0.5rem; text-align: left; vertical-align: top; }
+  thead th { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; color: var(--color-brand); }
+  .plain tbody th { font-weight: 600; width: 32%; }
+  .problems .shows { font-style: italic; width: 40%; }
+  @media (max-width: 560px) { .problems .shows { width: auto; } }
+
+  @media print {
+    @page { size: A4; margin: 16mm 15mm 18mm; }
+    :global(html) { font-size: 10.5pt; }
+    :global(:root), :global(:root[data-theme]) {
+      --color-page-bg: #fff; --color-card-bg: #fff; --color-poem-bg: #f4f1ea;
+      --color-ink: #111; --color-ink-soft: #333; --color-rule: #bbb;
+      --color-accent: #7a2e22; --color-accent-ink: #7a2e22; --color-brand: #555;
+    }
+    :global(body) { background: #fff; color: #111; }
+    :global(.site-header), :global(.site-footer), :global(.skip-link), .no-print { display: none !important; }
+    .section { padding: 0; }
+    .container { max-width: none; padding: 0; }
+    .block { padding-top: 1.1rem; }
+    .block h2 { break-after: avoid; page-break-after: avoid; }
+    .photos, .legend, table, .note, .steps li { break-inside: avoid; page-break-inside: avoid; }
+    a { color: inherit; }
+  }
+</style>

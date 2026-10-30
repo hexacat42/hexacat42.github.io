@@ -9,8 +9,8 @@ It goes into the loan kit (see the "Leihpaket" section on `/hessen`).
   for page 2 (back with screen and yellow photo button; right side and front).
   The numbered marks are SVG overlays in the HTML, in each photo's pixel
   coordinates. The silver knob on top is the volume control, not the shutter.
-- `qr-hessen.svg`: QR code for https://cam.digilyze.com/hessen/. Point it to
-  the online guide once that exists.
+- `qr-anleitung.svg`: QR code for the full online guide,
+  https://cam.digilyze.com/hessen/anleitung/ (`src/data/hessenAnleitung.ts`).
 
 ## Printing
 

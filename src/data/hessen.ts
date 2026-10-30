@@ -21,12 +21,14 @@ export interface HessenContent {
   lesson: { eyebrow: string; title: string; intro: string; phases: Phase[]; questions: string[]; questionsTitle: string };
   competences: { title: string; items: string[] };
   privacy: { eyebrow: string; title: string; intro: string; facts: Fact[]; safety: { title: string; intro: string; steps: SafetyStep[]; note: string }; honest: string; docsTitle: string; docs: string[]; docsNote: string };
-  kit: { eyebrow: string; title: string; intro: string; contentsTitle: string; items: KitItem[]; setupTitle: string; setup: string[]; note: string };
+  kit: { eyebrow: string; title: string; intro: string; contentsTitle: string; items: KitItem[]; setupTitle: string; setup: string[]; note: string; guide: string };
   pilot: { eyebrow: string; title: string; body: string; points: string[]; cta: string; subject: string };
   conceptHref: string;
+  guideHref: string;
 }
 
 const conceptHref = '/hessen/konzept';
+const guideHref = '/hessen/anleitung';
 const kultusUrl = 'https://kultus.hessen.de/digitale-zukunftskompetenzen';
 
 const de: HessenContent = {
@@ -156,6 +158,7 @@ const de: HessenContent = {
       'Netzanbindung vorab mit der IT der Schule geklärt.',
     ],
     note: 'Die Kamera braucht für jedes Gedicht WLAN mit Internetzugang. Gastnetze mit Anmeldeseite oder strenge Firewalls können das verhindern. Deshalb stimmen wir die Anbindung vor der Lieferung mit der Schule ab.',
+    guide: 'Ausführliche Anleitung für Lehrkräfte',
   },
   pilot: {
     eyebrow: 'Pilotpartner gesucht',
@@ -172,6 +175,7 @@ const de: HessenContent = {
     subject: 'Poetry Cam – KI und Digitale Welt (Hessen)',
   },
   conceptHref,
+  guideHref,
 };
 
 const en: HessenContent = {
@@ -301,6 +305,7 @@ const en: HessenContent = {
       'Network access agreed with the school’s IT in advance.',
     ],
     note: 'The camera needs Wi-Fi with internet access for every poem. Guest networks with a login page or strict firewalls can block it, so we agree the connection with the school before delivery.',
+    guide: 'Teacher guide (German)',
   },
   pilot: {
     eyebrow: 'Looking for pilot partners',
@@ -317,6 +322,7 @@ const en: HessenContent = {
     subject: 'Poetry Cam – AI and the Digital World (Hessen)',
   },
   conceptHref,
+  guideHref,
 };
 
 export const hessen: Record<Locale, HessenContent> = { de, en };
