@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Poetry Cam – Kurzanleitung für Lehrkräfte</title>
+<!--
+  Kurzanleitung für den Leihkoffer (Hessen-Pilot).
+  Druck: DIN A4 quer, beidseitig, "an der kurzen Kante spiegeln", 100 % / tatsächliche Größe.
+  Danach einmal in der Mitte falten -> DIN-A5-Heft mit 4 Seiten.
+    Blatt Vorderseite: [Seite 4 | Seite 1 (Titel)]
+    Blatt Rückseite:   [Seite 2 | Seite 3]
+  PDF erzeugen: node render-pdf.mjs (siehe README.md in diesem Ordner).
+  Gelb markierte Stellen (.todo) sind noch auszufüllen.
+  Bildschirmtexte stammen aus ../poetry-cam/src/poetry_cam/i18n/de/*.json (Stand 0.1.12).
+-->
+<style>
+  @page { size: A4 landscape; margin: 0; }
+  :root {
+    --ink: #1c1a15; --ink-soft: #5b5346; --ink-faint: #8a8073;
+    --accent: #9d3b2f; --rule: rgba(28,26,21,0.18); --tint: #f3efe6;
+    --serif: Georgia, "Times New Roman", "DejaVu Serif", serif;
+    --sans: "Segoe UI", Roboto, "Helvetica Neue", Arial, "DejaVu Sans", sans-serif;
+    --mono: ui-monospace, Menlo, "DejaVu Sans Mono", monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #fff; color: var(--ink); }
+  body { font: 9.6pt/1.38 var(--sans); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .sheet { width: 297mm; height: 210mm; display: grid; grid-template-columns: 148.5mm 148.5mm; page-break-after: always; break-after: page; position: relative; }
+  .sheet:last-child { page-break-after: auto; break-after: auto; }
+  /* fold mark */
+  .sheet::before, .sheet::after { content: ''; position: absolute; left: 148.5mm; width: 0; height: 5mm; border-left: 0.3pt solid var(--ink-faint); }
+  .sheet::before { top: 0; } .sheet::after { bottom: 0; }
+
+  .page { height: 210mm; padding: 11mm 12mm 10mm; display: flex; flex-direction: column; overflow: hidden; }
+  .page--left { padding-right: 14mm; }
+  .page--right { padding-left: 14mm; }
+  .folio { margin-top: auto; padding-top: 3mm; display: flex; justify-content: space-between; font: 7.5pt var(--mono); color: var(--ink-faint); border-top: 0.5pt solid var(--rule); }
+
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; line-height: 1.15; }
+  h2 { font-size: 17pt; margin-bottom: 1mm; }
+  h2::after { content: ''; display: block; width: 12mm; height: 0.8mm; background: var(--accent); margin-top: 2mm; }
+  h3 { font-size: 11.5pt; margin: 0 0 1mm; }
+  p { margin: 0 0 1.6mm; }
+  .eyebrow { font: 7.5pt var(--mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 2mm; }
+  .soft { color: var(--ink-soft); }
+  .ui { font-weight: 600; white-space: nowrap; }
+  .screen-text { font-style: italic; }
+  .todo { background: #fff3a8; outline: 0.5pt dashed #b59a00; padding: 0 0.6mm; }
+  ul { margin: 0; padding-left: 4mm; } li { margin: 0 0 0.8mm; }
+
+  /* cover */
+  .cover h1 { font-size: 34pt; margin: 2mm 0 2mm; }
+  .cover .tagline { font: italic 12.5pt var(--serif); color: var(--ink-soft); margin-bottom: 6mm; }
+  .cover img { width: 100%; height: 62mm; object-fit: cover; border-radius: 2mm; margin-bottom: 6mm; }
+  .checklist { list-style: none; padding: 0; margin: 2mm 0 0; }
+  .checklist li { display: grid; grid-template-columns: 5mm 9mm 1fr; align-items: baseline; padding: 1.3mm 0; border-bottom: 0.5pt dotted var(--rule); margin: 0; }
+  .box { width: 3.2mm; height: 3.2mm; border: 0.7pt solid var(--ink); display: inline-block; transform: translateY(0.4mm); }
+  .qty { font-family: var(--mono); color: var(--accent); }
+  .contact { margin-top: 5mm; padding: 3mm 3.5mm; background: var(--tint); border-radius: 1.5mm; }
+  .contact strong { display: block; margin-bottom: 0.6mm; }
+
+  /* steps */
+  .steps { list-style: none; padding: 0; margin: 2.5mm 0 0; display: grid; gap: 1.6mm; }
+  .steps li { display: grid; grid-template-columns: 7mm 1fr; gap: 2.5mm; margin: 0; }
+  .n { width: 6.5mm; height: 6.5mm; border: 0.8pt solid var(--accent); border-radius: 50%; display: grid; place-items: center; font: 9pt var(--mono); color: var(--accent); }
+  .steps h3 { margin-top: 0.6mm; }
+
+  /* screen sketch */
+  .sketch { margin: 4mm 0 0; display: grid; grid-template-columns: 1fr 22mm; gap: 1.5mm; height: 30mm; border: 0.8pt solid var(--ink); border-radius: 2mm; padding: 1.5mm; }
+  .sketch__photo { border-radius: 1mm; background: repeating-linear-gradient(135deg, var(--tint) 0 2mm, #fff 2mm 4mm); display: flex; align-items: flex-end; justify-content: space-between; padding: 1.5mm; font: 6.5pt var(--mono); color: var(--ink-soft); }
+  .sketch__rail { display: grid; gap: 1.2mm; }
+  .sketch__rail span { display: grid; place-items: center; border: 0.6pt solid var(--rule); border-radius: 1mm; font-size: 7.5pt; font-weight: 600; }
+  .sketch-cap { font-size: 7.8pt; color: var(--ink-soft); margin-top: 1.2mm; }
+
+  /* device photo + screen */
+  .visuals { margin-top: 3mm; display: grid; grid-template-columns: 42mm 40mm 1fr; gap: 3mm; align-items: start; }
+  .device { margin: 0; }
+  .device__img { position: relative; }
+  .device__img img { width: 100%; display: block; border-radius: 1.5mm; }
+  .device__marks { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .device__marks line { stroke: #fff; stroke-width: 5; }
+  .device__marks .pt { fill: #fff; stroke: var(--accent); stroke-width: 4; }
+  .device__marks .badge { fill: var(--accent); stroke: #fff; stroke-width: 5; }
+  .device__marks text { fill: #fff; font: 700 38px var(--sans); text-anchor: middle; }
+  .device__legend { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.3mm; font-size: 7.6pt; line-height: 1.25; }
+  .device__legend li { margin: 0; display: grid; grid-template-columns: 4.2mm 1fr; align-items: center; }
+  .device__legend span { width: 3.4mm; height: 3.4mm; border-radius: 50%; background: var(--accent); color: #fff; font: 700 6.5pt var(--sans); display: grid; place-items: center; }
+  .visuals .sketch { margin: 0; grid-template-columns: 1fr 15mm; height: 20mm; padding: 1mm; }
+  .visuals .sketch__rail { gap: 0.8mm; }
+  .visuals .sketch__rail span { font-size: 6.2pt; }
+
+  /* teacher page */
+  .block { margin-top: 3.6mm; }
+  .note { margin-top: 3.5mm; padding: 3mm 3.5mm; border-left: 0.9mm solid var(--accent); background: var(--tint); }
+  .note h3 { font-size: 10.5pt; }
+  .note ul { padding-left: 3.5mm; }
+
+  /* trouble table */
+  table { width: 100%; border-collapse: collapse; margin-top: 2.5mm; font-size: 8.6pt; line-height: 1.32; }
+  th { text-align: left; font: 7pt var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); padding: 0 0 1.2mm; border-bottom: 0.8pt solid var(--ink); }
+  td { vertical-align: top; padding: 0.9mm 2mm 0.9mm 0; border-bottom: 0.5pt dotted var(--rule); }
+  td:first-child { width: 42%; font-style: italic; }
+  .back-bottom { margin-top: 1mm; display: grid; grid-template-columns: 1fr 20mm; gap: 4mm; align-items: end; }
+  .qr img { width: 20mm; height: 20mm; display: block; }
+  .qr span { display: block; font: 6.5pt var(--mono); color: var(--ink-soft); text-align: center; margin-top: 1mm; }
+
+  @media screen {
+    body { background: #d9d4c9; padding: 10mm 0; }
+    .sheet { margin: 0 auto 10mm; background: #fff; box-shadow: 0 2mm 8mm rgba(0,0,0,.18); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ SHEET 1 (outside): page 4 | page 1 ============ -->
+<section class="sheet">
+
+  <!-- PAGE 4: troubleshooting + return -->
+  <div class="page page--left">
+    <p class="eyebrow">Hilfe</p>
+    <h2>Wenn etwas nicht klappt</h2>
+    <p class="soft" style="margin-top:2mm">Die Kamera erklärt Probleme in einem Fenster. Es schließt sich mit OK, mit dem gelben Knopf oder nach 10 Sekunden.</p>
+    <table>
+      <thead><tr><th>Die Kamera zeigt</th><th>Das hilft</th></tr></thead>
+      <tbody>
+        <tr><td>„Kein Internet“</td><td>WLAN in den Einstellungen prüfen. Ein Gedicht, das schon da ist, lässt sich weiter drucken und abspielen.</td></tr>
+        <tr><td>„Die Gedicht-KI antwortet nicht“</td><td>Kurz warten, dann den Knopf noch einmal drücken. Eventuell druckt die Kamera eines ihrer eigenen Gedichte.</td></tr>
+        <tr><td>„Kein Gedicht zu diesem Foto“</td><td>Ein anderes Motiv wählen. Die Prüfung kann sich irren: ein guter Anlass zum Gespräch.</td></tr>
+        <tr><td>„Dieses Gedicht hat die Prüfung nicht bestanden“</td><td>Die Kamera druckt stattdessen eines ihrer eigenen Gedichte. Auch das lässt sich besprechen.</td></tr>
+        <tr><td>„Der Drucker funktioniert nicht“</td><td>Papierrolle prüfen, dann auf <span class="ui">Drucken</span> tippen. Das Gedicht ist noch da.</td></tr>
+        <tr><td>„Kühlt ab… Die Kamera ist zu warm.“</td><td>Ruhen lassen, nicht abdecken, aus der Sonne nehmen. Bei Bedarf schaltet sie sich selbst aus.</td></tr>
+        <tr><td>Bildschirm ist dunkel</td><td>Ruhemodus: Bildschirm antippen oder den gelben Knopf drücken.</td></tr>
+        <tr><td>Nichts hilft</td><td>Kamera neu starten: Schalter rechts auf <span class="ui">OFF</span>, etwa 10 Sekunden warten, wieder auf <span class="ui">ON</span>.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="block">
+      <h3>Papier wechseln</h3>
+      <p>Thermopapier, 58 mm breit. Der Drucker sitzt vorn: runde Lasche nach unten ziehen, Papierreste entnehmen, die neue Rolle so einlegen, dass das Papierende nach unten zeigt. Ein Stück Papier herausschauen lassen und die Klappe zudrücken.</p>
+    </div>
+
+    <div class="back-bottom">
+      <div>
+        <h3>Rückgabe</h3>
+        <p>Schalter auf <span class="ui">OFF</span>, alles laut Liste auf Seite 1 einpacken, Rückgabeprotokoll ausfüllen.</p>
+      </div>
+      <div class="qr"><img src="qr-hessen.svg" alt="QR-Code: cam.digilyze.com/hessen"><span>Konzept &amp; Infos</span></div>
+    </div>
+
+    <div class="folio"><span>Poetry Cam · Kurzanleitung · Stand 10/2026</span><span>4</span></div>
+  </div>
+
+  <!-- PAGE 1: cover -->
+  <div class="page page--right cover">
+    <p class="eyebrow">Kurzanleitung für Lehrkräfte</p>
+    <h1>Poetry Cam</h1>
+    <p class="tagline">Ein Foto. Ein Gedicht. Sofort auf Papier.</p>
+    <img src="../../../src/images/showcase.jpg" alt="Poetry Cam">
+
+    <h3>Im Koffer</h3>
+    <ul class="checklist">
+      <li><span class="box"></span><span class="qty">1×</span><span>Poetry Cam <span class="soft">· mit eingebautem Akku, Drucker und Lautsprecher</span></span></li>
+      <li><span class="box"></span><span class="qty">1×</span><span>Ladegerät</span></li>
+      <li><span class="box"></span><span class="qty">2×</span><span>Papierrollen <span class="soft">· Thermopapier, 58 mm</span></span></li>
+      <li><span class="box"></span><span class="qty">1×</span><span>Kurzanleitung <span class="soft">· dieses Heft</span></span></li>
+      <li><span class="box"></span><span class="qty">1×</span><span>Übergabe- und Rückgabeprotokoll</span></li>
+    </ul>
+    <p class="soft" style="margin-top:2mm">Ihre PIN für die Einstellungen erhalten Sie getrennt vom Koffer.</p>
+
+    <div class="contact">
+      <strong>Fragen oder ein Problem?</strong>
+      <span>info@digilyze.de</span>
+    </div>
+
+    <div class="folio"><span>cam.digilyze.com</span><span>1</span></div>
+  </div>
+</section>
+
+<!-- ============ SHEET 2 (inside): page 2 | page 3 ============ -->
+<section class="sheet">
+
+  <!-- PAGE 2: first poem -->
+  <div class="page page--left">
+    <p class="eyebrow">Los geht’s</p>
+    <h2>In fünf Schritten zum ersten Gedicht</h2>
+
+    <ol class="steps">
+      <li><span class="n">1</span><div>
+        <h3>Laden und einschalten</h3>
+        <p>Die Kamera hat einen eingebauten Akku. Das Ladegerät kommt in die Ladebuchse an der rechten Seite. Ladestand: Knopf 9 drücken, die LEDs zeigen 100, 75, 50, 25 % oder „niedrig“. <span class="todo">[Ladedauer: ca. … h · Laufzeit: ca. … h]</span></p>
+        <p>Einschalten: Schalter rechts auf <span class="ui">ON</span>. Nach dem Start erscheint das Live-Bild.</p>
+      </div></li>
+      <li><span class="n">2</span><div>
+        <h3>WLAN verbinden</h3>
+        <p>Auf das WLAN-Symbol tippen, PIN eingeben, Netz wählen, Passwort eintippen. Netze mit persönlicher Anmeldung (802.1X) oder Anmeldeseite gehen nicht: vorher mit der IT klären.</p>
+      </div></li>
+      <li><span class="n">3</span><div>
+        <h3>Foto machen</h3>
+        <p>Den gelben Knopf auf der Rückseite drücken, neben dem Bildschirm. Die Kamera prüft das Foto, eine KI schreibt das Gedicht, die Kamera prüft es. Nach wenigen Sekunden erscheint es.</p>
+      </div></li>
+      <li><span class="n">4</span><div>
+        <h3>Drucken und vorlesen</h3>
+        <p>Rechts auf <span class="ui">Drucken</span> oder <span class="ui">Abspielen</span> tippen. Während des Vorlesens heißt die Taste <span class="ui">Stopp</span>. Die Lautstärke regelt der Knopf oben.</p>
+      </div></li>
+      <li><span class="n">5</span><div>
+        <h3>Nächstes Foto</h3>
+        <p>Gelben Knopf einmal drücken: zurück zum Live-Bild. Noch einmal: neues Foto. Nach einer Minute ohne Berührung wird der Bildschirm dunkel, Antippen weckt ihn.</p>
+      </div></li>
+    </ol>
+
+    <div class="visuals">
+      <figure class="device">
+        <div class="device__img"><img src="kamera-rueckseite.jpg" alt="Poetry Cam von hinten: Bildschirm und gelber Knopf"><svg class="device__marks" viewBox="0 0 976 768" aria-hidden="true"><line x1="636" y1="420" x2="800" y2="300"/><circle class="pt" cx="636" cy="420" r="9"/><circle class="badge" cx="800" cy="300" r="34"/><text x="800" y="313">1</text><line x1="276" y1="368" x2="170" y2="250"/><circle class="pt" cx="276" cy="368" r="9"/><circle class="badge" cx="170" cy="250" r="34"/><text x="170" y="263">2</text></svg></div>
+      </figure>
+      <figure class="device">
+        <div class="device__img"><img src="kamera-seite.jpg" alt="Poetry Cam von rechts vorn"><svg class="device__marks" viewBox="0 0 976 848" aria-hidden="true"><line x1="612" y1="72" x2="735" y2="70"/><circle class="pt" cx="612" cy="72" r="9"/><circle class="badge" cx="735" cy="70" r="34"/><text x="735" y="83">3</text><line x1="216" y1="572" x2="80" y2="500"/><circle class="pt" cx="216" cy="572" r="9"/><circle class="badge" cx="80" cy="500" r="34"/><text x="80" y="513">4</text><line x1="316" y1="680" x2="150" y2="790"/><circle class="pt" cx="316" cy="680" r="9"/><circle class="badge" cx="150" cy="790" r="34"/><text x="150" y="803">5</text><line x1="692" y1="450" x2="900" y2="700"/><circle class="pt" cx="692" cy="450" r="9"/><circle class="badge" cx="900" cy="700" r="34"/><text x="900" y="713">6</text><line x1="780" y1="264" x2="660" y2="175"/><circle class="pt" cx="780" cy="264" r="9"/><circle class="badge" cx="660" cy="175" r="34"/><text x="660" y="188">7</text><line x1="856" y1="324" x2="930" y2="190"/><circle class="pt" cx="856" cy="324" r="9"/><circle class="badge" cx="930" cy="190" r="34"/><text x="930" y="203">8</text><line x1="320" y1="400" x2="440" y2="300"/><circle class="pt" cx="320" cy="400" r="9"/><circle class="badge" cx="440" cy="300" r="34"/><text x="440" y="313">9</text></svg></div>
+      </figure>
+      <ol class="device__legend">
+        <li><span>1</span>Gelber Knopf: Foto</li>
+        <li><span>2</span>Bildschirm (Touch)</li>
+        <li><span>3</span>Lautstärke</li>
+        <li><span>4</span>Schalter ON / OFF</li>
+        <li><span>5</span>Ladebuchse</li>
+        <li><span>6</span>Drucker mit Lasche</li>
+        <li><span>7</span>Kamera</li>
+        <li><span>8</span>Lautsprecher</li>
+        <li><span>9</span>Akkustand (Knopf, LEDs)</li>
+      </ol>
+    </div>
+
+    <div class="folio"><span>Poetry Cam · Kurzanleitung</span><span>2</span></div>
+  </div>
+
+  <!-- PAGE 3: for the teacher -->
+  <div class="page page--right">
+    <p class="eyebrow">Für die Lehrkraft</p>
+    <h2>Einstellungen, Prompts, Teilen</h2>
+
+    <div class="block">
+      <h3>Einstellungen (Zahnrad, mit PIN)</h3>
+      <p><span class="ui">WLAN</span> · <span class="ui">Online teilen</span> · <span class="ui">Sprache</span> · <span class="ui">Kamera &amp; KI</span>. Oben steht „Alles bereit“ oder „Bitte prüfen“. Nach fünf falschen PIN-Eingaben ist das Tastenfeld eine Minute gesperrt.</p>
+    </div>
+
+    <div class="block">
+      <h3>Eigene Prompts der Klasse</h3>
+      <p>Auf <span class="ui">Prompt</span> tippen: Die Kamera zeigt den aktuellen Prompt und einen QR-Code. Mit dem Handy scannen und eine Idee aufschreiben, höchstens 200 Zeichen. Ein Prüfdienst kontrolliert jeden Prompt, bevor er die Kamera erreicht. Nach jedem Neustart gibt es einen neuen QR-Code.</p>
+    </div>
+
+    <div class="block">
+      <h3>Sprache</h3>
+      <p>Einstellungen → <span class="ui">Sprache</span>: Deutsch oder English. Bildschirm, Ausdrucke und Gedichte wechseln sofort.</p>
+    </div>
+
+    <div class="block">
+      <h3>Online teilen</h3>
+      <p>Ist nach jedem Start <strong>aus</strong>. Eingeschaltet druckt die Kamera einen QR-Code auf den Zettel. Er führt 48 Stunden lang zu einer öffentlichen Seite mit Foto, Gedicht und Audio. <strong>Nur einschalten, wenn für alle Kinder auf den Fotos eine schriftliche Einwilligung der Eltern vorliegt.</strong></p>
+    </div>
+
+    <div class="note">
+      <h3>Datenschutz im Schulmodus</h3>
+      <ul>
+        <li>Auf der Kamera bleibt nichts gespeichert: Foto, Gedicht und Audio werden beim nächsten Foto oder beim Ausschalten verworfen.</li>
+        <li>Für das Gedicht geht das Foto an einen KI-Dienst (derzeit OpenAI), für das Vorlesen nur der Text an einen Sprachdienst (derzeit ElevenLabs).</li>
+        <li>Am besten Motive ohne Gesichter wählen: Gegenstände, Pflanzen, Räume, Kunstwerke.</li>
+        <li>Die KI keine Gefühle von Kindern deuten lassen.</li>
+        <li>Ausgestellte Gedichte als „Mit KI erstellt“ kennzeichnen.</li>
+      </ul>
+    </div>
+
+    <div class="folio"><span>Konzept: cam.digilyze.com/hessen/konzept</span><span>3</span></div>
+  </div>
+</section>
+
+</body>
+</html>
