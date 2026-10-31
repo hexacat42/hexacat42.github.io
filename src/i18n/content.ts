@@ -142,7 +142,7 @@ const de: SiteContent = {
     emailLabel: 'E-Mail',
     note: 'Ein privates Projekt zur Präsentation der Erfindung Poetry Cam.',
   },
-  email: 'info@digilyze.de',
+  email: 'info@digilyze.com',
 };
 
 const en: SiteContent = {
@@ -252,7 +252,7 @@ const en: SiteContent = {
     emailLabel: 'Email',
     note: 'A private project presenting the Poetry Cam invention.',
   },
-  email: 'info@digilyze.de',
+  email: 'info@digilyze.com',
 };
 
 export const content: Record<Locale, SiteContent> = { de, en };

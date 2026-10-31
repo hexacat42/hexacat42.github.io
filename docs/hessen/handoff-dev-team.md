@@ -53,7 +53,7 @@ with the school's IT. **The printed items don't exist yet.**
   QR code points to the full guide at `/hessen/anleitung`. Open: **charge time
   and runtime** of the built-in battery (11.1 V, 1300 mAh; device team to state,
   or measure), then add them to both. Support contact is the general address
-  only (info@digilyze.de). Tell the www side when screen texts or controls change.
+  only (info@digilyze.com). Tell the www side when screen texts or controls change.
 - [ ] **Handover and return record:** contents, condition, date, signatures.
 - [ ] **PIN handover** separate from the case (sealed envelope or by mail).
 - [ ] **Outbound host list** for the school's IT (also in S1). Decide whether
