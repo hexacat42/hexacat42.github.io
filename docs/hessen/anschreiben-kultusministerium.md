@@ -8,7 +8,6 @@ Vor dem Versand:
   (möglichst eine namentliche Ansprechperson), ggf. Kopie an die Hessische Lehrkräfteakademie.
 - Vorher /hessen und /hessen/konzept gegenlesen: Die Angaben hier müssen dazu passen.
 - Anlage: Kurzanleitung (docs/hessen/kurzanleitung/kurzanleitung.pdf) ausdrucken.
-  Vorher Lade- und Laufzeit eintragen, sonst ist der gelbe Platzhalter mit im Ausdruck.
 -->
 
 **Betreff:** Poetry Cam: Erfahrungsaustausch und Erprobung für „KI und Digitale Welt“
