@@ -140,7 +140,7 @@ const de: SiteContent = {
     addressLabel: 'Adresse',
     address: 'München · Deutschland',
     emailLabel: 'E-Mail',
-    note: 'Poetry Cam ist ein Projekt der Digilyze GmbH.',
+    note: 'Poetry Cam ist ein Projekt der Digilyze\u00a0GmbH.',
   },
   email: 'info@digilyze.com',
 };
@@ -250,7 +250,7 @@ const en: SiteContent = {
     addressLabel: 'Address',
     address: 'Munich · Germany',
     emailLabel: 'Email',
-    note: 'Poetry Cam is a project of Digilyze GmbH.',
+    note: 'Poetry Cam is a project of Digilyze\u00a0GmbH.',
   },
   email: 'info@digilyze.com',
 };
