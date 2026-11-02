@@ -89,8 +89,10 @@ never by hand-editing another repo's compiled output. See
 ## Content notes / to confirm before launch
 
 - Copy uses the **"Sie"** register; EN is a translation of the DE — review tone.
-- **Impressum/Datenschutz are templates** with `[bracketed]` placeholders (full
-  postal address) — complete them and have them legally reviewed before publishing.
+- **Provider is Digilyze GmbH** (Luisenstraße 55, 80333 München; HRB 213182, Amtsgericht
+  München; USt-IdNr. DE296203287; Geschäftsführer Georg Klassen). Impressum (§ 5 DDG) and the
+  Datenschutz controller name the GmbH; footer: "© 2026 Digilyze GmbH". Both legal pages still
+  need a legal review. Contact email is info@digilyze.com.
 - Patent wording is **"zum Patent angemeldet"** (pending), publication 12.11.2026.
 - Sharing/audio are featured as live capabilities; confirm the device auto-upload
   is wired end-to-end before implying a fully automatic flow.

@@ -136,11 +136,11 @@ const de: SiteContent = {
   footer: {
     impressum: 'Impressum',
     datenschutz: 'Datenschutz',
-    rights: '© Georg Klassen, 2026.',
+    rights: '© 2026 Digilyze GmbH',
     addressLabel: 'Adresse',
     address: 'München · Deutschland',
     emailLabel: 'E-Mail',
-    note: 'Ein privates Projekt zur Präsentation der Erfindung Poetry Cam.',
+    note: 'Poetry Cam ist ein Projekt der Digilyze GmbH.',
   },
   email: 'info@digilyze.com',
 };
@@ -246,11 +246,11 @@ const en: SiteContent = {
   footer: {
     impressum: 'Imprint',
     datenschutz: 'Privacy',
-    rights: '© Georg Klassen, 2026.',
+    rights: '© 2026 Digilyze GmbH',
     addressLabel: 'Address',
     address: 'Munich · Germany',
     emailLabel: 'Email',
-    note: 'A private project presenting the Poetry Cam invention.',
+    note: 'Poetry Cam is a project of Digilyze GmbH.',
   },
   email: 'info@digilyze.com',
 };
