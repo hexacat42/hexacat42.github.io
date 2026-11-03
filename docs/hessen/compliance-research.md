@@ -29,7 +29,7 @@ The school is the controller (§ 4 SchDSV). The Poetry Cam vendor is at most its
 | DSGVO Art. 44 ff. | Transfers to third countries need DPF certification or standard contractual clauses (SCCs). | OpenAI and ElevenLabs are US providers. |
 
 **Transfers to the US**
-- The EU-US Data Privacy Framework (DPF) stands: the General Court upheld it on 3 Sep 2025 (T-553/23). An appeal is pending at the CJEU (C-703/25 P). Whether OpenAI and ElevenLabs are DPF-certified is **[verify]**.
+- The EU-US Data Privacy Framework (DPF) stands: the General Court upheld it on 3 Sep 2025 (T-553/23). An appeal is pending at the CJEU (C-703/25 P). Checked 2026-11-03: **ElevenLabs (Eleven Labs Inc.) is DPF-certified** (its DPF policy, updated 5 Feb 2026). **OpenAI is not on the DPF list**; it relies on Standard Contractual Clauses in its DPA. So an OpenAI transfer needs the DPA accepted and ideally a transfer impact assessment.
 - **The device sets `store: false` on the poem request** (`llm_openai.py`, since device 0.1.12, 2026-10-25), so OpenAI keeps no retrievable response. OpenAI's abuse-monitoring logs (up to 30 days) still apply until zero data retention is approved or the provider changes.
 - Both providers have EU options:
   - OpenAI: EU data residency, and zero data retention after approval. Whether gpt-5-nano is available with EU residency is **[verify]**.
