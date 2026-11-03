@@ -16,67 +16,142 @@ const c = getContent(locale);
 
       {locale === 'de' ? (
         <>
+          <p>Diese Erklärung gilt für zwei Dienste: die Website <strong>cam.digilyze.com</strong> und den
+             Teilen- und Prompt-Dienst <strong>cam-assets.digilyze.com</strong>. Die Website selbst erhebt
+             keine personenbezogenen Daten und setzt keine Cookies. Der Teilen- und Prompt-Dienst
+             verarbeitet dagegen Fotos, Gedichte und Prompts. Beide Dienste werden unten getrennt beschrieben.</p>
+
           <h2>Verantwortlicher</h2>
           <p>Digilyze GmbH, vertreten durch den Geschäftsführer Georg Klassen, Luisenstraße 55, 80333 München · E-Mail: <a href={`mailto:${c.email}`}>{c.email}</a>
-             (vollständige Anschrift siehe <a href={localizePath('/impressum', 'de')}>Impressum</a>).</p>
+             (siehe auch <a href={localizePath('/impressum', 'de')}>Impressum</a>).</p>
+          <p>Wird die Poetry Cam an einer Schule im Unterricht eingesetzt, ist die Schule für die
+             Verarbeitung verantwortlich und informiert Schülerinnen, Schüler und Eltern selbst. Die
+             Digilyze GmbH handelt dann in ihrem Auftrag.</p>
 
-          <h2>Hosting</h2>
-          <p>Diese Website wird als statische Seite über GitHub Pages (GitHub, Inc., USA) bereitgestellt.
+          <h2 id="website">1. Website cam.digilyze.com</h2>
+          <h3>Hosting</h3>
+          <p>Die Website wird als statische Seite über GitHub Pages (GitHub, Inc., USA) bereitgestellt.
              Beim Aufruf verarbeitet der Hoster technisch notwendige Server-Logdaten (u. a. IP-Adresse,
              Zeitpunkt, angeforderte Datei) zur Auslieferung und Sicherheit. Rechtsgrundlage ist unser
              berechtigtes Interesse an einem sicheren Betrieb (Art. 6 Abs. 1 lit. f DSGVO).</p>
-
-          <h2>Cookies &amp; Analyse</h2>
-          <p>Diese Website setzt keine Cookies für Tracking oder Statistik und bindet keine Analyse-Werkzeuge
-             ein. Ihre gewählte Sprache und das Farbschema (hell/dunkel) werden – sofern Sie sie ändern –
-             lokal in Ihrem Browser gespeichert und nicht an uns übermittelt.</p>
-
-          <h2>Kontaktaufnahme</h2>
+          <h3>Keine Cookies, keine Analyse</h3>
+          <p>Die Website setzt keine Cookies, bindet keine Analyse-Werkzeuge, keine Inhalte sozialer
+             Netzwerke und keine externen Skripte ein. Ihre gewählte Sprache und das Farbschema (hell/dunkel)
+             werden, sofern Sie sie ändern, nur lokal in Ihrem Browser gespeichert und nicht an uns übermittelt.</p>
+          <h3>Kontakt per E-Mail</h3>
           <p>Wenn Sie uns per E-Mail schreiben, verarbeiten wir Ihre Angaben ausschließlich zur Bearbeitung
              Ihrer Anfrage (Art. 6 Abs. 1 lit. b bzw. f DSGVO).</p>
 
-          <h2>Externe Dienste &amp; Social Media</h2>
-          <p>Diese Website bindet keine Inhalte sozialer Netzwerke (z. B. LinkedIn) ein und lädt keine
-             externen Skripte. Es findet keine automatische Verbindung zu Drittanbietern statt.</p>
-
-          <h2>Geteilte Poetry-Cam-Seiten</h2>
-          <p>Das Teilen eines Moments erfolgt über einen separaten Dienst (cam-assets.digilyze.com) und nur
-             mit Ihrer ausdrücklichen Zustimmung am Gerät. Geteilte Inhalte sind maximal 48 Stunden abrufbar
-             und werden danach automatisch gelöscht; es werden keine Konten angelegt und keine personenbezogenen
-             Daten erhoben.</p>
+          <h2 id="cam-assets">2. Teilen- und Prompt-Dienst cam-assets.digilyze.com</h2>
+          {/* TODO(handoff server-legal-links.md §4): confirm hosting location + AVV, log contents
+              and retention, OpenAI account/DPA. Prompt deletion below assumes the server change
+              from the same handoff (§5) is deployed — don't publish before it is. */}
+          <h3 id="geteilte-seiten">Geteilte Momente</h3>
+          <p>Ein Moment wird nur geteilt, wenn das Teilen an der Kamera eingeschaltet und bestätigt wurde.
+             Dann lädt die Kamera Foto, Gedicht, Vorlese-Audio und die Sprache des Moments hoch. Über den
+             QR-Code auf dem Ausdruck ist eine Seite mit diesen Inhalten abrufbar. Wer den Link hat, kann sie
+             sehen; Suchmaschinen finden sie nicht. Nach <strong>48 Stunden</strong> werden die Inhalte
+             automatisch gelöscht. Es gibt keine Konten und keine Namen.</p>
+          <p>Vor dem Speichern prüft ein automatischer Dienst Foto, Gedicht und Prompt noch einmal auf
+             ungeeignete Inhalte (Jugendschutz). Was dabei auffällt, wird nicht gespeichert und nicht
+             veröffentlicht. Rechtsgrundlage für das Teilen ist die Einwilligung an der Kamera
+             (Art. 6 Abs. 1 lit. a DSGVO), für die Prüfung unser berechtigtes Interesse am Schutz von
+             Kindern und Jugendlichen (Art. 6 Abs. 1 lit. f DSGVO).</p>
+          <h3 id="prompts">Prompts</h3>
+          <p>Über den QR-Code am Bildschirm der Kamera kann man einen Prompt schicken, also eine Anweisung
+             für das nächste Gedicht (höchstens 200 Zeichen). Bitte keine Namen oder Kontaktdaten eintragen.
+             Jeder Prompt wird automatisch geprüft, bevor er die Kamera erreicht. Ein angenommener Prompt gilt
+             8 Stunden für die Kamera. Danach, und ebenso nach einer Ablehnung, wird er
+             <strong>spätestens nach 24 Stunden gelöscht</strong>. Wir werten Prompts nicht aus und legen
+             keine Profile an. Rechtsgrundlage ist die Bereitstellung der gewünschten Funktion
+             (Art. 6 Abs. 1 lit. b DSGVO) und unser berechtigtes Interesse am Jugendschutz
+             (Art. 6 Abs. 1 lit. f DSGVO).</p>
+          <h3>Automatische Prüfung durch OpenAI</h3>
+          <p>Für die Prüfungen nutzen wir Dienste von OpenAI (OpenAI, L.L.C., USA). Dabei werden die zu
+             prüfenden Inhalte (Prompt, bei geteilten Momenten auch Foto und Gedicht) an OpenAI übermittelt,
+             ohne dass wir sie dort speichern lassen. Zur Missbrauchserkennung kann OpenAI Anfragen nach eigenen Regeln bis zu 30 Tage aufbewahren. Die Übermittlung in die USA stützt sich auf den
+             Angemessenheitsbeschluss der EU-Kommission für das EU-U.S. Data Privacy Framework.</p>
+          <h3>Cookie</h3>
+          <p>Nach dem Absenden eines Prompts setzt der Dienst ein einziges, technisch notwendiges Cookie
+             (<code>pcam_thanks</code>). Es zeigt einmalig die Bestätigungsseite an, gilt höchstens
+             15 Minuten und wird danach oder beim ersten Aufruf gelöscht. Es dient nicht der Analyse
+             (§ 25 Abs. 2 Nr. 2 TDDDG).</p>
+          <h3>Hosting und Server-Logs</h3>
+          <p>Der Dienst wird bei der domainfactory GmbH gehostet. Der Hoster verarbeitet technisch notwendige
+             Server-Logdaten (u. a. IP-Adresse, Zeitpunkt, aufgerufene Adresse) zur Auslieferung und
+             Sicherheit (Art. 6 Abs. 1 lit. f DSGVO). Unser eigenes Betriebsprotokoll enthält keine
+             Prompt-Texte und keine Fotos, Gedichte oder Audios.</p>
 
           <h2>Ihre Rechte</h2>
           <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung,
-             Datenübertragbarkeit sowie Widerspruch. Zudem besteht ein Beschwerderecht bei einer
-             Aufsichtsbehörde.</p>
+             Datenübertragbarkeit sowie Widerspruch. Eine erteilte Einwilligung können Sie jederzeit mit
+             Wirkung für die Zukunft widerrufen. Zudem besteht ein Beschwerderecht bei einer
+             Aufsichtsbehörde, etwa dem Bayerischen Landesamt für Datenschutzaufsicht (BayLDA).</p>
         </>
       ) : (
         <>
           <p class="note">This English text is a courtesy translation; the legally binding version is the
              German <a href={localizePath('/datenschutz', 'de')}>Datenschutzerklärung</a>.</p>
+          <p>This notice covers two services: the website <strong>cam.digilyze.com</strong> and the sharing
+             and prompt service <strong>cam-assets.digilyze.com</strong>. The website itself collects no
+             personal data and sets no cookies. The sharing and prompt service does process photos, poems and
+             prompts. Both are described separately below.</p>
+
           <h2>Controller</h2>
           <p>Digilyze GmbH, represented by its managing director Georg Klassen, Luisenstraße 55, 80333 Munich · Email: <a href={`mailto:${c.email}`}>{c.email}</a>
-             (full address in the <a href={localizePath('/impressum', 'en')}>imprint</a>).</p>
-          <h2>Hosting</h2>
+             (see also the <a href={localizePath('/impressum', 'en')}>imprint</a>).</p>
+          <p>When a school uses Poetry Cam in class, the school is the controller and informs pupils and
+             parents itself. Digilyze GmbH then acts on the school’s behalf.</p>
+
+          <h2 id="website">1. Website cam.digilyze.com</h2>
+          <h3>Hosting</h3>
           <p>This static website is served via GitHub Pages (GitHub, Inc., USA). The host processes
              technically necessary server log data (e.g. IP address, time, requested file) for delivery and
              security, based on our legitimate interest (Art. 6(1)(f) GDPR).</p>
-          <h2>Cookies &amp; analytics</h2>
-          <p>This site sets no tracking or statistics cookies and embeds no analytics tools. Your chosen
-             language and colour scheme are stored locally in your browser if you change them, and are not
-             transmitted to us.</p>
-          <h2>Contact</h2>
+          <h3>No cookies, no analytics</h3>
+          <p>The website sets no cookies and embeds no analytics tools, social-media content or external
+             scripts. Your chosen language and colour scheme are stored locally in your browser if you change
+             them, and are not transmitted to us.</p>
+          <h3>Contact by email</h3>
           <p>If you email us, we process your details solely to handle your enquiry (Art. 6(1)(b)/(f) GDPR).</p>
-          <h2>External services &amp; social media</h2>
-          <p>This website embeds no social-media content (e.g. LinkedIn) and loads no external scripts. No
-             automatic connection to third parties takes place.</p>
-          <h2>Shared Poetry Cam pages</h2>
-          <p>Sharing a moment uses a separate service (cam-assets.digilyze.com) and only with your explicit
-             consent on the device. Shared content is available for at most 48 hours and is then deleted
-             automatically; no accounts are created and no personal data is collected.</p>
+
+          <h2 id="cam-assets">2. Sharing and prompt service cam-assets.digilyze.com</h2>
+          <h3 id="shared-pages">Shared moments</h3>
+          <p>A moment is shared only if sharing was switched on and confirmed on the camera. The camera then
+             uploads the photo, poem, read-aloud audio and the moment’s language. The QR code on the printout
+             opens a page with this content. Anyone with the link can see it; search engines can’t find it.
+             After <strong>48 hours</strong> the content is deleted automatically. There are no accounts and
+             no names.</p>
+          <p>Before anything is stored, an automatic service checks the photo, poem and prompt once more for
+             unsuitable content (youth protection). Anything flagged is neither stored nor published. The legal
+             basis for sharing is the consent given on the camera (Art. 6(1)(a) GDPR); for the check, our
+             legitimate interest in protecting children and young people (Art. 6(1)(f) GDPR).</p>
+          <h3 id="prompts">Prompts</h3>
+          <p>The QR code on the camera’s screen lets you send a prompt, an instruction for the next poem (at
+             most 200 characters). Please don’t enter names or contact details. Every prompt is checked
+             automatically before it reaches the camera. An accepted prompt applies to the camera for 8 hours.
+             After that, and likewise after a rejection, it is <strong>deleted within 24 hours</strong>. We
+             don’t analyse prompts or build profiles. The legal basis is providing the requested function
+             (Art. 6(1)(b) GDPR) and our legitimate interest in youth protection (Art. 6(1)(f) GDPR).</p>
+          <h3>Automatic checks by OpenAI</h3>
+          <p>For these checks we use services of OpenAI (OpenAI, L.L.C., USA). The content to be checked
+             (the prompt, and for shared moments also the photo and poem) is sent to OpenAI without us having
+             it stored there. For abuse monitoring, OpenAI may keep requests for up to 30 days under its own rules. The transfer to the USA is based on the European Commission’s adequacy decision
+             for the EU-U.S. Data Privacy Framework.</p>
+          <h3>Cookie</h3>
+          <p>After a prompt is sent, the service sets a single, technically necessary cookie
+             (<code>pcam_thanks</code>). It shows the confirmation page once, lasts at most 15 minutes and is
+             then, or on first use, deleted. It is not used for analytics (§ 25(2) no. 2 TDDDG).</p>
+          <h3>Hosting and server logs</h3>
+          <p>The service is hosted by domainfactory GmbH. The host processes technically necessary server log
+             data (e.g. IP address, time, requested address) for delivery and security (Art. 6(1)(f) GDPR). Our
+             own operational log contains no prompt texts and no photos, poems or audio.</p>
+
           <h2>Your rights</h2>
           <p>You have the right to access, rectification, erasure, restriction, data portability and
-             objection, as well as the right to lodge a complaint with a supervisory authority.</p>
+             objection. You can withdraw any consent at any time with effect for the future. You also have the
+             right to lodge a complaint with a supervisory authority, such as the Bavarian Data Protection
+             Authority (BayLDA).</p>
         </>
       )}
     </div>
@@ -85,7 +160,8 @@ const c = getContent(locale);
 
 <style>
   .backlink { margin-bottom: 1.5rem; }
-  .legal h2 { font-size: 1.25rem; margin-top: 2rem; }
+  .legal h2 { font-size: 1.35rem; margin-top: 2.25rem; }
+  .legal h3 { font-size: 1.05rem; margin: 1.4rem 0 0.4rem; }
   .legal p { color: var(--color-ink-soft); }
   .legal .note { font-size: 0.9rem; }
 </style>
