@@ -1,6 +1,8 @@
 # Handoff to the server team: Impressum and Datenschutz links on cam-assets
 
-**From:** poetry-cam-www · **Date:** 2026-11-03 · **Status:** open
+**From:** poetry-cam-www · **Date:** 2026-11-03 · **Status:** done on both sides (2026-11-03): footer,
+24-hour prompt deletion and 30-day log rotation live on cam-assets; the new `/datenschutz` with the
+anchors is live. Only the operator checks in §6 remain (tracked in `docs/OPEN-QUESTIONS.md`).
 
 ## Why
 

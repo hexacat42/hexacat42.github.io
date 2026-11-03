@@ -1,6 +1,9 @@
 # Handoff to the device team: the camera in the privacy notice
 
-**From:** poetry-cam-www · **Date:** 2026-11-03 · **Status:** open
+**From:** poetry-cam-www · **Date:** 2026-11-03 · **Status:** reply received
+(`../poetry-cam/docs/handoffs/www-device-privacy.md`): all 7 facts confirmed. `/datenschutz`
+§3 covers **school mode only** (live 2026-11-03); event mode waits for the owner. Open items are
+tracked in `docs/OPEN-QUESTIONS.md`.
 
 ## Why
 

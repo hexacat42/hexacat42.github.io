@@ -93,6 +93,15 @@ never by hand-editing another repo's compiled output. See
   München; USt-IdNr. DE296203287; Geschäftsführer Georg Klassen). Impressum (§ 5 DDG) and the
   Datenschutz controller name the GmbH; footer: "© 2026 Digilyze GmbH". Both legal pages still
   need a legal review. Contact email is info@digilyze.com.
+- **`/datenschutz`** has three parts: 1. website (no personal data of its own),
+  2. cam-assets.digilyze.com (shares 48 h, prompts deleted ~8 h / at most +24 h, cookie
+  `pcam_thanks`, 30-day app log), 3. the camera **in school mode only**. Anchors
+  `#geteilte-seiten`/`#shared-pages` and `#prompts` are linked from the cam-assets footer —
+  don't rename them. Style: impersonal/passive (no "wir", "Sie", "der Dienst"); describe the
+  current state, not plans. Transfer bases: OpenAI = Standard Contractual Clauses (not
+  DPF-certified), ElevenLabs = DPF. Facts come from the server and device handoffs in
+  `docs/handoffs/`; re-check them when either side changes.
+- **Open questions** across all of this: `docs/OPEN-QUESTIONS.md`.
 - Patent wording is **"zum Patent angemeldet"** (pending), publication 12.11.2026.
 - Sharing/audio are featured as live capabilities; confirm the device auto-upload
   is wired end-to-end before implying a fully automatic flow.
