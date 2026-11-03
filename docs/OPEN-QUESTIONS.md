@@ -62,6 +62,22 @@ handoffs. Tick items off here when they're done.
 
 ## Device team (from their reply)
 
+**Device PR #90** (not merged or released yet) makes two sentences in `/datenschutz` §3 true;
+details in `../poetry-cam/docs/handoffs/www-device-privacy.md` points 3 and 6.
+
+- [ ] **Release with PR #90 on every school camera** before hand-out. Until then:
+  - "verbindet sich nur mit OpenAI, ElevenLabs und cam-assets.digilyze.com" is not yet true:
+    up to 0.1.12 the online check goes to Google DNS (8.8.8.8);
+  - "Auf der Speicherkarte bleiben nur technische Angaben ohne Inhalte" is not yet true:
+    up to 0.1.12 the share link is saved on the card and opens the page for 48 h.
+- [ ] **OS-level connections still unchecked:** Pi OS time sync (default
+  `debian.pool.ntp.org`) and NetworkManager's connectivity check. If either stays on, §3's
+  "verbindet sich nur mit …" needs a line about it (or turn them off / point NTP elsewhere).
+- [ ] **[legal] Legal basis for sharing in school mode** (§2: "Einwilligung an der Kamera"): in
+  school mode a teacher switches sharing on and no child is asked. The basis there is the
+  parents' written consent collected by the school (§ 12 Abs. 4 SchDSV). Have the wording
+  checked.
+
 Reply: `../poetry-cam/docs/handoffs/www-device-privacy.md` (not committed there yet).
 
 - [ ] TTS timeout (they'll add it).
