@@ -16,10 +16,11 @@ const c = getContent(locale);
 
       {locale === 'de' ? (
         <>
-          <p>Diese Datenschutzerklärung gilt für zwei Dienste:</p>
+          <p>Diese Datenschutzerklärung gilt für zwei Dienste und die Kamera:</p>
           <ul>
             <li><strong>cam.digilyze.com</strong> – Projekt-Website</li>
             <li><strong>cam-assets.digilyze.com</strong> – Teilen- und Prompt-Dienst</li>
+            <li><strong>Poetry Cam</strong> – die Kamera im Schulmodus</li>
           </ul>
 
           <h2>Verantwortlicher</h2>
@@ -31,7 +32,7 @@ const c = getContent(locale);
 
           <h2 id="website">1. Website cam.digilyze.com</h2>
           <p>Die Website selbst erhebt keine personenbezogenen Daten. Fotos, Gedichte und Prompts werden nur
-             über cam-assets.digilyze.com verarbeitet (Abschnitt 2).</p>
+             über cam-assets.digilyze.com und die Poetry Cam verarbeitet (Abschnitte 2 und 3).</p>
           <h3>Hosting</h3>
           <p>Die Website wird als statische Seite über GitHub Pages (GitHub, Inc., USA) bereitgestellt.
              Beim Aufruf verarbeitet der Hoster technisch notwendige Server-Logdaten (u. a. IP-Adresse,
@@ -94,6 +95,39 @@ const c = getContent(locale);
              cam-assets.digilyze.com enthält nur technische Kennungen und Prüfergebnisse, keine Texte, Fotos,
              Audios oder IP-Adressen. Einträge älter als 30 Tage werden automatisch gelöscht.</p>
 
+          <h2 id="kamera">3. Die Poetry Cam im Schulmodus</h2>
+          {/* Scope: school profile only (owner, 2026-11-03). Facts confirmed by the device team in
+              ../poetry-cam/docs/handoffs/www-device-privacy.md. Device team switches the
+              connectivity check from 8.8.8.8 (Google) to cam-assets.digilyze.com before any camera is handed out. */}
+          <p>Dieser Abschnitt beschreibt die Kamera im Schulmodus, in dem sie an Schulen eingesetzt wird.
+             Verantwortlich ist dann die Schule (siehe oben).</p>
+          <h3>Foto und Gedicht</h3>
+          <p>Für das Gedicht werden das Foto und der Prompt an OpenAI (OpenAI, L.L.C., USA) geschickt. Dort entsteht
+             das Gedicht aus Foto und Prompt. Die Anfrage wird mit der Vorgabe gesendet, sie nicht zu
+             speichern. Foto und Gedicht werden zudem automatisch auf ungeeignete Inhalte geprüft
+             (Jugendschutz). Zur Missbrauchserkennung kann OpenAI Anfragen nach eigenen Regeln bis zu
+             30 Tage aufbewahren. Die Kamera erkennt keine Gesichter und deutet keine Gefühle.</p>
+          <h3>Vorlesen</h3>
+          <p>Für das Vorlesen wird nur der Text des Gedichts an ElevenLabs (Eleven Labs Inc., USA) geschickt,
+             nie das Foto oder der Prompt. Zurück kommt eine Audiodatei.</p>
+          <h3>Speicherung auf der Kamera</h3>
+          <p>Fotos, Gedichte, Prompts und Audios werden auf der Kamera nicht gespeichert. Sie liegen nur im
+             Arbeitsspeicher und werden beim nächsten Foto oder beim Ausschalten verworfen. Auf der
+             Speicherkarte bleiben nur technische Angaben ohne Inhalte, etwa Zeitpunkt und Prüfergebnis.</p>
+          <h3>Verbindungen ins Internet</h3>
+          <p>Die Kamera verbindet sich nur mit OpenAI, ElevenLabs und cam-assets.digilyze.com. Über
+             cam-assets.digilyze.com laufen Prompts und, wenn eingeschaltet, das Teilen. Diese Dienste sehen dabei die öffentliche IP-Adresse des Netzes, in dem
+             die Kamera angemeldet ist.</p>
+          <h3>Ausdruck</h3>
+          <p>Der Zettel enthält das Gedicht, den Prompt, Datum und Uhrzeit und, wenn geteilt wurde, einen
+             QR-Code mit Link. Name oder Kennung der Kamera stehen nicht darauf.</p>
+          <h3>Übermittlung in die USA</h3>
+          <p>Die Übermittlung an ElevenLabs stützt sich auf den Angemessenheitsbeschluss der EU-Kommission
+             für das EU-U.S. Data Privacy Framework, nach dem Eleven Labs Inc. zertifiziert ist. Die
+             Übermittlung an OpenAI stützt sich auf die EU-Standardvertragsklauseln, die Teil des
+             Auftragsverarbeitungsvertrags von OpenAI sind. Eine Umstellung auf Microsoft Azure mit
+             Rechenzentrum in Deutschland wird derzeit geklärt.</p>
+
           <h2>Rechte der betroffenen Personen</h2>
           <p>Betroffene Personen haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der
              Verarbeitung, Datenübertragbarkeit sowie Widerspruch. Eine erteilte Einwilligung kann jederzeit
@@ -104,10 +138,11 @@ const c = getContent(locale);
         <>
           <p class="note">This English text is a courtesy translation; the legally binding version is the
              German <a href={localizePath('/datenschutz', 'de')}>Datenschutzerklärung</a>.</p>
-          <p>This privacy notice covers two services:</p>
+          <p>This privacy notice covers two services and the camera:</p>
           <ul>
             <li><strong>cam.digilyze.com</strong> – project website</li>
             <li><strong>cam-assets.digilyze.com</strong> – sharing and prompt service</li>
+            <li><strong>Poetry Cam</strong> – the camera in school mode</li>
           </ul>
 
           <h2>Controller</h2>
@@ -118,7 +153,7 @@ const c = getContent(locale);
 
           <h2 id="website">1. Website cam.digilyze.com</h2>
           <p>The website itself collects no personal data. Photos, poems and prompts are processed only on
-             cam-assets.digilyze.com (section 2).</p>
+             cam-assets.digilyze.com and by the Poetry Cam (sections 2 and 3).</p>
           <h3>Hosting</h3>
           <p>This static website is served via GitHub Pages (GitHub, Inc., USA). The host processes
              technically necessary server log data (e.g. IP address, time, requested file) for delivery and
@@ -171,6 +206,35 @@ const c = getContent(locale);
              server log data (e.g. IP address, time, requested address) for delivery and security
              (Art. 6(1)(f) GDPR). The operational log of cam-assets.digilyze.com contains only technical IDs
              and check results, no texts, photos, audio or IP addresses. Entries older than 30 days are deleted automatically.</p>
+
+          <h2 id="camera">3. The Poetry Cam in school mode</h2>
+          <p>This section describes the camera in school mode, the mode it uses in schools. The school is then
+             the controller (see above).</p>
+          <h3>Photo and poem</h3>
+          <p>For the poem, the photo and the prompt are sent to OpenAI (OpenAI, L.L.C., USA), where the poem is made from
+             photo and prompt. The request is sent with the instruction not to store it. Photo and poem are
+             also checked automatically for unsuitable content (youth protection). For abuse monitoring,
+             OpenAI may keep requests for up to 30 days under its own rules. The camera does not recognise
+             faces or interpret emotions.</p>
+          <h3>Read-aloud</h3>
+          <p>For read-aloud, only the poem text is sent to ElevenLabs (Eleven Labs Inc., USA), never the photo
+             or the prompt. An audio file comes back.</p>
+          <h3>Storage on the camera</h3>
+          <p>Photos, poems, prompts and audio are not stored on the camera. They live only in memory and are
+             discarded at the next photo or at power-off. Only technical data without content, such as time
+             and check result, stays on the memory card.</p>
+          <h3>Internet connections</h3>
+          <p>The camera connects only to OpenAI, ElevenLabs and cam-assets.digilyze.com. Prompts and, if
+             switched on, sharing go through cam-assets.digilyze.com.
+             These services see the public IP address of the network the camera is connected to.</p>
+          <h3>Printout</h3>
+          <p>The slip shows the poem, the prompt, date and time and, if shared, a QR code with a link. It does
+             not show the camera’s name or ID.</p>
+          <h3>Transfer to the USA</h3>
+          <p>The transfer to ElevenLabs is based on the European Commission’s adequacy decision for the EU-U.S.
+             Data Privacy Framework, under which Eleven Labs Inc. is certified. The transfer to OpenAI is based
+             on the EU Standard Contractual Clauses, which are part of OpenAI’s data processing agreement. A
+             move to Microsoft Azure with a data centre in Germany is being clarified.</p>
 
           <h2>Rights of data subjects</h2>
           <p>Data subjects have the right to access, rectification, erasure, restriction, data portability and
