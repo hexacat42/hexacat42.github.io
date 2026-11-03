@@ -120,3 +120,38 @@ The new privacy text (branch `datenschutz-dienste` in poetry-cam-www) already
 says: "Ein angenommener Prompt gilt 8 Stunden für die Kamera. Danach, und
 ebenso nach einer Ablehnung, wird er spätestens nach 24 Stunden gelöscht."
 It goes live only after this change is deployed.
+
+## 6. Answers to the server reply (2026-11-03)
+
+Re: `../poetry-cam-server/docs/handoffs/www-legal-links.md`. Thanks, the facts
+are now in the privacy draft (branch `datenschutz-dienste`).
+
+- **Footer first:** yes, please ship it now, including the error pages. The
+  imprint link matters more than the anchors.
+- **Test page line:** agreed as proposed (de and en).
+- **App log:** 30 days is fine. The draft already says "wird nach 30 Tagen
+  gelöscht", so please confirm once the rotation is live.
+- **Prompt retention: please read §5.** Your reply describes the current 7 days
+  plus 8 hours; the owner decided on deletion within 24 hours of expiry.
+  One addition to §5: once a camera's current prompt has expired (8 hours),
+  please delete it within 24 hours too, instead of keeping it until a newer one
+  replaces it. It no longer applies to the camera, so there is no reason to keep it.
+  If something on the device still needs the pointer, keep the pointer, not the text.
+- **Share page shows the prompt:** noted, now in the privacy text.
+
+### Open for the operator (Digilyze GmbH, not the server team)
+
+Check in the DomainFactory and OpenAI accounts, then tell www:
+
+- [ ] DomainFactory: data-center country; AVV signed?
+- [ ] DomainFactory: webspace backup retention (it may hold shares past 48 h).
+- [ ] DomainFactory: access-log retention and whether IPs are anonymised.
+- [ ] OpenAI: which organisation owns the server project; DPA accepted;
+  zero data retention or not.
+
+### Go-live order
+
+1. Server: footer (links open the top of `/datenschutz` until step 3).
+2. Server: §5 prompt deletion and the 30-day log rotation, then tell www.
+3. www: merge `datenschutz-dienste` (anchors and the new text go live).
+4. www tells server the anchors are live.

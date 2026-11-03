@@ -44,32 +44,38 @@ const c = getContent(locale);
 
           <h2 id="cam-assets">2. Teilen- und Prompt-Dienst cam-assets.digilyze.com</h2>
           {/* TODO(handoff server-legal-links.md §4): confirm hosting location + AVV, log contents
-              and retention, OpenAI account/DPA. Prompt deletion below assumes the server change
-              from the same handoff (§5) is deployed — don't publish before it is. */}
+              and retention, OpenAI account/DPA. Prompt deletion (24 h, also the camera's expired current prompt) and the 30-day app-log
+              limit assume the server changes from the same handoff (§5, §6) are deployed — don't
+              publish before they are. */}
           <h3 id="geteilte-seiten">Geteilte Momente</h3>
           <p>Ein Moment wird nur geteilt, wenn das Teilen an der Kamera eingeschaltet und bestätigt wurde.
-             Dann lädt die Kamera Foto, Gedicht, Vorlese-Audio und die Sprache des Moments hoch. Über den
-             QR-Code auf dem Ausdruck ist eine Seite mit diesen Inhalten abrufbar. Wer den Link hat, kann sie
+             Dann lädt die Kamera Foto, Gedicht, Vorlese-Audio und, falls verwendet, den Prompt hoch, aus dem das
+             Gedicht entstand. Dazu speichert der Dienst die Sprache, Zeitpunkte und das Ergebnis der
+             Prüfung. Über den QR-Code auf dem Ausdruck ist eine Seite mit diesen Inhalten abrufbar. Wer den Link hat, kann sie
              sehen; Suchmaschinen finden sie nicht. Nach <strong>48 Stunden</strong> werden die Inhalte
-             automatisch gelöscht. Es gibt keine Konten und keine Namen.</p>
+             automatisch gelöscht. Es gibt keine Konten und keine Namen, und der Dienst speichert keine
+             IP-Adressen.</p>
           <p>Vor dem Speichern prüft ein automatischer Dienst Foto, Gedicht und Prompt noch einmal auf
-             ungeeignete Inhalte (Jugendschutz). Was dabei auffällt, wird nicht gespeichert und nicht
+             ungeeignete Inhalte (Jugendschutz). Was dabei auffällt, wird sofort gelöscht und nie
              veröffentlicht. Rechtsgrundlage für das Teilen ist die Einwilligung an der Kamera
              (Art. 6 Abs. 1 lit. a DSGVO), für die Prüfung unser berechtigtes Interesse am Schutz von
              Kindern und Jugendlichen (Art. 6 Abs. 1 lit. f DSGVO).</p>
           <h3 id="prompts">Prompts</h3>
           <p>Über den QR-Code am Bildschirm der Kamera kann man einen Prompt schicken, also eine Anweisung
              für das nächste Gedicht (höchstens 200 Zeichen). Bitte keine Namen oder Kontaktdaten eintragen.
-             Jeder Prompt wird automatisch geprüft, bevor er die Kamera erreicht. Ein angenommener Prompt gilt
-             8 Stunden für die Kamera. Danach, und ebenso nach einer Ablehnung, wird er
+             Gespeichert werden der Text, die Kamera, für die er bestimmt ist, Zeitpunkte und das Ergebnis der
+             Prüfung, aber keine IP-Adresse und keine Angaben zur Person. Jeder Prompt wird automatisch
+             geprüft, bevor er die Kamera erreicht. Ein angenommener Prompt gilt 8 Stunden für die Kamera. Danach, und ebenso nach einer Ablehnung, wird er
              <strong>spätestens nach 24 Stunden gelöscht</strong>. Wir werten Prompts nicht aus und legen
-             keine Profile an. Rechtsgrundlage ist die Bereitstellung der gewünschten Funktion
+             keine Profile an. Auf der Testseite für Lehrkräfte wird ein Prompt nur geprüft, aber weder
+             gespeichert noch an eine Kamera geschickt. Rechtsgrundlage ist die Bereitstellung der gewünschten Funktion
              (Art. 6 Abs. 1 lit. b DSGVO) und unser berechtigtes Interesse am Jugendschutz
              (Art. 6 Abs. 1 lit. f DSGVO).</p>
           <h3>Automatische Prüfung durch OpenAI</h3>
-          <p>Für die Prüfungen nutzen wir Dienste von OpenAI (OpenAI, L.L.C., USA). Dabei werden die zu
-             prüfenden Inhalte (Prompt, bei geteilten Momenten auch Foto und Gedicht) an OpenAI übermittelt,
-             ohne dass wir sie dort speichern lassen. Zur Missbrauchserkennung kann OpenAI Anfragen nach eigenen Regeln bis zu 30 Tage aufbewahren. Die Übermittlung in die USA stützt sich auf den
+          <p>Für die Prüfungen nutzen wir Dienste von OpenAI (OpenAI, L.L.C., USA). Dabei werden nur die zu
+             prüfenden Inhalte übermittelt (Prompt, bei geteilten Momenten auch Foto und Gedicht), keine
+             IP-Adressen, Namen oder Cookies. Für die Prüfung durch ein Sprachmodell lassen wir die Anfrage bei
+             OpenAI nicht speichern. Zur Missbrauchserkennung kann OpenAI Anfragen nach eigenen Regeln bis zu 30 Tage aufbewahren. Die Übermittlung in die USA stützt sich auf den
              Angemessenheitsbeschluss der EU-Kommission für das EU-U.S. Data Privacy Framework.</p>
           <h3>Cookie</h3>
           <p>Nach dem Absenden eines Prompts setzt der Dienst ein einziges, technisch notwendiges Cookie
@@ -79,8 +85,9 @@ const c = getContent(locale);
           <h3>Hosting und Server-Logs</h3>
           <p>Der Dienst wird bei der domainfactory GmbH gehostet. Der Hoster verarbeitet technisch notwendige
              Server-Logdaten (u. a. IP-Adresse, Zeitpunkt, aufgerufene Adresse) zur Auslieferung und
-             Sicherheit (Art. 6 Abs. 1 lit. f DSGVO). Unser eigenes Betriebsprotokoll enthält keine
-             Prompt-Texte und keine Fotos, Gedichte oder Audios.</p>
+             Sicherheit (Art. 6 Abs. 1 lit. f DSGVO). Unser eigenes Betriebsprotokoll enthält nur technische
+             Kennungen und Prüfergebnisse, keine Texte, Fotos, Audios oder IP-Adressen; es wird nach
+             30 Tagen gelöscht. Zugriff auf die gespeicherten Daten hat nur die Digilyze GmbH.</p>
 
           <h2>Ihre Rechte</h2>
           <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung,
@@ -118,25 +125,28 @@ const c = getContent(locale);
           <h2 id="cam-assets">2. Sharing and prompt service cam-assets.digilyze.com</h2>
           <h3 id="shared-pages">Shared moments</h3>
           <p>A moment is shared only if sharing was switched on and confirmed on the camera. The camera then
-             uploads the photo, poem, read-aloud audio and the moment’s language. The QR code on the printout
+             uploads the photo, poem, read-aloud audio and, if one was used, the prompt the poem came from. The
+             service also stores the language, times and the result of the check. The QR code on the printout
              opens a page with this content. Anyone with the link can see it; search engines can’t find it.
              After <strong>48 hours</strong> the content is deleted automatically. There are no accounts and
-             no names.</p>
+             no names, and the service stores no IP addresses.</p>
           <p>Before anything is stored, an automatic service checks the photo, poem and prompt once more for
-             unsuitable content (youth protection). Anything flagged is neither stored nor published. The legal
+             unsuitable content (youth protection). Anything flagged is deleted at once and never published. The legal
              basis for sharing is the consent given on the camera (Art. 6(1)(a) GDPR); for the check, our
              legitimate interest in protecting children and young people (Art. 6(1)(f) GDPR).</p>
           <h3 id="prompts">Prompts</h3>
           <p>The QR code on the camera’s screen lets you send a prompt, an instruction for the next poem (at
-             most 200 characters). Please don’t enter names or contact details. Every prompt is checked
-             automatically before it reaches the camera. An accepted prompt applies to the camera for 8 hours.
+             most 200 characters). Please don’t enter names or contact details. We store the text, the camera
+             it is meant for, times and the result of the check, but no IP address and no personal details.
+             Every prompt is checked automatically before it reaches the camera. An accepted prompt applies to the camera for 8 hours.
              After that, and likewise after a rejection, it is <strong>deleted within 24 hours</strong>. We
-             don’t analyse prompts or build profiles. The legal basis is providing the requested function
+             don’t analyse prompts or build profiles. On the test page for teachers, a prompt is only checked,
+             never stored or sent to a camera. The legal basis is providing the requested function
              (Art. 6(1)(b) GDPR) and our legitimate interest in youth protection (Art. 6(1)(f) GDPR).</p>
           <h3>Automatic checks by OpenAI</h3>
-          <p>For these checks we use services of OpenAI (OpenAI, L.L.C., USA). The content to be checked
-             (the prompt, and for shared moments also the photo and poem) is sent to OpenAI without us having
-             it stored there. For abuse monitoring, OpenAI may keep requests for up to 30 days under its own rules. The transfer to the USA is based on the European Commission’s adequacy decision
+          <p>For these checks we use services of OpenAI (OpenAI, L.L.C., USA). Only the content to be
+             checked is sent (the prompt, and for shared moments also the photo and poem), no IP addresses,
+             names or cookies. For the check by a language model we have OpenAI not store the request. For abuse monitoring, OpenAI may keep requests for up to 30 days under its own rules. The transfer to the USA is based on the European Commission’s adequacy decision
              for the EU-U.S. Data Privacy Framework.</p>
           <h3>Cookie</h3>
           <p>After a prompt is sent, the service sets a single, technically necessary cookie
@@ -145,7 +155,8 @@ const c = getContent(locale);
           <h3>Hosting and server logs</h3>
           <p>The service is hosted by domainfactory GmbH. The host processes technically necessary server log
              data (e.g. IP address, time, requested address) for delivery and security (Art. 6(1)(f) GDPR). Our
-             own operational log contains no prompt texts and no photos, poems or audio.</p>
+             own operational log contains only technical IDs and check results, no texts, photos, audio or IP
+             addresses; it is deleted after 30 days. Only Digilyze GmbH can access the stored data.</p>
 
           <h2>Your rights</h2>
           <p>You have the right to access, rectification, erasure, restriction, data portability and
