@@ -27,14 +27,14 @@ handoffs. Tick items off here when they're done.
 
 ## Owner decisions
 
-- [ ] **Event mode:** storage period for captures at events. Today the development
+- [ ] **Event mode:** storage period for captures at events. Today the development *Not decided yet (owner's answers 2026-11-04, `../poetry-cam/docs/handoffs/www-device-privacy.md`); §3 stays school mode only.*
   profile keeps everything on the SD card forever. Recommendation: event profile,
   RAM-only by default like school, optional auto-delete (e.g. 7 days). The privacy
   notice covers school mode only until this is decided.
   → `docs/handoffs/device-privacy.md` §1
-- [ ] **Exports on the operator's PC** (`data/pi-export/`): retention period.
-- [ ] **Cloned ElevenLabs voices:** any cloned from a real person? Consent?
-- [ ] **ElevenLabs plan:** `enable_logging=false` needs Enterprise. Upgrade or accept.
+- [x] **Exports on the operator's PC** (`data/pi-export/`): retention period. *One-time action, nothing to mention in the privacy text (owner's answers 2026-11-04, `../poetry-cam/docs/handoffs/www-device-privacy.md`).*
+- [x] **Cloned ElevenLabs voices:** any cloned from a real person? Consent? *Official ElevenLabs voices only, none cloned (owner's answers 2026-11-04, `../poetry-cam/docs/handoffs/www-device-privacy.md`).*
+- [x] **ElevenLabs plan:** `enable_logging=false` needs Enterprise. Upgrade or accept. *Starter plan, no zero retention; ElevenLabs retention stays out of the privacy text for now, owner's choice (owner's answers 2026-11-04, `../poetry-cam/docs/handoffs/www-device-privacy.md`).*
 - [ ] **Mobile hotspot** in the loan kit, for schools whose Wi-Fi blocks the camera?
 - [ ] **Phenol-free thermal paper**; poems per roll (are 2 rolls enough?).
 - [ ] **Loan agreement** (damage, insurance, return). **[legal]**
@@ -76,7 +76,7 @@ details in `../poetry-cam/docs/handoffs/www-device-privacy.md` points 3 and 6.
   school setup re-run**, "verbindet sich nur mit …" holds; no extra line needed.
 - [x] **Device team confirms** on a live camera which connections it actually makes, and tells *Confirmed 2026-11-04 on camera 01: only OpenAI and the local router seen; share link stays in RAM.*
   www when PR #90 is on the school cameras.
-- [ ] **[legal] Legal basis for sharing in school mode** (§2: "Einwilligung an der Kamera"): in
+- [ ] **[legal] Legal basis for sharing in school mode** (§2: "Einwilligung an der Kamera"): in *To be clarified with the first school; §2 wording stays until then (owner's answers 2026-11-04, `../poetry-cam/docs/handoffs/www-device-privacy.md`).*
   school mode a teacher switches sharing on and no child is asked. The basis there is the
   parents' written consent collected by the school (§ 12 Abs. 4 SchDSV). Have the wording
   checked.
