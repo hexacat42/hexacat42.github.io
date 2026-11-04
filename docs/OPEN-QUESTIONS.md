@@ -6,7 +6,7 @@ handoffs. Tick items off here when they're done.
 
 ## Before the first camera is handed out
 
-- [ ] **Device: connectivity check to cam-assets.** Switch from `8.8.8.8:53` (Google
+- [x] **Device: connectivity check to cam-assets.** Switch from `8.8.8.8:53` (Google *Done in v0.1.13 (2026-11-04), running on camera 01.*
   DNS) to `cam-assets.digilyze.com:443`. The live privacy text ("verbindet sich nur
   mit OpenAI, ElevenLabs und cam-assets.digilyze.com") already assumes it.
   → `docs/handoffs/device-privacy.md` §3
@@ -65,7 +65,7 @@ handoffs. Tick items off here when they're done.
 **Device PR #90** (not merged or released yet) makes two sentences in `/datenschutz` §3 true;
 details in `../poetry-cam/docs/handoffs/www-device-privacy.md` points 3 and 6.
 
-- [ ] **Release with PR #90 on every school camera** before hand-out. Until then:
+- [x] **Release with PR #90 on every school camera** before hand-out. Until then: *v0.1.13 on camera 01 (2026-11-04); both §3 sentences now hold there. Every further school camera needs v0.1.13 and the school setup before hand-out.*
   - "verbindet sich nur mit OpenAI, ElevenLabs und cam-assets.digilyze.com" is not yet true:
     up to 0.1.12 the online check goes to Google DNS (8.8.8.8);
   - "Auf der Speicherkarte bleiben nur technische Angaben ohne Inhalte" is not yet true:
@@ -74,7 +74,7 @@ details in `../poetry-cam/docs/handoffs/www-device-privacy.md` points 3 and 6.
   NetworkManager's connectivity check is off, and the clock is set from the time
   cam-assets.digilyze.com sends (no more `debian.pool.ntp.org`). With that release **and the
   school setup re-run**, "verbindet sich nur mit …" holds; no extra line needed.
-- [ ] **Device team confirms** on a live camera which connections it actually makes, and tells
+- [x] **Device team confirms** on a live camera which connections it actually makes, and tells *Confirmed 2026-11-04 on camera 01: only OpenAI and the local router seen; share link stays in RAM.*
   www when PR #90 is on the school cameras.
 - [ ] **[legal] Legal basis for sharing in school mode** (§2: "Einwilligung an der Kamera"): in
   school mode a teacher switches sharing on and no child is asked. The basis there is the
@@ -86,7 +86,7 @@ Reply: `../poetry-cam/docs/handoffs/www-device-privacy.md` (not committed there 
 - [ ] TTS timeout (they'll add it).
 - [ ] Device checks on camera 01: swap and journal still in RAM; OS-level network
   calls (timesyncd, NetworkManager check, apt).
-- [ ] Tell www when the connectivity check ships.
+- [x] Tell www when the connectivity check ships. *Done 2026-11-04.*
 
 ## Housekeeping
 
