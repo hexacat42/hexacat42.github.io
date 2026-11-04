@@ -70,9 +70,12 @@ details in `../poetry-cam/docs/handoffs/www-device-privacy.md` points 3 and 6.
     up to 0.1.12 the online check goes to Google DNS (8.8.8.8);
   - "Auf der Speicherkarte bleiben nur technische Angaben ohne Inhalte" is not yet true:
     up to 0.1.12 the share link is saved on the card and opens the page for 48 h.
-- [ ] **OS-level connections still unchecked:** Pi OS time sync (default
-  `debian.pool.ntp.org`) and NetworkManager's connectivity check. If either stays on, §3's
-  "verbindet sich nur mit …" needs a line about it (or turn them off / point NTP elsewhere).
+- [x] ~~OS-level connections~~ — decided 2026-11-03, also in PR #90: in the school profile
+  NetworkManager's connectivity check is off, and the clock is set from the time
+  cam-assets.digilyze.com sends (no more `debian.pool.ntp.org`). With that release **and the
+  school setup re-run**, "verbindet sich nur mit …" holds; no extra line needed.
+- [ ] **Device team confirms** on a live camera which connections it actually makes, and tells
+  www when PR #90 is on the school cameras.
 - [ ] **[legal] Legal basis for sharing in school mode** (§2: "Einwilligung an der Kamera"): in
   school mode a teacher switches sharing on and no child is asked. The basis there is the
   parents' written consent collected by the school (§ 12 Abs. 4 SchDSV). Have the wording
